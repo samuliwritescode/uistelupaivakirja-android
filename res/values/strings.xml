@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, TripExplorer!</string>
-    <string name="app_name">Uistelupäiväkirja</string>
+    <string name="app_name">Uistelu</string>
+    <string name="app_title">Uistelupäiväkirja Android</string>
     <string name="begin_trip">Aloita reissu</string>
 </resources>
