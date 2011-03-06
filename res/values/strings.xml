@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, TripExplorer!</string>
     <string name="app_name">Uistelupäiväkirja</string>
+    <string name="begin_trip">Aloita reissu</string>
 </resources>
