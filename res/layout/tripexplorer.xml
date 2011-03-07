@@ -3,7 +3,7 @@
 <ScrollView android:id="@+id/ScrollView01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout android:orientation="vertical" android:layout_height="fill_parent" android:id="@+id/LinearLayout01" android:layout_width="fill_parent">
 
-<Button android:text="@string/begin_trip" android:id="@+id/Button01" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+<Button android:text="@string/begin_trip" android:id="@+id/BeginTrip" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
 
 </LinearLayout>
 </ScrollView>
