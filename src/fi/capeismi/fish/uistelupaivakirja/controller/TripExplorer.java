@@ -1,4 +1,4 @@
-package fi.capeismi.fish.uistelupaivakirja;
+package fi.capeismi.fish.uistelupaivakirja.controller;
 
 import android.app.Activity;
 import android.content.Intent;

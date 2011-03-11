@@ -5,6 +5,9 @@
     <string name="app_title">Uistelupäiväkirja Android</string>
     <string name="begin_trip">Aloita reissu</string>
     <string name="trip">Reissu</string>
+    <string name="fish">Kala</string>
+    <string name="weather">Säähavainto</string>
+    <string name="fishnweather">Kala ja säätapahtuma</string>
     <string name="new_fish">Lisää kala</string>
     <string name="new_weather">Lisää säätila</string>
     <string name="new_fishnweather">Lisää kala+sää</string>
