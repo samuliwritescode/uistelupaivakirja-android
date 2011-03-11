@@ -20,6 +20,7 @@ public class Trip extends Activity implements OnClickListener {
     	((Button)findViewById(R.id.NewFish)).setOnClickListener(this);
     	((Button)findViewById(R.id.NewWeather)).setOnClickListener(this); 
     	((Button)findViewById(R.id.FishnWeather)).setOnClickListener(this);
+    	Log.i(TAG, "create trip");
     }
     
     @Override
@@ -32,7 +33,7 @@ public class Trip extends Activity implements OnClickListener {
     protected void onResume() {
     	super.onResume();
     }
-
+   
 	@Override
 	public void onClick(View v) 
 	{
