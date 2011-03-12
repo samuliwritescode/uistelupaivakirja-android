@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, TripExplorer!</string>
     <string name="app_name">Uistelu</string>
     <string name="app_title">Uistelupäiväkirja Android</string>
     <string name="begin_trip">Aloita reissu</string>
     <string name="trip">Reissu</string>
-    <string name="fish">Kala</string>
+    <string name="fish">Kalatapahtuma</string>
     <string name="weather">Säähavainto</string>
-    <string name="fishnweather">Kala ja säätapahtuma</string>
+    <string name="fishnweather">Kalatapahtuma ja säätapahtuma</string>
     <string name="new_fish">Lisää kala</string>
     <string name="new_weather">Lisää säätila</string>
     <string name="new_fishnweather">Lisää kala+sää</string>
     <string name="species">Laji</string>
     <string name="method">Tapa</string>
     <string name="getter">Saaja</string>
+    <string name="timeandplace">Aika ja\npaikka</string>
+    <string name="time">Aika</string>
+    <string name="coordinates">Sijainti</string>
     <string name="add_new">Lisää</string>
     <string name="done">Valmis</string>
     <string name="cancel">Peru</string>
     <string name="group">Joukko</string>
     <string name="lure">Viehe</string>
-    <string name="catchnrelease">CR</string>
+    <string name="catchnrelease">C&amp;R</string>
     <string name="undersize">Alamittainen</string>
     <string name="weight">Paino</string>
     <string name="length">Pituus</string>
@@ -27,10 +29,10 @@
     <string name="depth">Syvyys</string>
     <string name="trolling_speed">Vetonopeus</string>
     <string name="lure_weight">Painotus</string>
-    <string name="release_width">Vapautuspituus</string>
+    <string name="release_width">Vap. pituus</string>
     <string name="pcs">kpl</string>
     <string name="metres">m</string>
     <string name="grams">g</string>
-    <string name="kmh">kmh</string>
+    <string name="kmh">km/h</string>
     <string name="cents">cm</string>
 </resources>

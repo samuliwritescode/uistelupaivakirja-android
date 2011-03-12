@@ -18,6 +18,22 @@
 	android:stretchColumns="1">
 	
 <TableRow>
+<TextView android:text="@string/timeandplace" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:id="@+id/TimeAndCoordinates" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+</TableRow>
+	
+<TableRow>
+<CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<EditText android:id="@+id/GroupSize" android:layout_width="60dp" android:layout_height="wrap_content" android:numeric="integer" android:enabled="false"></EditText>
+<TextView android:text="@string/pcs" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+</TableRow>
+
+<TableRow>
+<CheckBox android:text="@string/catchnrelease" android:id="@+id/CrCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<CheckBox android:text="@string/undersize" android:id="@+id/UnderSizeCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+</TableRow>
+	
+<TableRow>
 <TextView android:text="@string/species" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <Spinner android:id="@+id/Species" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddSpecies" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
@@ -42,22 +58,6 @@
 
 </TableRow>
 
-</TableLayout>
-
-<LinearLayout 	
-	android:id="@+id/LinearLayout03" 
-	android:layout_width="fill_parent" 
-	android:layout_height="fill_parent">
-<CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
-<EditText android:id="@+id/GroupSize" android:layout_width="60dp" android:layout_height="wrap_content" android:numeric="integer"></EditText>
-<TextView android:text="@string/pcs" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-</LinearLayout>
-
-<TableLayout 
-	android:id="@+id/TableLayout01" 
-	android:layout_width="fill_parent" 
-	android:layout_height="fill_parent"
-	android:stretchColumns="1">
 <TableRow>
 <TextView android:text="@string/weight" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <EditText android:id="@+id/Weight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
@@ -102,11 +102,21 @@
 </TableLayout>
 
 <LinearLayout 	
-	android:id="@+id/LinearLayout02" 
+	android:id="@+id/RelativeLayout01" 
 	android:layout_width="fill_parent" 
-	android:layout_height="fill_parent">
-<Button android:text="@string/done" android:id="@+id/Done" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="@string/cancel" android:id="@+id/Cancel" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+	android:layout_height="fill_parent"
+	android:weightSum="100">
+<Button android:text="@string/done" 
+android:id="@+id/Done"
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:layout_weight="50"></Button>
+
+<Button android:text="@string/cancel" 
+android:id="@+id/Cancel" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"
+android:layout_weight="50"></Button>
 </LinearLayout>
 
 </LinearLayout>
