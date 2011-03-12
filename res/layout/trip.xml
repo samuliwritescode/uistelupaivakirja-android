@@ -11,11 +11,11 @@ android:layout_width="fill_parent" android:layout_height="fill_parent">
 <TextView android:text="1.7.2011 18:31 - kesken" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <Spinner android:id="@+id/Spinner01" android:layout_width="fill_parent" android:layout_height="wrap_content"></Spinner>
 
-<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal" android:weightSum="100">
 
-<Button android:text="@string/new_fish" android:id="@+id/NewFish" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="@string/new_weather" android:id="@+id/NewWeather" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-<Button android:text="@string/new_fishnweather" android:id="@+id/FishnWeather" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+<Button android:text="@string/new_fish" android:id="@+id/NewFish" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>
+<Button android:text="@string/new_weather" android:id="@+id/NewWeather" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>
+<Button android:text="@string/new_fishnweather" android:id="@+id/FishnWeather" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>
 
 </LinearLayout>
 
