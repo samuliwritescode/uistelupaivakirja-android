@@ -13,8 +13,11 @@
 	android:layout_width="fill_parent">
 	
 <include layout="@layout/fish_fields"/>
+<include layout="@layout/weather_fields"/>
 <include layout="@layout/event_buttons"/>
 	
 </LinearLayout>
+
 </ScrollView>
+
 </merge>

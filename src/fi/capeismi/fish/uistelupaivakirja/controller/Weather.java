@@ -1,5 +1,15 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-public class Weather extends Event {
+import android.os.Bundle;
+import android.util.Log;
 
+public class Weather extends Event {
+	private static final String TAG = "Weather";
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.weather);
+    	Log.i(TAG, "new fish");
+    }
 }
