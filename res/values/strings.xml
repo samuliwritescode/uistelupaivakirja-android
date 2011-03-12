@@ -11,4 +11,25 @@
     <string name="new_fish">Lisää kala</string>
     <string name="new_weather">Lisää säätila</string>
     <string name="new_fishnweather">Lisää kala+sää</string>
+    <string name="species">Laji</string>
+    <string name="method">Tapa</string>
+    <string name="getter">Saaja</string>
+    <string name="add_new">Lisää</string>
+    <string name="done">Valmis</string>
+    <string name="cancel">Peru</string>
+    <string name="group">Joukko</string>
+    <string name="catchnrelease">CR</string>
+    <string name="undersize">Alamittainen</string>
+    <string name="weight">Paino</string>
+    <string name="length">Pituus</string>
+    <string name="spot_depth">Ottisyvyys</string>
+    <string name="depth">Syvyys</string>
+    <string name="trolling_speed">Vetonopeus</string>
+    <string name="lure_weight">Painotus</string>
+    <string name="release_width">Vapautuspituus</string>
+    <string name="pcs">kpl</string>
+    <string name="metres">m</string>
+    <string name="grams">g</string>
+    <string name="kmh">kmh</string>
+    <string name="cents">cm</string>
 </resources>

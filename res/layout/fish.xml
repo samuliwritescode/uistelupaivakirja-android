@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+	android:id="@+id/ScrollView01" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" 
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+	android:orientation="vertical" 
+	android:layout_height="fill_parent" 
+	android:id="@+id/LinearLayout01" 
+	android:layout_width="fill_parent">
+
+<TableLayout 
+	android:id="@+id/TableLayout01" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent"
+	android:stretchColumns="1">
+	
+<TableRow>
+<TextView android:text="@string/species" android:id="@+id/SpeciesLabel" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<Spinner android:id="@+id/Species" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Button android:text="@string/add_new" android:id="@+id/AddSpecies" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</TableRow>
+
+<TableRow>
+<TextView android:text="@string/getter" android:id="@+id/GetterLabel" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<Spinner android:id="@+id/Getter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Button android:text="@string/add_new" android:id="@+id/AddGetter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</TableRow>
+
+<TableRow>
+<TextView android:text="@string/method" android:id="@+id/MethodLabel" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<Spinner android:id="@+id/Method" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Button android:text="@string/add_new" android:id="@+id/AddMethod" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</TableRow>
+
+</TableLayout>
+
+<LinearLayout 	
+	android:id="@+id/LinearLayout03" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+<CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<EditText android:id="@+id/GroupSize" android:layout_width="60dp" android:layout_height="wrap_content"></EditText>
+<TextView android:text="@string/pcs" android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+</LinearLayout>
+
+<LinearLayout 	
+	android:id="@+id/LinearLayout02" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+<Button android:text="@string/done" android:id="@+id/Done" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+<Button android:text="@string/cancel" android:id="@+id/Cancel" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+</LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>
