@@ -8,8 +8,15 @@ public class Weather extends Event {
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
     	setContentView(R.layout.weather);
+    	super.onCreate(savedInstanceState);
+    	
     	Log.i(TAG, "new fish");
     }
+
+	@Override
+	public void onDone() {
+		// TODO Auto-generated method stub
+		
+	}
 }
