@@ -14,8 +14,10 @@ import android.view.Menu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 public class TripExplorer extends ListActivity implements OnClickListener {
@@ -23,10 +25,11 @@ public class TripExplorer extends ListActivity implements OnClickListener {
 	private static final String TAG = "TripExplorer";
 	
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
+	public void onCreateContextMenu(ContextMenu menu, 
+			View v,
             ContextMenuInfo menuInfo) {
 		  super.onCreateContextMenu(menu, v, menuInfo);
-		  Log.i(TAG, "context menu");
+		  Log.i(TAG, "context menu"+((AdapterView.AdapterContextMenuInfo)menuInfo).position);
 	}
 	
     @Override
@@ -65,7 +68,14 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         		new String[] {"Reissu"},         		
         		new int[] {R.id.tripItem});
         
-        setListAdapter(adapter);        
+        setListAdapter(adapter);
+        registerForContextMenu(getListView());
+    }
+    
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id)
+    {
+    	Log.i(TAG, "clicked list item"+new Long(id).toString());
     }
     
     @Override
