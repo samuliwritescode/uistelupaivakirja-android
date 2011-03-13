@@ -30,9 +30,21 @@
     <string name="trolling_speed">Vetonopeus</string>
     <string name="lure_weight">Painotus</string>
     <string name="release_width">Vap. pituus</string>
+    <string name="air_temp">Ilma</string>
+    <string name="water_temp">Vesi</string>
+    <string name="wind_speed">Tuuli</string>
+    <string name="direction">Suunta</string>
+    <string name="clouds">Pilvet</string>
+    <string name="rain">Sade</string>
+    <string name="pressure">Paine</string>
+    <string name="change">Muutos</string>
     <string name="pcs">kpl</string>
     <string name="metres">m</string>
     <string name="grams">g</string>
     <string name="kmh">km/h</string>
     <string name="cents">cm</string>
+    <string name="celsius">C</string>
+    <string name="ms">m/s</string>
+    <string name="hpa">hPa</string>
+    <string name="autofetch">Hae automaattisesti</string>
 </resources>

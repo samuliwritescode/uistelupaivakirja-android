@@ -14,11 +14,6 @@
 	android:stretchColumns="1">
 	
 <TableRow>
-<TextView android:text="@string/timeandplace" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:id="@+id/TimeAndCoordinates" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-</TableRow>
-	
-<TableRow>
 <CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
 <EditText android:id="@+id/GroupSize" android:layout_width="60dp" android:layout_height="wrap_content" android:numeric="integer" android:enabled="false"></EditText>
 <TextView android:text="@string/pcs" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>

@@ -12,6 +12,7 @@
 	android:id="@+id/LinearLayout01" 
 	android:layout_width="fill_parent">
 	
+<include layout="@layout/event_general"/>
 <include layout="@layout/fish_fields"/>
 <include layout="@layout/weather_fields"/>
 <include layout="@layout/event_buttons"/>
