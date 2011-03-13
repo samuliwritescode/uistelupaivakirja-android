@@ -15,10 +15,13 @@ public abstract class Event extends Activity implements OnClickListener{
     }
 
 	@Override
-	public void onClick(View arg0) {
+	public final void onClick(View arg0) {
 		switch(arg0.getId())
 		{
-		case R.id.Done: onDone(); break;
+		case R.id.Done: 
+			onDone(); 
+			finish(); 
+			break;
 		case R.id.Cancel: finish(); break;
 		}		
 	}

@@ -3,7 +3,7 @@ package fi.capeismi.fish.uistelupaivakirja.controller;
 import android.util.Log;
 import android.os.Bundle;
 
-public class Fish extends Event 
+public final class Fish extends Event 
 {
 	private static final String TAG = "Fish";
 	
