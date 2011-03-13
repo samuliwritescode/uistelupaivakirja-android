@@ -1,6 +1,10 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-import android.app.Activity;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +15,10 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 
-public class TripExplorer extends Activity implements OnClickListener {
+public class TripExplorer extends ListActivity implements OnClickListener {
 	
 	private static final String TAG = "TripExplorer";
 	
@@ -34,7 +40,6 @@ public class TripExplorer extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tripexplorer);
-        setDefaultKeyMode(DEFAULT_KEYS_SHORTCUT);
         
         String state = Environment.getExternalStorageState();
         if(Environment.MEDIA_MOUNTED.equals(state)) {
@@ -43,9 +48,24 @@ public class TripExplorer extends Activity implements OnClickListener {
         else {
         	Log.e(TAG, state);        	
         }
-        setDefaultKeyMode(DEFAULT_KEYS_SHORTCUT);
+
         Button btn = (Button)findViewById(R.id.BeginTrip);
         btn.setOnClickListener(this);
+        
+        List<Map<String, String> > data = new Vector<Map<String, String> >();
+        Map<String, String> ob = new HashMap<String, String>();
+        ob.put("Reissu", "trip");
+        for(int loop=0; loop < 50; loop++)
+        	data.add(ob);
+
+        ListAdapter adapter = new SimpleAdapter(
+        		this,         		
+        		data, 
+        		R.layout.trip_listitem,
+        		new String[] {"Reissu"},         		
+        		new int[] {R.id.tripItem});
+        
+        setListAdapter(adapter);        
     }
     
     @Override
