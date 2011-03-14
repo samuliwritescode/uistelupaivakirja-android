@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 
 public class Trip extends Activity implements OnClickListener {
@@ -21,6 +25,25 @@ public class Trip extends Activity implements OnClickListener {
     	((Button)findViewById(R.id.NewWeather)).setOnClickListener(this); 
     	((Button)findViewById(R.id.FishnWeather)).setOnClickListener(this);
     	Log.i(TAG, "create trip");
+    	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
+    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+    	adapter.add(new String("item1"));
+    	adapter.add(new String("item2"));
+    	adapter.add(new String("item3"));
+    	spinner.setAdapter(adapter);
+    	spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+    		@Override
+    		public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    		{    			
+    			Log.i(TAG, "item selected"+position);
+    		}
+    		
+    		@Override
+    		public void onNothingSelected(AdapterView<?> parent)
+    		{
+    			Log.i(TAG, "item not selected");
+    		}
+		});
     }
     
     @Override
