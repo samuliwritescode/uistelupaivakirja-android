@@ -256,7 +256,7 @@ bg=orange</panel_attributes>
     <panel_attributes>XMLStore
 --
 +load()
-+save(SerializableObj)
++save(storable)
 +addListener(fillable)
 bg=orange</panel_attributes>
     <additional_attributes/>
@@ -550,13 +550,13 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>60</x>
-      <y>740</y>
-      <w>50</w>
-      <h>250</h>
+      <x>450</x>
+      <y>890</y>
+      <w>110</w>
+      <h>90</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>30;230;30;30</additional_attributes>
+    <panel_attributes>lt=.&lt;</panel_attributes>
+    <additional_attributes>30;70;90;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -614,7 +614,6 @@ bg=yellow</panel_attributes>
     </coordinates>
     <panel_attributes>/TrollingObjectCollection/
 --
-accept(builder)
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
@@ -676,8 +675,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>410</x>
-      <y>950</y>
+      <x>330</x>
+      <y>1070</y>
       <w>170</w>
       <h>130</h>
     </coordinates>
@@ -695,47 +694,47 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>210</x>
-      <y>970</y>
-      <w>220</w>
-      <h>50</h>
+      <x>380</x>
+      <y>1000</y>
+      <w>50</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>200;30;30;30</additional_attributes>
+    <additional_attributes>30;70;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>140</x>
-      <y>1120</y>
-      <w>230</w>
+      <x>60</x>
+      <y>1080</y>
+      <w>240</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-/SerizaliableObject/
+/Storable/
 --
-getId(): int
-getKeyValues(): kvpairlist
-getPropItems(): list&lt;kvpairlist&gt;
++getId(): int
++getKeyValues(): kvpairlist
++getPropItems(): list&lt;kvpairlist&gt;
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>120</x>
-      <y>1010</y>
-      <w>50</w>
-      <h>130</h>
+      <x>210</x>
+      <y>1000</y>
+      <w>170</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>30;110;30;30</additional_attributes>
+    <additional_attributes>30;80;150;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>110</x>
-      <y>820</y>
+      <x>60</x>
+      <y>870</y>
       <w>260</w>
       <h>80</h>
     </coordinates>
@@ -750,13 +749,13 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>130</x>
+      <x>80</x>
       <y>740</y>
       <w>50</w>
-      <h>100</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;80;30;30</additional_attributes>
+    <additional_attributes>30;130;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
@@ -772,14 +771,14 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>60</x>
-      <y>970</y>
+      <x>330</x>
+      <y>960</y>
       <w>180</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>TrollingObjectBuilder
 --
-+addListener(collection)
++addListener(stolistener)
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
@@ -787,23 +786,12 @@ bg=orange</panel_attributes>
     <type>com.umlet.element.Relation</type>
     <coordinates>
       <x>160</x>
-      <y>870</y>
-      <w>320</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>30;100;300;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>330</x>
       <y>770</y>
-      <w>130</w>
-      <h>370</h>
+      <w>280</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>30;350;110;30</additional_attributes>
+    <additional_attributes>30;310;260;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Note</type>
@@ -813,7 +801,7 @@ bg=orange</panel_attributes>
       <w>270</w>
       <h>150</h>
     </coordinates>
-    <panel_attributes>load() {
+    <panel_attributes>load(collection) {
  XMLStore store(collection.getType());
  TrollingObjectBuilder builder;
  builder.addListener(collection);
@@ -826,60 +814,76 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>610</x>
+      <x>690</x>
       <y>820</y>
-      <w>260</w>
-      <h>90</h>
+      <w>180</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>240;30;30;70</additional_attributes>
+    <additional_attributes>160;30;30;90</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>460</x>
-      <y>850</y>
+      <x>540</x>
+      <y>870</y>
       <w>180</w>
-      <h>70</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Database
 --
-+save(serizaliableobj);
-+load();
++save(storable)
++remove(storable)
++load(collection)
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>440</x>
-      <y>770</y>
-      <w>50</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>30;30;30;80</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>340</x>
-      <y>850</y>
-      <w>140</w>
+      <x>290</x>
+      <y>870</y>
+      <w>270</w>
       <h>50</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;120;30</additional_attributes>
+    <additional_attributes>30;30;250;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>560</x>
-      <y>890</y>
+      <x>620</x>
+      <y>930</y>
       <w>50</w>
-      <h>240</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>30;30;30;220</additional_attributes>
+    <additional_attributes>30;30;30;180</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>130</x>
+      <y>790</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/StorableObserver/
+--
++accept(Storable)
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>180</x>
+      <y>740</y>
+      <w>50</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;50;30;30</additional_attributes>
   </element>
 </diagram>
