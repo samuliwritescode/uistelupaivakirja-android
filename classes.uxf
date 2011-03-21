@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="11.1">
+<diagram program="umlet" version="11.0">
   <help_text>// Uncomment the following line to change the fontsize:
 // fontsize=14
 
@@ -27,8 +27,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>250</x>
-      <y>240</y>
+      <x>610</x>
+      <y>230</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -39,8 +39,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>380</x>
-      <y>240</y>
+      <x>740</x>
+      <y>230</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -51,8 +51,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>500</x>
-      <y>240</y>
+      <x>860</x>
+      <y>230</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -63,8 +63,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>620</x>
-      <y>240</y>
+      <x>980</x>
+      <y>230</y>
       <w>140</w>
       <h>30</h>
     </coordinates>
@@ -75,8 +75,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>500</x>
-      <y>310</y>
+      <x>860</x>
+      <y>300</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -87,8 +87,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
-      <y>240</y>
+      <x>880</x>
+      <y>230</y>
       <w>50</w>
       <h>90</h>
     </coordinates>
@@ -98,8 +98,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
-      <y>240</y>
+      <x>880</x>
+      <y>230</y>
       <w>180</w>
       <h>90</h>
     </coordinates>
@@ -109,8 +109,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>400</x>
-      <y>240</y>
+      <x>760</x>
+      <y>230</y>
       <w>170</w>
       <h>90</h>
     </coordinates>
@@ -120,8 +120,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>400</x>
-      <y>380</y>
+      <x>760</x>
+      <y>370</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -132,8 +132,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>310</y>
+      <x>780</x>
+      <y>300</y>
       <w>150</w>
       <h>90</h>
     </coordinates>
@@ -143,8 +143,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>270</x>
-      <y>240</y>
+      <x>630</x>
+      <y>230</y>
       <w>200</w>
       <h>160</h>
     </coordinates>
@@ -154,8 +154,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>380</x>
-      <y>110</y>
+      <x>740</x>
+      <y>100</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -166,8 +166,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>500</x>
-      <y>110</y>
+      <x>860</x>
+      <y>100</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -178,8 +178,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>620</x>
-      <y>110</y>
+      <x>980</x>
+      <y>100</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -190,8 +190,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>400</x>
-      <y>110</y>
+      <x>760</x>
+      <y>100</y>
       <w>50</w>
       <h>150</h>
     </coordinates>
@@ -201,8 +201,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>520</x>
-      <y>110</y>
+      <x>880</x>
+      <y>100</y>
       <w>50</w>
       <h>150</h>
     </coordinates>
@@ -213,8 +213,8 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>660</x>
-      <y>110</y>
+      <x>1020</x>
+      <y>100</y>
       <w>50</w>
       <h>150</h>
     </coordinates>
@@ -224,39 +224,48 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>350</x>
-      <y>500</y>
-      <w>100</w>
-      <h>30</h>
+      <x>710</x>
+      <y>470</y>
+      <w>180</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>TripObject
+--
++getEvent(int): EventItem
++setTime()
+...
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>590</x>
-      <y>500</y>
+      <x>950</x>
+      <y>490</y>
       <w>100</w>
-      <h>30</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>EventItem
+--
++setWeight()
++setSpeed()
+...
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>530</x>
-      <y>1110</y>
+      <x>890</x>
+      <y>1260</y>
       <w>180</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>XMLStore
 --
 +load()
 +save(storable)
++remove(storable)
 +addListener(fillable)
 bg=orange</panel_attributes>
     <additional_attributes/>
@@ -264,10 +273,10 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Node</type>
     <coordinates>
-      <x>20</x>
-      <y>10</y>
+      <x>380</x>
+      <y>0</y>
       <w>810</w>
-      <h>1290</h>
+      <h>1460</h>
     </coordinates>
     <panel_attributes>center:Uistelupäiväkirja android</panel_attributes>
     <additional_attributes/>
@@ -275,8 +284,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>130</x>
-      <y>240</y>
+      <x>490</x>
+      <y>230</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -287,8 +296,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>150</x>
-      <y>240</y>
+      <x>510</x>
+      <y>230</y>
       <w>320</w>
       <h>160</h>
     </coordinates>
@@ -298,8 +307,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>250</x>
-      <y>110</y>
+      <x>610</x>
+      <y>100</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -310,8 +319,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>120</x>
-      <y>110</y>
+      <x>480</x>
+      <y>100</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -322,8 +331,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>270</x>
-      <y>110</y>
+      <x>630</x>
+      <y>100</y>
       <w>50</w>
       <h>150</h>
     </coordinates>
@@ -333,8 +342,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>180</x>
-      <y>110</y>
+      <x>540</x>
+      <y>100</y>
       <w>50</w>
       <h>150</h>
     </coordinates>
@@ -344,8 +353,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>80</x>
-      <y>500</y>
+      <x>460</x>
+      <y>490</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -356,8 +365,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SimpleComponent</type>
     <coordinates>
-      <x>30</x>
-      <y>70</y>
+      <x>390</x>
+      <y>60</y>
       <w>770</w>
       <h>100</h>
     </coordinates>
@@ -367,8 +376,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Database</type>
     <coordinates>
-      <x>390</x>
-      <y>1220</y>
+      <x>750</x>
+      <y>1380</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -378,8 +387,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>410</x>
-      <y>1170</y>
+      <x>770</x>
+      <y>1330</y>
       <w>160</w>
       <h>70</h>
     </coordinates>
@@ -389,8 +398,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Database</type>
     <coordinates>
-      <x>530</x>
-      <y>1220</y>
+      <x>890</x>
+      <y>1380</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -400,8 +409,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Database</type>
     <coordinates>
-      <x>670</x>
-      <y>1220</y>
+      <x>1030</x>
+      <y>1380</y>
       <w>110</w>
       <h>40</h>
     </coordinates>
@@ -411,8 +420,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>420</x>
-      <y>590</y>
+      <x>780</x>
+      <y>580</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -423,8 +432,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>470</x>
-      <y>650</y>
+      <x>830</x>
+      <y>640</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -435,8 +444,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>550</x>
-      <y>1170</y>
+      <x>910</x>
+      <y>1330</y>
       <w>50</w>
       <h>70</h>
     </coordinates>
@@ -446,8 +455,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>590</x>
-      <y>1170</y>
+      <x>950</x>
+      <y>1330</y>
       <w>150</w>
       <h>70</h>
     </coordinates>
@@ -457,30 +466,30 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>400</x>
-      <y>500</y>
+      <x>760</x>
+      <y>520</y>
       <w>70</w>
-      <h>110</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>30;30;50;90</additional_attributes>
+    <additional_attributes>30;30;50;60</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>540</x>
-      <y>500</y>
+      <x>900</x>
+      <y>540</y>
       <w>80</w>
-      <h>170</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>60;30;30;150</additional_attributes>
+    <additional_attributes>60;30;30;100</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>170</x>
-      <y>560</y>
+      <x>530</x>
+      <y>550</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -491,8 +500,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>230</x>
-      <y>640</y>
+      <x>590</x>
+      <y>630</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -503,21 +512,21 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>210</x>
-      <y>700</y>
-      <w>140</w>
+      <x>590</x>
+      <y>690</y>
+      <w>120</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;120;30</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;100;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>40</x>
-      <y>430</y>
+      <x>400</x>
+      <y>420</y>
       <w>760</w>
-      <h>850</h>
+      <h>1020</h>
     </coordinates>
     <panel_attributes>fi.capeismi.uistelupaivakirja.model</panel_attributes>
     <additional_attributes/>
@@ -525,8 +534,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>40</x>
-      <y>200</y>
+      <x>400</x>
+      <y>190</y>
       <w>760</w>
       <h>160</h>
     </coordinates>
@@ -536,9 +545,9 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>330</x>
-      <y>720</y>
-      <w>150</w>
+      <x>690</x>
+      <y>710</y>
+      <w>170</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>/TrollingObject/
@@ -550,19 +559,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>450</x>
-      <y>890</y>
-      <w>110</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=.&lt;</panel_attributes>
-    <additional_attributes>30;70;90;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>360</x>
-      <y>590</y>
+      <x>720</x>
+      <y>580</y>
       <w>120</w>
       <h>150</h>
     </coordinates>
@@ -572,8 +570,8 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>360</x>
-      <y>650</y>
+      <x>720</x>
+      <y>640</y>
       <w>160</w>
       <h>90</h>
     </coordinates>
@@ -583,19 +581,19 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>360</x>
-      <y>500</y>
+      <x>720</x>
+      <y>520</y>
       <w>50</w>
-      <h>240</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;220;30;30</additional_attributes>
+    <additional_attributes>30;190;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>560</x>
-      <y>740</y>
+      <x>920</x>
+      <y>730</y>
       <w>160</w>
       <h>60</h>
     </coordinates>
@@ -607,76 +605,80 @@ bg=yellow</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>70</x>
-      <y>720</y>
-      <w>170</w>
-      <h>50</h>
+      <x>430</x>
+      <y>670</y>
+      <w>190</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>/TrollingObjectCollection/
 --
++getType(): string
++getList(): list&lt;trollingobj&gt;
++add()
++remove(trollingobj)
 bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>100</x>
-      <y>500</y>
-      <w>70</w>
-      <h>240</h>
+      <x>480</x>
+      <y>490</y>
+      <w>50</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>50;220;30;30</additional_attributes>
+    <additional_attributes>30;180;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>120</x>
-      <y>560</y>
+      <x>480</x>
+      <y>550</y>
       <w>130</w>
-      <h>180</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;160;110;30</additional_attributes>
+    <additional_attributes>30;120;110;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>120</x>
-      <y>620</y>
+      <x>480</x>
+      <y>610</y>
       <w>130</w>
-      <h>120</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;100;110;30</additional_attributes>
+    <additional_attributes>30;60;110;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>450</x>
-      <y>750</y>
-      <w>130</w>
+      <x>830</x>
+      <y>740</y>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;110;30</additional_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>610</x>
-      <y>500</y>
+      <x>970</x>
+      <y>540</y>
       <w>50</w>
-      <h>260</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;240;30;30</additional_attributes>
+    <additional_attributes>30;190;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>330</x>
-      <y>1070</y>
+      <x>710</x>
+      <y>1190</y>
       <w>170</w>
       <h>130</h>
     </coordinates>
@@ -694,21 +696,21 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>380</x>
-      <y>1000</y>
+      <x>760</x>
+      <y>1110</y>
       <w>50</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>30;70;30;30</additional_attributes>
+    <additional_attributes>30;80;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>60</x>
-      <y>1080</y>
-      <w>240</w>
-      <h>100</h>
+      <x>720</x>
+      <y>850</y>
+      <w>210</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 /Storable/
@@ -722,19 +724,19 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>210</x>
-      <y>1000</y>
-      <w>170</w>
-      <h>100</h>
+      <x>770</x>
+      <y>940</y>
+      <w>50</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>30;80;150;30</additional_attributes>
+    <additional_attributes>30;30;30;130</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>60</x>
-      <y>870</y>
+      <x>410</x>
+      <y>1020</y>
       <w>260</w>
       <h>80</h>
     </coordinates>
@@ -749,128 +751,117 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>80</x>
-      <y>740</y>
+      <x>420</x>
+      <y>760</y>
       <w>50</w>
-      <h>150</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;130;30;30</additional_attributes>
+    <additional_attributes>30;260;30;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>480</y>
-      <w>190</w>
+      <x>860</x>
+      <y>470</y>
+      <w>110</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;30;170;30</additional_attributes>
+    <additional_attributes>30;30;90;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>330</x>
-      <y>960</y>
+      <x>710</x>
+      <y>1070</y>
       <w>180</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>TrollingObjectBuilder
 --
-+addListener(stolistener)
++addListener(stoObsr)
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>160</x>
-      <y>770</y>
-      <w>280</w>
-      <h>330</h>
-    </coordinates>
-    <panel_attributes>lt=-&lt;&lt;</panel_attributes>
-    <additional_attributes>30;310;260;30</additional_attributes>
-  </element>
-  <element>
     <type>com.umlet.element.Note</type>
     <coordinates>
-      <x>850</x>
-      <y>780</y>
+      <x>1220</x>
+      <y>950</y>
       <w>270</w>
-      <h>150</h>
+      <h>340</h>
     </coordinates>
-    <panel_attributes>load(collection) {
- XMLStore store(collection.getType());
+    <panel_attributes>load() {
+ XMLStore store(mCollection.getType());
  TrollingObjectBuilder builder;
- builder.addListener(collection);
+ builder.addListener(mCollection);
  store.addListener(builder);
  store.load();
 }
- </panel_attributes>
+
+save(storable) {
+ XMLStore store(mCollection.getType);
+ store.save(storable);
+ load(storable);
+}
+
+remove(storable) {
+ XMLStore store(mCollection.getType);
+ store.remove(storable);
+}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>690</x>
-      <y>820</y>
-      <w>180</w>
-      <h>110</h>
+      <x>1080</x>
+      <y>990</y>
+      <w>160</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>160;30;30;90</additional_attributes>
+    <additional_attributes>140;30;30;70</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>540</x>
-      <y>870</y>
+      <x>930</x>
+      <y>1020</y>
       <w>180</w>
-      <h>90</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Database
 --
 +save(storable)
 +remove(storable)
-+load(collection)
++load()
 bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>290</x>
-      <y>870</y>
-      <w>270</w>
+      <x>640</x>
+      <y>1000</y>
+      <w>310</w>
       <h>50</h>
     </coordinates>
-    <panel_attributes/>
-    <additional_attributes>30;30;250;30</additional_attributes>
-  </element>
-  <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>620</x>
-      <y>930</y>
-      <w>50</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>30;30;30;180</additional_attributes>
+    <panel_attributes>lt=-&lt;&lt;&lt;</panel_attributes>
+    <additional_attributes>30;30;290;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>130</x>
-      <y>790</y>
-      <w>140</w>
-      <h>70</h>
+      <x>470</x>
+      <y>850</y>
+      <w>230</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-/StorableObserver/
+/StorableSubject/
 --
++addListener(StorableListener)
 +accept(Storable)
 bg=red</panel_attributes>
     <additional_attributes/>
@@ -878,12 +869,137 @@ bg=red</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>180</x>
-      <y>740</y>
+      <x>540</x>
+      <y>760</y>
       <w>50</w>
-      <h>70</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;50;30;30</additional_attributes>
+    <additional_attributes>30;90;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>20</x>
+      <y>930</y>
+      <w>340</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>Model() {
+ mTripCollection = new TripCollection();
+ ...
+ mDatabaseTrip = new Database(mTripCollection);
+ mDatabaseTrip.load();
+ ...
+}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>330</x>
+      <y>1020</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>80;30;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>750</x>
+      <y>760</y>
+      <w>100</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;&lt;</panel_attributes>
+    <additional_attributes>80;90;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>860</x>
+      <y>1080</y>
+      <w>90</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=.&lt;</panel_attributes>
+    <additional_attributes>30;30;70;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>980</x>
+      <y>1110</y>
+      <w>50</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>30;30;30;150</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>1220</x>
+      <y>450</y>
+      <w>190</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>-list trollingobjects
+-add/remove trollingobject
+-modify trollingobject
+-display trolling object</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1130</x>
+      <y>510</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>30;30;90;40</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>970</x>
+      <y>850</y>
+      <w>160</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+/StorableListener/
+--
++add()
++remove(Storable)
++modified(Storable)
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>1000</x>
+      <y>940</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-&lt;&lt;</panel_attributes>
+    <additional_attributes>30;30;30;80</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>540</x>
+      <y>760</y>
+      <w>220</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;90;200;30</additional_attributes>
   </element>
 </diagram>
