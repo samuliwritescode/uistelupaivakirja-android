@@ -1,5 +1,5 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-abstract class TrollingObject implements Storable {
+final class PlaceBuilder implements Builder{
 
 }

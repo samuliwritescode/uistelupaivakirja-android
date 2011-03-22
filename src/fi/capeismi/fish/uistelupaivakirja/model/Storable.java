@@ -1,5 +1,5 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-abstract class TrollingObject implements Storable {
+interface Storable {
 
 }

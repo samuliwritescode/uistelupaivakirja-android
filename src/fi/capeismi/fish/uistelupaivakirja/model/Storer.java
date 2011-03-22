@@ -1,5 +1,5 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-public interface TrollingObjectFactory {
+final class Storer {
 
 }

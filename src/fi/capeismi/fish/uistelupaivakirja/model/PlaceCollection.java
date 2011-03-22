@@ -1,5 +1,5 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-public class PlaceCollection extends TrollingCollection {
+public class PlaceCollection extends TrollingObjectCollection {
 
 }
