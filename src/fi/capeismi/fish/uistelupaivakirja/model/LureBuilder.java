@@ -1,6 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-final class LureBuilder implements Builder{
+final class LureBuilder  extends AbstractBuildTarget  implements Builder{
 
 	@Override
 	public TrollingObject build() {

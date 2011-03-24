@@ -1,6 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-final class PlaceBuilder implements Builder{
+final class PlaceBuilder  extends AbstractBuildTarget  implements Builder{
 
 	@Override
 	public TrollingObject build() {

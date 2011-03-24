@@ -20,6 +20,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+
 public class TripExplorer extends ListActivity implements OnClickListener {
 	
 	private static final String TAG = "TripExplorer";
@@ -70,6 +72,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         
         setListAdapter(adapter);
         registerForContextMenu(getListView());
+        ModelFactory.getModel();
     }
     
     @Override

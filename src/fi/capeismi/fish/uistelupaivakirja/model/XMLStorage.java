@@ -1,7 +1,10 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import android.util.Log;
+
 final class XMLStorage implements Storage {
 
+	private static String TAG = "XMLStorage";
 	@Override
 	public void save(Storable storable) {
 		// TODO Auto-generated method stub
@@ -21,7 +24,7 @@ final class XMLStorage implements Storage {
 	
 	public void load(String file)
 	{
-		
+		Log.i(TAG, "loading "+file);
 	}
 
 }
