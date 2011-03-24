@@ -18,8 +18,24 @@ public class ModelFactory {
 		private PlaceCollection m_placeCollection = new PlaceCollection();
 		private LureCollection m_lureCollection = new LureCollection();
 		
-		private Model() {
+		private Model() {	
+			setupObjects(m_tripCollection, new Storer(), new XMLStorage(), new TripBuilder(), "trip");
+			setupObjects(m_placeCollection, new Storer(), new XMLStorage(), new PlaceBuilder(), "place");
+			setupObjects(m_lureCollection, new Storer(), new XMLStorage(), new LureBuilder(), "lure");
 		}
+		
+		private void setupObjects(TrollingObjectCollection collection, 
+				Storer storer,
+				XMLStorage storage,
+				Object builder,
+				String file) {
+			m_tripCollection.setBuilder((Builder)builder);
+			((Builder)builder).addListener(m_tripCollection);
+			storer.setStorage(storage);
+			storage.addListener((BuildTarget)builder);
+			storage.load(file);
+		}
+		
 		
 		public TripCollection getTrips() {
 			return this.m_tripCollection;
