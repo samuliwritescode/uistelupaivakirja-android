@@ -1,9 +1,11 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import android.util.Log;
+
 public abstract class AbstractBuildTarget implements BuildTarget {
 	@Override
 	public void newObject(int id) {
-		// TODO Auto-generated method stub
+		Log.i("target", "id: "+new Integer(id).toString());
 		
 	}
 
@@ -15,13 +17,12 @@ public abstract class AbstractBuildTarget implements BuildTarget {
 
 	@Override
 	public void newKeyValue(String key, String value) {
-		// TODO Auto-generated method stub
-		
+		Log.i("target", key+"="+value);
 	}
 
 	@Override
 	public void newProperty() {
-		// TODO Auto-generated method stub
+		Log.i("target", "newProperty");
 		
 	}
 

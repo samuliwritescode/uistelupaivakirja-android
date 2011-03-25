@@ -1,5 +1,8 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModelFactory {
 	private static Model instance;
 	private ModelFactory() {
@@ -13,10 +16,11 @@ public class ModelFactory {
 		return instance;
 	}
 	
-	private static class Model {
+	public static class Model {
 		private TripCollection m_tripCollection = new TripCollection();
 		private PlaceCollection m_placeCollection = new PlaceCollection();
 		private LureCollection m_lureCollection = new LureCollection();
+		private List<XMLStorage> m_storages = new ArrayList<XMLStorage>();
 		
 		private Model() {	
 			setupObjects(m_tripCollection, new Storer(), new XMLStorage(), new TripBuilder(), "trip");
@@ -34,6 +38,7 @@ public class ModelFactory {
 			storer.setStorage(storage);
 			storage.addListener((BuildTarget)builder);
 			storage.load(file);
+			m_storages.add(storage);
 		}
 		
 		
@@ -46,6 +51,8 @@ public class ModelFactory {
 		}
 		
 		public LureCollection getLures() {
+			for(XMLStorage storage: m_storages)
+				storage.load();
 			return this.m_lureCollection;
 		}
 	}

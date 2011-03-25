@@ -92,6 +92,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
     protected void onResume() {
     	super.onResume();
     	Log.i(TAG, "resume");
+    	ModelFactory.getModel().getLures();
     }
 
 	@Override
