@@ -19,6 +19,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -81,6 +82,21 @@ public class Trip extends ListActivity implements OnClickListener {
         		new int[] {R.id.tripItem});
         
         setListAdapter(listadapter);
+    }
+    
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id)
+    {
+    	Log.i(TAG, "clicked event item"+new Long(id).toString());
+		Intent intent = null;
+		switch(m_trip.getEvents().get((int)id).getType())
+		{
+		case eFish: intent = new Intent(this, Fish.class); break;
+		case eWeather: intent = new Intent(this, Weather.class); break;
+		case eFishAndWeather: intent = new Intent(this, FishAndWeather.class); break;
+		}
+		intent.putExtra("listitem", (int)id);
+		startActivity(intent);
     }
     
     @Override
