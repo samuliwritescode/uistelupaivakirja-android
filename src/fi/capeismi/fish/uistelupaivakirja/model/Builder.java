@@ -1,7 +1,7 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
 interface Builder {
-	TrollingObject build();
+	void build();
 	void addListener(ObjectCollection collection);
 
 }

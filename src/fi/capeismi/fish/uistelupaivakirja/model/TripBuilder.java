@@ -1,19 +1,11 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-final class TripBuilder extends AbstractBuildTarget implements Builder {
+final class TripBuilder extends AbstractBuilder {
 
 	@Override
-	public TrollingObject build() {
-		// TODO Auto-generated method stub
-		return null;
+	public void build() {
+		m_object = new TripObject();
+		super.build();
 	}
-
-	@Override
-	public void addListener(ObjectCollection collection) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 
 }

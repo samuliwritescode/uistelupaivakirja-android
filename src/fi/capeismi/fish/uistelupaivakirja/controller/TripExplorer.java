@@ -21,6 +21,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.TripCollection;
+import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 
 public class TripExplorer extends ListActivity implements OnClickListener {
 	
@@ -57,11 +59,17 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         Button btn = (Button)findViewById(R.id.BeginTrip);
         btn.setOnClickListener(this);
         
+        ModelFactory.getModel();
         List<Map<String, String> > data = new Vector<Map<String, String> >();
-        Map<String, String> ob = new HashMap<String, String>();
-        ob.put("Reissu", "trip");
-        for(int loop=0; loop < 50; loop++)
+
+        TripCollection collection = ModelFactory.getModel().getTrips();
+        List<TripObject> trips = collection.getList();
+        for(TripObject trip: trips)
+        {
+            Map<String, String> ob = new HashMap<String, String>();
+            ob.put("Reissu", trip.toString());
         	data.add(ob);
+        }
 
         ListAdapter adapter = new SimpleAdapter(
         		this,         		
@@ -72,7 +80,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         
         setListAdapter(adapter);
         registerForContextMenu(getListView());
-        ModelFactory.getModel();
+        
     }
     
     @Override
