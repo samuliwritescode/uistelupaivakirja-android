@@ -5,6 +5,6 @@ public class TripObject extends TrollingObject{
 	@Override
 	public String toString()
 	{
-		return m_keyvalues.get("description");
+		return get("description");
 	}
 }

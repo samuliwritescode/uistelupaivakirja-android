@@ -6,8 +6,8 @@ import java.util.Map;
 abstract class TrollingObject implements Storable {
 	
 	private int m_id = -1;
-	List<Map<String, String>> m_propitems;
-	Map<String, String> m_keyvalues;
+	private List<Map<String, String>> m_propitems;
+	private Map<String, String> m_keyvalues;
 	Storer m_storer;
 	
 	@Override
@@ -53,5 +53,15 @@ abstract class TrollingObject implements Storable {
 	public void save()
 	{
 		m_storer.save(this);
+	}
+	
+	protected void set(String key, String value)
+	{
+		m_keyvalues.put(key, value);
+	}
+	
+	protected String get(String key)
+	{
+		return m_keyvalues.get(key);
 	}
 }

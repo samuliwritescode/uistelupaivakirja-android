@@ -1,5 +1,7 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +13,13 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class Trip extends Activity implements OnClickListener {
 	
 	private static final String TAG = "Trip";
+	private TripObject m_trip = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,12 @@ public class Trip extends Activity implements OnClickListener {
     			Log.i(TAG, "item not selected");
     		}
 		});
+    	final Intent intent = getIntent();
+    	Bundle extras = intent.getExtras();
+    	int index = extras.getInt("listitem");
+    	m_trip = ModelFactory.getModel().getTrips().getList().get(index);
+    	TextView title = (TextView)findViewById(R.id.Title);
+    	title.setText(m_trip.toString());
     }
     
     @Override
