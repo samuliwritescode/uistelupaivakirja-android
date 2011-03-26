@@ -1,5 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ abstract class TrollingObject implements Storable {
 	private int m_id = -1;
 	private List<Map<String, String>> m_propitems;
 	private Map<String, String> m_keyvalues;
+	protected List<TrollingObjectItem> m_items = new ArrayList<TrollingObjectItem>();
 	Storer m_storer;
 	
 	@Override
@@ -39,8 +41,18 @@ abstract class TrollingObject implements Storable {
 		m_keyvalues = keyvalues;
 	}
 	
+	protected TrollingObjectItem newItem(Map<String, String> props)
+	{
+		return null;
+	}
+	
 	public void setPropItems(List<Map<String, String>> propitems)
 	{
+		m_items.clear();
+		for(Map<String, String> items : propitems)
+		{
+			m_items.add(newItem(items));
+		}
 		m_propitems = propitems;
 	}
 	

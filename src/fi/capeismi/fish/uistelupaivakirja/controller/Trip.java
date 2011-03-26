@@ -1,8 +1,14 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
+import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +18,13 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 
-public class Trip extends Activity implements OnClickListener {
+public class Trip extends ListActivity implements OnClickListener {
 	
 	private static final String TAG = "Trip";
 	private TripObject m_trip = null;
@@ -54,6 +62,25 @@ public class Trip extends Activity implements OnClickListener {
     	m_trip = ModelFactory.getModel().getTrips().getList().get(index);
     	TextView title = (TextView)findViewById(R.id.Title);
     	title.setText(m_trip.toString());
+    	    	
+        
+        List<Map<String, String> > data = new Vector<Map<String, String> >();
+        List<EventItem> events = m_trip.getEvents();
+        for(EventItem event: events)
+        {
+            Map<String, String> ob = new HashMap<String, String>();
+            ob.put("Reissu", event.toString());
+        	data.add(ob);
+        }
+        
+        ListAdapter listadapter = new SimpleAdapter(
+        		this,         		
+        		data, 
+        		R.layout.trip_listitem,
+        		new String[] {"Reissu"},         		
+        		new int[] {R.id.tripItem});
+        
+        setListAdapter(listadapter);
     }
     
     @Override
