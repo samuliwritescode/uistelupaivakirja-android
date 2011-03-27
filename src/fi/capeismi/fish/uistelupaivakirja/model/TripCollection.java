@@ -15,4 +15,9 @@ public class TripCollection extends TrollingObjectCollection {
 		}
 		return list;
 	}
+
+	public TripObject newTrip() {
+		build();
+		return (TripObject)m_trollingobjects.get(m_trollingobjects.size()-1);
+	}
 }

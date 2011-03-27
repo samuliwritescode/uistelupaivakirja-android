@@ -57,15 +57,19 @@ public class Trip extends ListActivity implements OnClickListener {
     			Log.i(TAG, "item not selected");
     		}
 		});
-    	final Intent intent = getIntent();
-    	Bundle extras = intent.getExtras();
-    	int index = extras.getInt("listitem");
-    	m_trip = ModelFactory.getModel().getTrips().getList().get(index);
+    	
+    	try
+    	{
+	    	final Intent intent = getIntent();
+	    	Bundle extras = intent.getExtras();
+	    	int index = extras.getInt("listitem");
+	    	m_trip = ModelFactory.getModel().getTrips().getList().get(index);	  		
+    	} catch(Exception e)
+    	{
+    		m_trip = ModelFactory.getModel().getTrips().newTrip();
+    	}
     	TextView title = (TextView)findViewById(R.id.Title);
     	title.setText(m_trip.toString());
-    	    	
-        
-        
     }
     
     @Override

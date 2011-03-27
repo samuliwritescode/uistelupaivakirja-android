@@ -110,6 +110,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
 		Log.i(TAG, "clicked"+btn.getText().toString());
 		
 		Intent intent = new Intent(this, Trip.class);
+		intent.putExtra("listitem", -1);
 		startActivity(intent);
 	}
       

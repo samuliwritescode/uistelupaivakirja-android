@@ -18,5 +18,10 @@ public abstract class TrollingObjectCollection implements ObjectCollection {
 	{
 		m_builder = builder;
 	}
+	
+	protected void build()
+	{
+		m_builder.build();		
+	}
 
 }

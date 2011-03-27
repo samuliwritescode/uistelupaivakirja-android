@@ -72,7 +72,7 @@ final class XMLStorage implements Storage {
 					storable.setId(maxId);
 				}
 			}
-			
+						
 			BufferedWriter bos = new BufferedWriter(new FileWriter(file));
 			
 			bos.write("<TrollingObjects MaxId=\""+maxId+"\">\n");
