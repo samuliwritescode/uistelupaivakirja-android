@@ -95,7 +95,8 @@ public class Trip extends ListActivity implements OnClickListener {
 		case eWeather: intent = new Intent(this, Weather.class); break;
 		case eFishAndWeather: intent = new Intent(this, FishAndWeather.class); break;
 		}
-		intent.putExtra("listitem", (int)id);
+		intent.putExtra("event", (int)id);
+		intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
 		startActivity(intent);
     }
     

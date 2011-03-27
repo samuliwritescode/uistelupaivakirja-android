@@ -17,6 +17,16 @@ public class EventItem extends TrollingObjectItem {
 		return get("fish_species");
 	}
 	
+	public String getWeight()
+	{
+		return get("fish_weight");
+	}
+	
+	public void setWeight(String weight)
+	{
+		set("fish_weight", weight);
+	}
+	
 	public EType getType()
 	{
 		return EType.values()[new Integer(get("type")).intValue()];
