@@ -3,9 +3,8 @@ package fi.capeismi.fish.uistelupaivakirja.controller;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
+import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +20,19 @@ public final class Fish extends Event
     	super.onCreate(savedInstanceState);
     	final Intent intent = getIntent();
     	Bundle extras = intent.getExtras();
-    	int index = extras.getInt("event");
+    	int index = -1;
     	int tripindex = extras.getInt("tripindex");
+
+		if(!extras.containsKey("event"))
+    	{
+    		Log.i(TAG, "no previous event. create new one");
+    		TrollingObjectItem item = ModelFactory.getModel().getTrips().getList().get(tripindex).newEvent(EventItem.EType.eFish);
+    		index = ModelFactory.getModel().getTrips().getList().get(tripindex).getEvents().indexOf(item);
+    	}
+		else
+		{
+			index = extras.getInt("event");
+		}
     	
     	Log.i(TAG, "tripid:"+new Integer(tripindex).toString()+" event:"+new Integer(index).toString());
 
@@ -30,23 +40,18 @@ public final class Fish extends Event
     	m_event = trip.getEvents().get(index);    	
     	EditText weight = (EditText)findViewById(R.id.Weight);
     	weight.setText(m_event.getWeight());
-    	
-    	weight.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View arg0, boolean arg1) {
-				Log.i(TAG, "focus change");
-			}
-    		
-    	});
     	Log.i(TAG, "new fish");
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
     }
 
 	@Override
 	public void onDone() {
 
 		EditText weight = (EditText)findViewById(R.id.Weight);
-		Double value = new Double(weight.getText().toString());
-		m_event.setWeight(value.toString());
+		m_event.setWeight(weight.getText().toString());
 	}
 }

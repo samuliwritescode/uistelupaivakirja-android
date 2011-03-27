@@ -31,4 +31,9 @@ public class EventItem extends TrollingObjectItem {
 	{
 		return EType.values()[new Integer(get("type")).intValue()];
 	}
+	
+	public void setType(EType type)
+	{
+		set("type", new Integer(type.ordinal()).toString());
+	}
 }

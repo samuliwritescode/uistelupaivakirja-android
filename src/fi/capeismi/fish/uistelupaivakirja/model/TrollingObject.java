@@ -7,10 +7,10 @@ import java.util.Map;
 abstract class TrollingObject implements Storable {
 	
 	private int m_id = -1;
-	private List<Map<String, String>> m_propitems;
+	private List<Map<String, String>> m_propitems = new ArrayList<Map<String, String>>();
 	private Map<String, String> m_keyvalues;
 	protected List<TrollingObjectItem> m_items = new ArrayList<TrollingObjectItem>();
-	Storer m_storer;
+	private Storer m_storer;
 	
 	@Override
 	public int getId()
@@ -54,6 +54,14 @@ abstract class TrollingObject implements Storable {
 			m_items.add(newItem(items));
 		}
 		m_propitems = propitems;
+	}
+	
+	protected TrollingObjectItem insertPropItem(Map<String, String> propitem)
+	{
+		TrollingObjectItem item = newItem(propitem);
+		m_items.add(item);
+		m_propitems.add(propitem);
+		return item;
 	}
 	
 	@Override

@@ -65,23 +65,7 @@ public class Trip extends ListActivity implements OnClickListener {
     	title.setText(m_trip.toString());
     	    	
         
-        List<Map<String, String> > data = new Vector<Map<String, String> >();
-        List<EventItem> events = m_trip.getEvents();
-        for(EventItem event: events)
-        {
-            Map<String, String> ob = new HashMap<String, String>();
-            ob.put("Reissu", event.toString());
-        	data.add(ob);
-        }
         
-        ListAdapter listadapter = new SimpleAdapter(
-        		this,         		
-        		data, 
-        		R.layout.trip_listitem,
-        		new String[] {"Reissu"},         		
-        		new int[] {R.id.tripItem});
-        
-        setListAdapter(listadapter);
     }
     
     @Override
@@ -109,6 +93,24 @@ public class Trip extends ListActivity implements OnClickListener {
     @Override
     protected void onResume() {
     	super.onResume();
+    	Log.i(TAG, "draw fish list");
+    	List<Map<String, String> > data = new Vector<Map<String, String> >();
+        List<EventItem> events = m_trip.getEvents();
+        for(EventItem event: events)
+        {
+            Map<String, String> ob = new HashMap<String, String>();
+            ob.put("Reissu", event.toString());
+        	data.add(ob);
+        }
+        
+        ListAdapter listadapter = new SimpleAdapter(
+        		this,         		
+        		data, 
+        		R.layout.trip_listitem,
+        		new String[] {"Reissu"},         		
+        		new int[] {R.id.tripItem});
+        
+        setListAdapter(listadapter);
     }
    
 	@Override
@@ -125,6 +127,7 @@ public class Trip extends ListActivity implements OnClickListener {
 		
 		if(intent != null)
 		{
+			intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
 			startActivity(intent);
 		}
 	}
