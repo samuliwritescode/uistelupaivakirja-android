@@ -59,25 +59,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         btn.setOnClickListener(this);
         
         ModelFactory.getModel();
-        List<Map<String, String> > data = new Vector<Map<String, String> >();
 
-        List<TripObject> trips = ModelFactory.getModel().getTrips().getList();
-        for(TripObject trip: trips)
-        {
-            Map<String, String> ob = new HashMap<String, String>();
-            ob.put("Reissu", trip.toString());
-        	data.add(ob);
-        }
-
-        ListAdapter adapter = new SimpleAdapter(
-        		this,         		
-        		data, 
-        		R.layout.trip_listitem,
-        		new String[] {"Reissu"},         		
-        		new int[] {R.id.tripItem});
-        
-        setListAdapter(adapter);
-        registerForContextMenu(getListView());
         
     }
     
@@ -101,7 +83,25 @@ public class TripExplorer extends ListActivity implements OnClickListener {
     protected void onResume() {
     	super.onResume();
     	Log.i(TAG, "resume");
-    	ModelFactory.getModel().getLures();
+        List<Map<String, String> > data = new Vector<Map<String, String> >();
+
+        List<TripObject> trips = ModelFactory.getModel().getTrips().getList();
+        for(TripObject trip: trips)
+        {
+            Map<String, String> ob = new HashMap<String, String>();
+            ob.put("Reissu", trip.toString());
+        	data.add(ob);
+        }
+
+        ListAdapter adapter = new SimpleAdapter(
+        		this,         		
+        		data, 
+        		R.layout.trip_listitem,
+        		new String[] {"Reissu"},         		
+        		new int[] {R.id.tripItem});
+        
+        setListAdapter(adapter);
+        registerForContextMenu(getListView());
     }
 
 	@Override
