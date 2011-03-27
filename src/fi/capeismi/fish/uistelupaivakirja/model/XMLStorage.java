@@ -51,7 +51,7 @@ final class XMLStorage implements Storage {
 					xml.append(line+"\n");
 				}else
 				{ 				
-					maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\"")-1)).intValue();
+					maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\""))).intValue();
 				}
 			}
 			files.close();
@@ -59,7 +59,7 @@ final class XMLStorage implements Storage {
 			String xmlstr = xml.toString();
 			String searchString = "<TrollingObject type=\""+m_filename+"\" id=\""+id+"\">";
 			String searchStringEnd = "</TrollingObject>";
-			int index = xmlstr.indexOf(searchString)-1;
+			int index = xmlstr.indexOf(searchString);
 			int lastIndex = xmlstr.indexOf(searchStringEnd, index)+searchStringEnd.length();
 			
 			if(index == -1)
@@ -96,7 +96,7 @@ final class XMLStorage implements Storage {
 		{
 			str.append("<"+entry.getKey()+">");
 			str.append(entry.getValue());
-			str.append("<"+entry.getKey()+">\n");
+			str.append("</"+entry.getKey()+">\n");
 		}
 		
 		List<Map<String, String>> props = storable.getPropItems();
@@ -110,7 +110,7 @@ final class XMLStorage implements Storage {
 				{
 					str.append("<"+entry.getKey()+">");
 					str.append(entry.getValue());
-					str.append("<"+entry.getKey()+">\n");
+					str.append("</"+entry.getKey()+">\n");
 				}
 				str.append("</PropertyListItem>\n");
 			}
