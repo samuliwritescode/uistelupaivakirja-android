@@ -1,10 +1,16 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -26,14 +32,98 @@ final class XMLStorage implements Storage {
 	
 	@Override
 	public void save(Storable storable) {
-		// TODO Auto-generated method stub
-		
+		save(storable.getId(), storable);
 	}
+	
+	private void save(int id, Storable storable) {
+		Log.i(TAG, "save storable "+id);
+		File file = new File(Environment.getExternalStorageDirectory().toString()+"/uistelu/"+m_filename+".xml");
+		try {
+			InputStream files = new FileInputStream(file);
+			BufferedReader is = new BufferedReader(new InputStreamReader(files));
+			StringBuilder xml = new StringBuilder();
+			String line;
+			int maxId = 1;
+			while((line = is.readLine()) != null)
+			{
+				if(line.indexOf("<TrollingObjects MaxId") == -1)
+				{
+					xml.append(line+"\n");
+				}else
+				{ 				
+					maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\"")-1)).intValue();
+				}
+			}
+			files.close();
+			
+			String xmlstr = xml.toString();
+			String searchString = "<TrollingObject type=\""+m_filename+"\" id=\""+id+"\">";
+			String searchStringEnd = "</TrollingObject>";
+			int index = xmlstr.indexOf(searchString)-1;
+			int lastIndex = xmlstr.indexOf(searchStringEnd, index)+searchStringEnd.length();
+			
+			if(index == -1)
+			{
+				index = 0;
+				lastIndex = 0;
+				if(storable != null)
+				{
+					maxId++;
+					storable.setId(maxId);
+				}
+			}
+			
+			BufferedWriter bos = new BufferedWriter(new FileWriter(file));
+			
+			bos.write("<TrollingObjects MaxId=\""+maxId+"\">\n");
+			bos.write(xmlstr.substring(0, index));
+			if(storable != null)
+			{
+				bos.write(serializeStorable(storable));
+			}
+			bos.write(xmlstr.substring(lastIndex));
+			bos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private String serializeStorable(Storable storable) {
+		StringBuilder str = new StringBuilder();
+		str.append("<TrollingObject type=\""+m_filename+"\" id=\""+storable.getId()+"\">\n");
+		Map<String, String> keyvalues = storable.getKeyValues();
+		for(Entry<String, String> entry: keyvalues.entrySet())
+		{
+			str.append("<"+entry.getKey()+">");
+			str.append(entry.getValue());
+			str.append("<"+entry.getKey()+">\n");
+		}
+		
+		List<Map<String, String>> props = storable.getPropItems();
+		if(props.size() > 0)
+		{
+			str.append("<PropertyList>\n");
+			for(Map<String, String> prop: props)
+			{
+				str.append("<PropertyListItem>\n");
+				for(Entry<String, String> entry: prop.entrySet())
+				{
+					str.append("<"+entry.getKey()+">");
+					str.append(entry.getValue());
+					str.append("<"+entry.getKey()+">\n");
+				}
+				str.append("</PropertyListItem>\n");
+			}
+			str.append("</PropertyList>\n");
+		}
+		str.append("</TrollingObject>\n");
+		return str.toString();
+	}
+	
 
 	@Override
 	public void remove(int id) {
-		// TODO Auto-generated method stub
-		
+		save(id, null);		
 	}
 	
 	public void addListener(BuildTarget target)

@@ -13,6 +13,7 @@ public final class Fish extends Event
 {
 	private static final String TAG = "Fish";
 	private EventItem m_event = null;
+	private TripObject m_trip = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,8 @@ public final class Fish extends Event
     	
     	Log.i(TAG, "tripid:"+new Integer(tripindex).toString()+" event:"+new Integer(index).toString());
 
-    	TripObject trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
-    	m_event = trip.getEvents().get(index);    	
+    	m_trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
+    	m_event = m_trip.getEvents().get(index);    	
     	EditText weight = (EditText)findViewById(R.id.Weight);
     	weight.setText(m_event.getWeight());
     	Log.i(TAG, "new fish");
@@ -53,5 +54,6 @@ public final class Fish extends Event
 
 		EditText weight = (EditText)findViewById(R.id.Weight);
 		m_event.setWeight(weight.getText().toString());
+		m_trip.save();
 	}
 }

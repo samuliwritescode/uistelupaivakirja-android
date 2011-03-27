@@ -31,6 +31,7 @@ public class ModelFactory {
 				String file) {
 			collection.setBuilder((Builder)builder);
 			((Builder)builder).addListener(collection);
+			((Builder)builder).setStorer(storer);
 			storer.setStorage(storage);
 			storage.addListener((BuildTarget)builder);
 			storage.load(file);

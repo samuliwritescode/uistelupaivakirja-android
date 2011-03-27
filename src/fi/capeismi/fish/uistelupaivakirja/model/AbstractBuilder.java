@@ -15,10 +15,10 @@ public abstract class AbstractBuilder implements BuildTarget, Builder {
 	private Map<String, String> m_pointer = null;
 	protected int m_id = -1;
 	protected TrollingObject m_object = null;
+	protected Storer m_storer = null;
 	
 	@Override
 	public void newObject(int id) {
-		Log.i("target", "id: "+new Integer(id).toString());
 		m_id = id;
 		m_pointer = m_keyvalues;
 	}
@@ -39,12 +39,10 @@ public abstract class AbstractBuilder implements BuildTarget, Builder {
 		{
 			m_pointer.put(key, value);
 		}
-		Log.i("target", key+"="+value);
 	}
 
 	@Override
 	public void newProperty() {
-		Log.i("target", "newProperty");
 		Map<String, String> hashmap = new HashMap<String, String>();
 		m_pointer = hashmap;
 		m_proplist.add(hashmap);
@@ -57,6 +55,7 @@ public abstract class AbstractBuilder implements BuildTarget, Builder {
 	
 	@Override
 	public void build() {
+		m_object.setStorer(m_storer);
 		m_object.setId(m_id);
 		m_object.setKeyValues(m_keyvalues);
 		m_object.setPropItems(m_proplist);
@@ -73,5 +72,11 @@ public abstract class AbstractBuilder implements BuildTarget, Builder {
 	@Override
 	public void addListener(ObjectCollection collection) {
 		m_collections.add(collection);		
+	}
+	
+	@Override
+	public void setStorer(Storer storer)
+	{
+		m_storer = storer;
 	}
 }
