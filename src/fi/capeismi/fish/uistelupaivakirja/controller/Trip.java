@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.ListActivity;
@@ -40,9 +41,12 @@ public class Trip extends ListActivity implements OnClickListener {
     	Log.i(TAG, "create trip");
     	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
     	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
-    	adapter.add(new String("item1"));
-    	adapter.add(new String("item2"));
-    	adapter.add(new String("item3"));
+    	
+    	List<LureObject> lures = ModelFactory.getModel().getLures().getList();
+    	for(LureObject lure: lures)
+    	{
+    		adapter.add(lure.toString());
+    	}
     	spinner.setAdapter(adapter);
     	spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
     		@Override

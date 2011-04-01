@@ -1,6 +1,8 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +10,31 @@ import java.util.Map;
 import android.util.Log;
 
 public class TripObject extends TrollingObject{
-
+	
+	public void setDate(Date date)
+	{
+		set("date", new SimpleDateFormat("yyyy-MM-dd").format(date));		
+	}
+	
+	public void setStartTime(Date date)
+	{
+		set("time_start", new SimpleDateFormat("HH:mm").format(date));
+	}
+	
+	public void setEndTime(Date date)
+	{
+		set("end_start", new SimpleDateFormat("HH:mm").format(date));
+	}
+	
 	@Override
 	public String toString()
 	{
-		return get("description");
+		String retval = get("date");
+		retval += " ";
+		retval += get("time_start");
+		retval += " -> ";
+		retval += get("time_end");
+		return retval;
 	}
 	
 	@Override

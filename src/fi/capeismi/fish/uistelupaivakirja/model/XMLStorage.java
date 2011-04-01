@@ -39,22 +39,26 @@ final class XMLStorage implements Storage {
 		Log.i(TAG, "save storable "+id);
 		File file = new File(Environment.getExternalStorageDirectory().toString()+"/uistelu/"+m_filename+".xml");
 		try {
-			InputStream files = new FileInputStream(file);
-			BufferedReader is = new BufferedReader(new InputStreamReader(files));
 			StringBuilder xml = new StringBuilder();
-			String line;
 			int maxId = 1;
-			while((line = is.readLine()) != null)
+			if(file.exists())
 			{
-				if(line.indexOf("<TrollingObjects MaxId") == -1)
+				InputStream files = new FileInputStream(file);
+				BufferedReader is = new BufferedReader(new InputStreamReader(files));				
+				String line;
+				
+				while((line = is.readLine()) != null)
 				{
-					xml.append(line+"\n");
-				}else
-				{ 				
-					maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\""))).intValue();
+					if(line.indexOf("<TrollingObjects MaxId") == -1)
+					{
+						xml.append(line+"\n");
+					}else
+					{ 				
+						maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\""))).intValue();
+					}
 				}
+				files.close();
 			}
-			files.close();
 			
 			String xmlstr = xml.toString();
 			String searchString = "<TrollingObject type=\""+m_filename+"\" id=\""+id+"\">";

@@ -75,6 +75,11 @@ abstract class TrollingObject implements Storable {
 		m_storer.save(this);
 	}
 	
+	public void destroy()
+	{
+		m_storer.remove(this);
+	}
+	
 	protected void set(String key, String value)
 	{
 		m_keyvalues.put(key, value);
@@ -82,6 +87,9 @@ abstract class TrollingObject implements Storable {
 	
 	protected String get(String key)
 	{
-		return m_keyvalues.get(key);
+		if(m_keyvalues.containsKey(key))
+			return m_keyvalues.get(key);
+		else
+			return "";
 	}
 }

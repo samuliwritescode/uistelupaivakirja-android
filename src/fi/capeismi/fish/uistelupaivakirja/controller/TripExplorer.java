@@ -12,6 +12,8 @@ import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -33,6 +35,22 @@ public class TripExplorer extends ListActivity implements OnClickListener {
             ContextMenuInfo menuInfo) {
 		  super.onCreateContextMenu(menu, v, menuInfo);
 		  Log.i(TAG, "context menu"+((AdapterView.AdapterContextMenuInfo)menuInfo).position);
+		  MenuInflater inflater = getMenuInflater();
+		  inflater.inflate(R.menu.trip_menu, menu);
+	}
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		Log.i(TAG, "selected "+item.getItemId());
+		switch(item.getItemId())
+		{
+		case R.id.remove: 
+			int idx = ((AdapterView.AdapterContextMenuInfo)item.getMenuInfo()).position;
+			ModelFactory.getModel().getTrips().remove(idx);
+			onResume();
+			return true;
+		}
+		
+		return super.onContextItemSelected(item);
 	}
 	
     @Override
@@ -60,7 +78,6 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         
         ModelFactory.getModel();
 
-        
     }
     
     @Override
