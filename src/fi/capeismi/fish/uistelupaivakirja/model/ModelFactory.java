@@ -14,11 +14,14 @@ public class ModelFactory {
 	}
 	
 	public static class Model {
-		private TripCollection m_tripCollection = new TripCollection();
-		private PlaceCollection m_placeCollection = new PlaceCollection();
-		private LureCollection m_lureCollection = new LureCollection();		
+		private TripCollection m_tripCollection = null;
+		private PlaceCollection m_placeCollection = null;
+		private LureCollection m_lureCollection = null;
 		
-		private Model() {	
+		private Model() {
+			m_tripCollection = new TripCollection();
+			m_placeCollection = new PlaceCollection();
+			m_lureCollection = new LureCollection();
 			setupObjects(m_tripCollection, new Storer(), new XMLStorage(), new TripBuilder(), "trip");
 			setupObjects(m_placeCollection, new Storer(), new XMLStorage(), new PlaceBuilder(), "place");
 			setupObjects(m_lureCollection, new Storer(), new XMLStorage(), new LureBuilder(), "lure");
