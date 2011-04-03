@@ -5,11 +5,16 @@ import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.os.Bundle;
 
-public final class Fish extends Event 
+public final class Fish extends Event implements OnDismissListener
 {
 	private static final String TAG = "Fish";
 	private EventItem m_event = null;
@@ -42,7 +47,19 @@ public final class Fish extends Event
     	EditText weight = (EditText)findViewById(R.id.Weight);
     	weight.setText(m_event.getWeight());
     	Log.i(TAG, "new fish");
-    }
+    	
+    	Button addbtn = (Button)findViewById(R.id.AddSpecies);
+    	addbtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				AddSpinnerItem adder = new AddSpinnerItem(Fish.this);
+				adder.setOnDismissListener(Fish.this);
+				adder.show();
+			}
+    		
+    	});
+    }   
     
     @Override
     public void onResume() {
@@ -55,5 +72,10 @@ public final class Fish extends Event
 		EditText weight = (EditText)findViewById(R.id.Weight);
 		m_event.setWeight(weight.getText().toString());
 		m_trip.save();
+	}
+
+	@Override
+	public void onDismiss(DialogInterface dialog) {
+		Log.i(TAG, "dismissed: "+dialog.toString());			
 	}
 }
