@@ -15,7 +15,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -98,8 +102,32 @@ public class Trip extends ListActivity implements OnClickListener {
 			Log.i(TAG, "existing selection: "+m_trip.getPlace().toString());
 			spinner.setSelection(adapter.getPosition(m_trip.getPlace()));
 		}
-    	
+		registerForContextMenu(getListView());
     }
+    
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, 
+			View v,
+            ContextMenuInfo menuInfo) {
+		  super.onCreateContextMenu(menu, v, menuInfo);
+		  Log.i(TAG, "context menu"+((AdapterView.AdapterContextMenuInfo)menuInfo).position);
+		  MenuInflater inflater = getMenuInflater();
+		  inflater.inflate(R.menu.trip_menu, menu);
+	}
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		Log.i(TAG, "selected "+item.getItemId());
+		switch(item.getItemId())
+		{
+		case R.id.remove: 
+			int idx = ((AdapterView.AdapterContextMenuInfo)item.getMenuInfo()).position;
+			m_trip.destroyEvent(idx);
+			onResume();
+			return true;
+		}
+		
+		return super.onContextItemSelected(item);
+	}
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
