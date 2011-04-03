@@ -1,13 +1,15 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
-import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.PlaceObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -38,29 +40,8 @@ public class Trip extends ListActivity implements OnClickListener {
     	((Button)findViewById(R.id.NewFish)).setOnClickListener(this);
     	((Button)findViewById(R.id.NewWeather)).setOnClickListener(this); 
     	((Button)findViewById(R.id.FishnWeather)).setOnClickListener(this);
+    	((Button)findViewById(R.id.EndTrip)).setOnClickListener(this);
     	Log.i(TAG, "create trip");
-    	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
-    	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
-    	
-    	List<LureObject> lures = ModelFactory.getModel().getLures().getList();
-    	for(LureObject lure: lures)
-    	{
-    		adapter.add(lure.toString());
-    	}
-    	spinner.setAdapter(adapter);
-    	spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-    		@Override
-    		public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-    		{    			
-    			Log.i(TAG, "item selected"+position);
-    		}
-    		
-    		@Override
-    		public void onNothingSelected(AdapterView<?> parent)
-    		{
-    			Log.i(TAG, "item not selected");
-    		}
-		});
     	
     	try
     	{
@@ -74,6 +55,50 @@ public class Trip extends ListActivity implements OnClickListener {
     	}
     	TextView title = (TextView)findViewById(R.id.Title);
     	title.setText(m_trip.toString());
+    	
+    	
+    	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
+    	ArrayAdapter<PlaceObject> adapter = new ArrayAdapter<PlaceObject>(this, android.R.layout.simple_spinner_item);
+    	
+    	List<PlaceObject> places = ModelFactory.getModel().getPlaces().getList();
+    	for(PlaceObject place: places)
+    	{
+    		adapter.add(place);
+
+    	}
+		adapter.sort(new Comparator<PlaceObject>() {
+
+			@Override
+			public int compare(PlaceObject arg0, PlaceObject arg1) {
+				return arg0.toString().compareTo(arg1.toString());					
+			}
+			
+		});
+
+    	spinner.setAdapter(adapter);
+    	spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+    		@Override
+    		public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    		{   
+    			PlaceObject obj = (PlaceObject)parent.getItemAtPosition(position);
+    			m_trip.setPlace(obj);
+    			
+    			Log.i(TAG, "item selected "+obj.toString());
+    		}
+    		
+    		@Override
+    		public void onNothingSelected(AdapterView<?> parent)
+    		{
+    			Log.i(TAG, "item not selected");
+    		}
+		});
+    	
+		if(m_trip.getPlace() != null)
+		{	
+			Log.i(TAG, "existing selection: "+m_trip.getPlace().toString());
+			spinner.setSelection(adapter.getPosition(m_trip.getPlace()));
+		}
+    	
     }
     
     @Override
@@ -131,6 +156,10 @@ public class Trip extends ListActivity implements OnClickListener {
 		case R.id.NewFish: intent = new Intent(this, Fish.class); break;
 		case R.id.NewWeather: intent = new Intent(this, Weather.class); break;
 		case R.id.FishnWeather: intent = new Intent(this, FishAndWeather.class); break;
+		case R.id.EndTrip: m_trip.setEndTime(new Date());
+			Log.i(TAG, "ending trip");
+			finish();
+			break;
 		}
 		
 		if(intent != null)

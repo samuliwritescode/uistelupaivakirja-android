@@ -23,13 +23,35 @@ public class TripObject extends TrollingObject{
 	
 	public void setEndTime(Date date)
 	{
-		set("end_start", new SimpleDateFormat("HH:mm").format(date));
+		set("time_end", new SimpleDateFormat("HH:mm").format(date));
+	}
+	
+	public void setPlace(PlaceObject place)
+	{
+		set("place", new Integer(place.getId()).toString());
+	}
+	
+	public PlaceObject getPlace()
+	{
+		try
+		{
+			int id = new Integer(get("place")).intValue();
+			return ModelFactory.getModel().getPlaces().getId(id);
+		}catch(Exception e)
+		{
+			return null;
+		}			
 	}
 	
 	@Override
 	public String toString()
 	{
-		String retval = get("date");
+		String retval = new String();
+		if(getPlace() != null)
+		{
+			retval += getPlace().toString();
+		}
+		retval += get("date");
 		retval += " ";
 		retval += get("time_start");
 		retval += " -> ";
