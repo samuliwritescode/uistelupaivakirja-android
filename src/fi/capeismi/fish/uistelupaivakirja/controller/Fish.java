@@ -1,14 +1,20 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import java.util.Comparator;
+import java.util.List;
+
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.SpinnerItemObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
@@ -59,6 +65,26 @@ public final class Fish extends Event implements OnDismissListener
 			}
     		
     	});
+    	
+    	Spinner spinner = (Spinner)findViewById(R.id.Species);
+    	ArrayAdapter<SpinnerItemObject> adapter = new ArrayAdapter<SpinnerItemObject>(this, android.R.layout.simple_spinner_item);
+    	
+    	List<SpinnerItemObject> items = ModelFactory.getModel().getSpinnerItems().getSpeciesList();
+    	for(SpinnerItemObject item: items)
+    	{
+    		adapter.add(item);
+
+    	}
+		adapter.sort(new Comparator<SpinnerItemObject>() {
+
+			@Override
+			public int compare(SpinnerItemObject arg0, SpinnerItemObject arg1) {
+				return arg0.toString().compareTo(arg1.toString());					
+			}
+			
+		});
+
+    	spinner.setAdapter(adapter);
     }   
     
     @Override
@@ -76,6 +102,7 @@ public final class Fish extends Event implements OnDismissListener
 
 	@Override
 	public void onDismiss(DialogInterface dialog) {
-		Log.i(TAG, "dismissed: "+dialog.toString());			
+		Log.i(TAG, "dismissed: "+dialog.toString());
+		ModelFactory.getModel().getSpinnerItems().addSpecies(dialog.toString());
 	}
 }
