@@ -50,8 +50,7 @@ public final class Fish extends Event implements OnDismissListener
 
     	m_trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
     	m_event = m_trip.getEvents().get(index);    	
-    	EditText weight = (EditText)findViewById(R.id.Weight);
-    	weight.setText(m_event.getWeight());
+
     	Log.i(TAG, "new fish");
     	
     	Button addbtn = (Button)findViewById(R.id.AddSpecies);
@@ -85,18 +84,40 @@ public final class Fish extends Event implements OnDismissListener
 		});
 
     	spinner.setAdapter(adapter);
-    }   
+    }
+    
+    private void readFishFields()
+    {
+    	((EditText)findViewById(R.id.Length)).setText(m_event.getLength());
+    	((EditText)findViewById(R.id.Weight)).setText(m_event.getWeight());
+    	((EditText)findViewById(R.id.SpotDepth)).setText(m_event.getSpotDepth());
+    	((EditText)findViewById(R.id.Depth)).setText(m_event.getTotalDepth());
+    	((EditText)findViewById(R.id.TrollingSpeed)).setText(m_event.getTrollingSpeed());
+    	((EditText)findViewById(R.id.LureWeight)).setText(m_event.getLineWeight());
+    	((EditText)findViewById(R.id.ReleaseWidth)).setText(m_event.getReleaseWidth());
+    }
+    
+    private void writeFishFields()
+    {
+		m_event.setLength(((EditText)findViewById(R.id.Length)).getText().toString());
+		m_event.setWeight(((EditText)findViewById(R.id.Weight)).getText().toString());
+		m_event.setSpotDepth(((EditText)findViewById(R.id.SpotDepth)).getText().toString());
+		m_event.setTotalDepth(((EditText)findViewById(R.id.Depth)).getText().toString());
+		m_event.setTrollingSpeed(((EditText)findViewById(R.id.TrollingSpeed)).getText().toString());
+		m_event.setLineWeight(((EditText)findViewById(R.id.LureWeight)).getText().toString());
+		m_event.setReleaseWidth(((EditText)findViewById(R.id.ReleaseWidth)).getText().toString());
+    }
     
     @Override
     public void onResume() {
     	super.onResume();
+    	
+    	readFishFields();
     }
 
 	@Override
 	public void onDone() {
-
-		EditText weight = (EditText)findViewById(R.id.Weight);
-		m_event.setWeight(weight.getText().toString());
+		writeFishFields();
 		m_trip.save();
 	}
 

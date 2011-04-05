@@ -10,7 +10,7 @@ import  android.view.View.OnClickListener;
 
 public class AddSpinnerItem extends Dialog implements OnClickListener {
 
-	private String m_value;
+	private String m_value = "";
 	
 	public AddSpinnerItem(Context context) {
 		super(context);
@@ -23,6 +23,8 @@ public class AddSpinnerItem extends Dialog implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		m_value = ((EditText)findViewById(R.id.EditText)).getText().toString();
+		if(m_value.length() == 0)
+			cancel();
 		dismiss();		
 	}
 	

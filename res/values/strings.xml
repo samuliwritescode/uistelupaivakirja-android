@@ -10,6 +10,7 @@
     <string name="new_fish">Lisää kala</string>
     <string name="new_weather">Lisää säätila</string>
     <string name="new_fishnweather">Lisää kala+sää</string>
+    <string name="new_value">Lisää</string>
     <string name="end_trip">Päätä reissu</string>
     <string name="species">Laji</string>
     <string name="method">Tapa</string>

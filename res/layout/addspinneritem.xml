@@ -2,8 +2,9 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
-<EditText android:text="@+id/EditText01" android:id="@+id/EditText" android:layout_width="wrap_content" android:layout_height="wrap_content"></EditText>
-<Button android:text="@+id/Button01" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/OkButton"></Button>
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+<EditText android:text="" android:id="@+id/EditText" android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+<Button android:text="@string/new_value" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/OkButton"></Button>
 
 </LinearLayout>
