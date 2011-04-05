@@ -1,6 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
-final public class SpinnerItemObject extends TrollingObject {
+final public class AlternativeItemObject extends TrollingObject {
 	public void setValues(String type, String name)
 	{
 		set("type", type);
@@ -8,7 +8,7 @@ final public class SpinnerItemObject extends TrollingObject {
 		save();
 	}
 	
-	public SpinnerItemObject()
+	public AlternativeItemObject()
 	{
 		super();
 	}

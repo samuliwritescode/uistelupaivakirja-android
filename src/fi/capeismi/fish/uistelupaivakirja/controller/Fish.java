@@ -5,7 +5,7 @@ import java.util.List;
 
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
-import fi.capeismi.fish.uistelupaivakirja.model.SpinnerItemObject;
+import fi.capeismi.fish.uistelupaivakirja.model.AlternativeItemObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
@@ -67,18 +67,18 @@ public final class Fish extends Event implements OnDismissListener
     	});
     	
     	Spinner spinner = (Spinner)findViewById(R.id.Species);
-    	ArrayAdapter<SpinnerItemObject> adapter = new ArrayAdapter<SpinnerItemObject>(this, android.R.layout.simple_spinner_item);
+    	ArrayAdapter<AlternativeItemObject> adapter = new ArrayAdapter<AlternativeItemObject>(this, android.R.layout.simple_spinner_item);
     	
-    	List<SpinnerItemObject> items = ModelFactory.getModel().getSpinnerItems().getSpeciesList();
-    	for(SpinnerItemObject item: items)
+    	List<AlternativeItemObject> items = ModelFactory.getModel().getSpinnerItems().getSpeciesList();
+    	for(AlternativeItemObject item: items)
     	{
     		adapter.add(item);
 
     	}
-		adapter.sort(new Comparator<SpinnerItemObject>() {
+		adapter.sort(new Comparator<AlternativeItemObject>() {
 
 			@Override
-			public int compare(SpinnerItemObject arg0, SpinnerItemObject arg1) {
+			public int compare(AlternativeItemObject arg0, AlternativeItemObject arg1) {
 				return arg0.toString().compareTo(arg1.toString());					
 			}
 			

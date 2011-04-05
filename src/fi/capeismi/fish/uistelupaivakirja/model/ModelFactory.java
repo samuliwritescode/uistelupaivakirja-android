@@ -17,20 +17,20 @@ public class ModelFactory {
 		private TripCollection m_tripCollection = null;
 		private PlaceCollection m_placeCollection = null;
 		private LureCollection m_lureCollection = null;
-		private SpinnerItemCollection m_spinnerItems = null;
+		private AlternativeItemCollection m_spinnerItems = null;
 		
 		private Model() {
 			m_tripCollection = new TripCollection();
 			m_placeCollection = new PlaceCollection();
 			m_lureCollection = new LureCollection();
-			m_spinnerItems = new SpinnerItemCollection();
+			m_spinnerItems = new AlternativeItemCollection();
 			setupObjects(m_tripCollection, new Storer(), new XMLStorage(), new TripBuilder(), "trip");
 			setupObjects(m_placeCollection, new Storer(), new XMLStorage(), new PlaceBuilder(), "place");
 			setupObjects(m_lureCollection, new Storer(), new XMLStorage(), new LureBuilder(), "lure");
 			setupObjects(m_spinnerItems, new Storer(), new XMLStorage(), new AbstractBuilder() {
 				@Override
 				public void build() {
-					m_object =  new SpinnerItemObject();
+					m_object =  new AlternativeItemObject();
 					super.build();
 				}
 			}, "spinneritems");
@@ -62,7 +62,7 @@ public class ModelFactory {
 			return this.m_lureCollection;
 		}
 		
-		public SpinnerItemCollection getSpinnerItems() {
+		public AlternativeItemCollection getSpinnerItems() {
 			return this.m_spinnerItems;
 		}
 	}
