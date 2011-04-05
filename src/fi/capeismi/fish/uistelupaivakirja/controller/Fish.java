@@ -52,12 +52,24 @@ public final class Fish extends Event
 				{
 				case R.id.Species:
 					ModelFactory.getModel().getSpinnerItems().addSpecies(dialog.toString());
+					setSpinners(R.id.Species, 
+							ModelFactory.getModel().getSpinnerItems().getSpeciesList(), 
+							dialog.toString(), 
+							null);
 					break;
 				case R.id.Getter:
 					ModelFactory.getModel().getSpinnerItems().addGetter(dialog.toString());
+					setSpinners(R.id.Getter, 
+							ModelFactory.getModel().getSpinnerItems().getGetterList(), 
+							dialog.toString(), 
+							null);
 					break;
 				case R.id.Method:
 					ModelFactory.getModel().getSpinnerItems().addMethod(dialog.toString());
+					setSpinners(R.id.Method, 
+							ModelFactory.getModel().getSpinnerItems().getMethodList(), 
+							dialog.toString(), 
+							null);
 					break;
 				}
 			}catch(DuplicateItemException e)
@@ -159,10 +171,14 @@ public final class Fish extends Event
     	}
 		adapter.sort(m_comparator);
 		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(listener);
+		if(listener != null)
+		{
+			spinner.setOnItemSelectedListener(listener);
+		}
 		
 		if(defaultItem != null)
 		{
+			Log.i(TAG, "set default item: "+defaultValue);
 			spinner.setSelection(adapter.getPosition(defaultItem));
 		}
     	

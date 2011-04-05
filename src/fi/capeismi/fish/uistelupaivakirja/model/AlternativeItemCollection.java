@@ -27,7 +27,10 @@ public class AlternativeItemCollection extends TrollingObjectCollection {
 			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
 			item.setValues("species", specie);
 		}
-		throw new DuplicateItemException();
+		else
+		{
+			throw new DuplicateItemException();
+		}
 	}
 	
 	public void addGetter(String getter) throws DuplicateItemException
@@ -38,7 +41,10 @@ public class AlternativeItemCollection extends TrollingObjectCollection {
 			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
 			item.setValues("getter", getter);
 		}
-		throw new DuplicateItemException();
+		else
+		{
+			throw new DuplicateItemException();
+		}
 	}
 	
 	public void addMethod(String method) throws DuplicateItemException
@@ -49,7 +55,10 @@ public class AlternativeItemCollection extends TrollingObjectCollection {
 			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
 			item.setValues("method", method);
 		}
-		throw new DuplicateItemException();
+		else
+		{
+			throw new DuplicateItemException();
+		}
 	}
 	
 	private boolean contains(String type, String value)
