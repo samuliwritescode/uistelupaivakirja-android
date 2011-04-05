@@ -68,7 +68,6 @@ public class Trip extends ListActivity implements OnClickListener {
     	for(PlaceObject place: places)
     	{
     		adapter.add(place);
-
     	}
 		adapter.sort(new Comparator<PlaceObject>() {
 

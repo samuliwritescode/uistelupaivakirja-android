@@ -12,6 +12,9 @@ public abstract class TrollingObjectItem {
 	
 	protected String get(String key)
 	{
+		if(!m_props.containsKey(key))
+			return "";
+		
 		return m_props.get(key);
 	}
 	
