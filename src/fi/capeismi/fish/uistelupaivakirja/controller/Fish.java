@@ -5,6 +5,7 @@ import java.util.List;
 
 import fi.capeismi.fish.uistelupaivakirja.model.DuplicateItemException;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
@@ -120,6 +121,10 @@ public final class Fish extends Event
     			ModelFactory.getModel().getSpinnerItems().getMethodList(), 
     			m_event.getMethod());
     	
+    	setSpinners(R.id.Lure,
+    			ModelFactory.getModel().getLures().getList(),
+    			"");   
+    	
     	readFishFields();
     }
     
@@ -166,7 +171,8 @@ public final class Fish extends Event
     	((EditText)findViewById(R.id.TrollingSpeed)).setText(m_event.getTrollingSpeed());
     	((EditText)findViewById(R.id.LureWeight)).setText(m_event.getLineWeight());
     	((EditText)findViewById(R.id.ReleaseWidth)).setText(m_event.getReleaseWidth());
-    	
+    	if(m_event.getLure() != null)
+    		setSpinnerDefaultValue(R.id.Lure, m_event.getLure().toString());
     }
     
     private void writeFishFields()
@@ -182,9 +188,11 @@ public final class Fish extends Event
 		Object species = ((Spinner)findViewById(R.id.Species)).getSelectedItem();
 		Object getter = ((Spinner)findViewById(R.id.Getter)).getSelectedItem();
 		Object method = ((Spinner)findViewById(R.id.Method)).getSelectedItem();
+		Object lure = ((Spinner)findViewById(R.id.Lure)).getSelectedItem();
 		if(species != null)	m_event.setSpecies(species.toString());
 		if(getter != null)	m_event.setGetter(getter.toString());
-		if(method != null)	m_event.setMethod(method.toString());		
+		if(method != null)	m_event.setMethod(method.toString());
+		if(lure != null)	m_event.setLure((LureObject) lure);
     }
     
     @Override

@@ -44,6 +44,23 @@ public class EventItem extends TrollingObjectItem {
 		super(props);
 	}
 	
+	public void setLure(LureObject lure)
+	{
+		set(FISH_LURE, new Integer(lure.getId()).toString());
+	}
+	
+	public LureObject getLure()
+	{
+		try
+		{
+			int id = new Integer(get(FISH_LURE)).intValue();
+			return ModelFactory.getModel().getLures().getId(id);
+		}catch(Exception e)
+		{
+			return null;
+		}	
+	}
+	
 	@Override
 	public String toString()
 	{

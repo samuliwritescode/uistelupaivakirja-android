@@ -14,4 +14,17 @@ public class LureCollection extends TrollingObjectCollection {
 		}
 		return list;
 	}
+	
+	public LureObject getId(int id)
+	{
+		for(TrollingObject object: m_trollingobjects)
+		{
+			if(object.getId() == id)
+			{
+				return (LureObject)object;
+			}
+		}
+		
+		return null;
+	}
 }
