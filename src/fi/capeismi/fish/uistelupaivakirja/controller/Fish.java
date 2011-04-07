@@ -6,7 +6,6 @@ import java.util.List;
 import fi.capeismi.fish.uistelupaivakirja.model.DuplicateItemException;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
-import fi.capeismi.fish.uistelupaivakirja.model.AlternativeItemObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
@@ -26,7 +25,7 @@ public final class Fish extends Event
 	private static final String TAG = "Fish";
 	private EventItem m_event = null;
 	private TripObject m_trip = null;
-	private Comparator<AlternativeItemObject> m_comparator = null;
+	private Comparator<Object> m_comparator = null;
 	
 	private class AlternativeHandler implements OnDismissListener, OnClickListener{		
 		private int m_source;
@@ -96,9 +95,9 @@ public final class Fish extends Event
 			index = extras.getInt("event");
 		}
 		
-		m_comparator = new Comparator<AlternativeItemObject>() {
+		m_comparator = new Comparator<Object>() {
 			@Override
-			public int compare(AlternativeItemObject arg0, AlternativeItemObject arg1) {
+			public int compare(Object arg0, Object arg1) {
 				return arg0.toString().compareTo(arg1.toString());					
 			}			
 		};		
@@ -124,29 +123,38 @@ public final class Fish extends Event
     	readFishFields();
     }
     
-    private void setSpinners(int viewID, List<AlternativeItemObject> items, String defaultValue)
+    private <T extends Object> void setSpinners(int viewID, List<T> items, String defaultValue)
     {
     	Spinner spinner = (Spinner)findViewById(viewID);
-    	ArrayAdapter<AlternativeItemObject> adapter = new ArrayAdapter<AlternativeItemObject>(this, android.R.layout.simple_spinner_item);
-    	AlternativeItemObject defaultItem = null;
-    	for(AlternativeItemObject item: items)
-    	{
-    		if(defaultValue.equalsIgnoreCase(item.toString()))
-    		{
-    			defaultItem = item;
-    		}
-    			
+    	ArrayAdapter<Object> adapter = new ArrayAdapter<Object>(this, android.R.layout.simple_spinner_item);
+    	for(Object item: items)
+    	{	
     		adapter.add(item);
     	}
 		adapter.sort(m_comparator);
 		spinner.setAdapter(adapter);
-		
-		if(defaultItem != null)
-		{
-			Log.i(TAG, "set default item: "+defaultValue);
-			spinner.setSelection(adapter.getPosition(defaultItem));
-		}
+    	setSpinnerDefaultValue(viewID, defaultValue);
+    }
+    
+    @SuppressWarnings("unchecked")
+	private void setSpinnerDefaultValue(int viewID, String defaultValue)
+    {
+    	Spinner spinner = (Spinner)findViewById(viewID);
+    	ArrayAdapter<Object> adapter = (ArrayAdapter<Object>)spinner.getAdapter();
+    	Object object =  null;
+    	for(int loop=0; loop < adapter.getCount(); loop++)
+    	{
+    		Object current = adapter.getItem(loop);
+    		if(current.toString().equals(defaultValue))
+    		{
+    			object = current;
+    		}
+    	}
     	
+    	if(object != null)
+    	{
+    		spinner.setSelection(adapter.getPosition(object));
+    	}
     }
     
     private void readFishFields()
@@ -171,9 +179,9 @@ public final class Fish extends Event
 		m_event.setLineWeight(((EditText)findViewById(R.id.LureWeight)).getText().toString());
 		m_event.setReleaseWidth(((EditText)findViewById(R.id.ReleaseWidth)).getText().toString());
 		
-		AlternativeItemObject species = (AlternativeItemObject)((Spinner)findViewById(R.id.Species)).getSelectedItem();
-		AlternativeItemObject getter = (AlternativeItemObject)((Spinner)findViewById(R.id.Getter)).getSelectedItem();
-		AlternativeItemObject method = (AlternativeItemObject)((Spinner)findViewById(R.id.Method)).getSelectedItem();
+		Object species = ((Spinner)findViewById(R.id.Species)).getSelectedItem();
+		Object getter = ((Spinner)findViewById(R.id.Getter)).getSelectedItem();
+		Object method = ((Spinner)findViewById(R.id.Method)).getSelectedItem();
 		if(species != null)	m_event.setSpecies(species.toString());
 		if(getter != null)	m_event.setGetter(getter.toString());
 		if(method != null)	m_event.setMethod(method.toString());		

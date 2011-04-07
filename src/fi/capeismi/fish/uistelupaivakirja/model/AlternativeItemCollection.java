@@ -21,39 +21,26 @@ public class AlternativeItemCollection extends TrollingObjectCollection {
 	
 	public void addSpecies(String specie) throws DuplicateItemException
 	{
-		if(!contains("species", specie))
-		{
-			build();
-			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
-			item.setValues("species", specie);
-		}
-		else
-		{
-			throw new DuplicateItemException();
-		}
+		add("species", specie);
 	}
 	
 	public void addGetter(String getter) throws DuplicateItemException
 	{
-		if(!contains("getter", getter))
-		{
-			build();
-			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
-			item.setValues("getter", getter);
-		}
-		else
-		{
-			throw new DuplicateItemException();
-		}
+		add("getter", getter);
 	}
 	
 	public void addMethod(String method) throws DuplicateItemException
 	{
-		if(!contains("method", method))
+		add("method", method);
+	}
+	
+	private void add(String type, String value) throws DuplicateItemException
+	{
+		if(!contains(type, value))
 		{
 			build();
 			AlternativeItemObject item = (AlternativeItemObject)m_trollingobjects.get(m_trollingobjects.size()-1);
-			item.setValues("method", method);
+			item.setValues(type, value);
 		}
 		else
 		{
