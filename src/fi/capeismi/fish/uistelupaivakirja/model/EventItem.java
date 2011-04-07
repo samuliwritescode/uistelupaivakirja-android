@@ -67,6 +67,26 @@ public class EventItem extends TrollingObjectItem {
 		return get("fish_species");
 	}
 	
+	public boolean getIsGroup() {return get(FISH_IS_GROUP).equalsIgnoreCase("true");}
+	public boolean getIsUndersize() {return get(FISH_IS_UNDERSIZE).equalsIgnoreCase("true");}
+	public boolean getIsCatchNReleased() {return get(FISH_IS_CATCHRELEASED).equalsIgnoreCase("true");}
+	public String getGroupAmount() {return get(FISH_GROUP_AMOUNT);}
+	
+	public void setIsGroup(boolean bIs) {
+		set(FISH_IS_GROUP, new Boolean(bIs).toString());
+		if(bIs)
+		{
+			set(FISH_LENGTH, "");
+		}
+		else
+		{
+			set(FISH_GROUP_AMOUNT, "");
+		}
+	}
+	public void setIsUndersize(boolean bIs){set(FISH_IS_UNDERSIZE, new Boolean(bIs).toString());}
+	public void setIsCatchNReleased(boolean bIs){set(FISH_IS_CATCHRELEASED, new Boolean(bIs).toString());}
+	public void setGroupAmount(String amount){set(FISH_GROUP_AMOUNT, amount);}
+	
 	//Text field getters
 	public String getWeight(){return get(FISH_WEIGHT);}
 	public String getLength(){return get(FISH_LENGTH);}
