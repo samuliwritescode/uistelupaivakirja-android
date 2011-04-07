@@ -12,12 +12,10 @@ import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
@@ -30,7 +28,7 @@ public final class Fish extends Event
 	private TripObject m_trip = null;
 	private Comparator<AlternativeItemObject> m_comparator = null;
 	
-	private class AlternativeHandler implements OnDismissListener, OnClickListener, OnItemSelectedListener{		
+	private class AlternativeHandler implements OnDismissListener, OnClickListener{		
 		private int m_source;
 		public AlternativeHandler(int source)
 		{
@@ -54,51 +52,25 @@ public final class Fish extends Event
 					ModelFactory.getModel().getSpinnerItems().addSpecies(dialog.toString());
 					setSpinners(R.id.Species, 
 							ModelFactory.getModel().getSpinnerItems().getSpeciesList(), 
-							dialog.toString(), 
-							null);
+							dialog.toString());
 					break;
 				case R.id.Getter:
 					ModelFactory.getModel().getSpinnerItems().addGetter(dialog.toString());
 					setSpinners(R.id.Getter, 
 							ModelFactory.getModel().getSpinnerItems().getGetterList(), 
-							dialog.toString(), 
-							null);
+							dialog.toString());
 					break;
 				case R.id.Method:
 					ModelFactory.getModel().getSpinnerItems().addMethod(dialog.toString());
 					setSpinners(R.id.Method, 
 							ModelFactory.getModel().getSpinnerItems().getMethodList(), 
-							dialog.toString(), 
-							null);
+							dialog.toString());
 					break;
 				}
 			}catch(DuplicateItemException e)
 			{
 				//No worry
 			}
-			
-		}
-
-		@Override
-		public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
-			AlternativeItemObject obj = (AlternativeItemObject)arg0.getItemAtPosition(arg2);
-			switch(m_source)
-			{
-			case R.id.Species:
-				m_event.setSpecies(obj.toString());
-				break;
-			case R.id.Getter:
-				m_event.setGetter(obj.toString());
-				break;
-			case R.id.Method:
-				m_event.setMethod(obj.toString());
-				break;
-			}			
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
 			
 		}
 		
@@ -139,23 +111,20 @@ public final class Fish extends Event
     	((Button)findViewById(R.id.AddMethod)).setOnClickListener(new AlternativeHandler(R.id.Method));
     	setSpinners(R.id.Species, 
     			ModelFactory.getModel().getSpinnerItems().getSpeciesList(), 
-    			m_event.getSpecies(),
-    			new AlternativeHandler(R.id.Species));
+    			m_event.getSpecies());
     	
     	setSpinners(R.id.Getter, 
     			ModelFactory.getModel().getSpinnerItems().getGetterList(), 
-    			m_event.getGetter(),
-    			new AlternativeHandler(R.id.Getter));
+    			m_event.getGetter());
     	
     	setSpinners(R.id.Method, 
     			ModelFactory.getModel().getSpinnerItems().getMethodList(), 
-    			m_event.getMethod(),
-    			new AlternativeHandler(R.id.Method));
+    			m_event.getMethod());
     	
     	readFishFields();
     }
     
-    private void setSpinners(int viewID, List<AlternativeItemObject> items, String defaultValue, OnItemSelectedListener listener)
+    private void setSpinners(int viewID, List<AlternativeItemObject> items, String defaultValue)
     {
     	Spinner spinner = (Spinner)findViewById(viewID);
     	ArrayAdapter<AlternativeItemObject> adapter = new ArrayAdapter<AlternativeItemObject>(this, android.R.layout.simple_spinner_item);
@@ -171,10 +140,6 @@ public final class Fish extends Event
     	}
 		adapter.sort(m_comparator);
 		spinner.setAdapter(adapter);
-		if(listener != null)
-		{
-			spinner.setOnItemSelectedListener(listener);
-		}
 		
 		if(defaultItem != null)
 		{
@@ -205,6 +170,13 @@ public final class Fish extends Event
 		m_event.setTrollingSpeed(((EditText)findViewById(R.id.TrollingSpeed)).getText().toString());
 		m_event.setLineWeight(((EditText)findViewById(R.id.LureWeight)).getText().toString());
 		m_event.setReleaseWidth(((EditText)findViewById(R.id.ReleaseWidth)).getText().toString());
+		
+		AlternativeItemObject species = (AlternativeItemObject)((Spinner)findViewById(R.id.Species)).getSelectedItem();
+		AlternativeItemObject getter = (AlternativeItemObject)((Spinner)findViewById(R.id.Getter)).getSelectedItem();
+		AlternativeItemObject method = (AlternativeItemObject)((Spinner)findViewById(R.id.Method)).getSelectedItem();
+		if(species != null)	m_event.setSpecies(species.toString());
+		if(getter != null)	m_event.setGetter(getter.toString());
+		if(method != null)	m_event.setMethod(method.toString());		
     }
     
     @Override
