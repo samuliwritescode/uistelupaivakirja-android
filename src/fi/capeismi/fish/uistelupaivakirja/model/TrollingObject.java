@@ -49,11 +49,17 @@ abstract class TrollingObject implements Storable {
 	public void setPropItems(List<Map<String, String>> propitems)
 	{
 		m_items.clear();
+		m_propitems.clear();
 		for(Map<String, String> items : propitems)
 		{
-			m_items.add(newItem(items));
+			insertPropItem(items);
 		}
-		m_propitems = propitems;
+	}
+	
+	protected void destroyItem(int id)
+	{
+		m_items.remove(id);
+		m_propitems.remove(id);
 	}
 	
 	protected TrollingObjectItem insertPropItem(Map<String, String> propitem)
