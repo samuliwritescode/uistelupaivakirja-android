@@ -28,13 +28,13 @@
 
 <TableRow>
 <TextView android:text="@string/wind_speed" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<SeekBar android:id="@+id/WindSpeed" android:max="5" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
+<SeekBar android:id="@+id/WindSpeed" android:max="10" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="kohtalaista (3.4-5.4 m/)" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:id="@+id/WindSpeedLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
@@ -46,37 +46,37 @@
 
 <TableRow>
 <TextView android:text="@string/clouds" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<SeekBar android:id="@+id/Clouds" android:max="5" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
+<SeekBar android:id="@+id/Clouds" android:max="10" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="selkeää (0/8)" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:id="@+id/CloudLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="@string/rain" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<SeekBar android:id="@+id/Rain" android:max="5" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
+<SeekBar android:id="@+id/Rain" android:max="4" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="Pouta (0.3mm)" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:id="@+id/RainLabel"  android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="@string/pressure" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<SeekBar android:id="@+id/Pressure" android:max="50" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
+<SeekBar android:id="@+id/Pressure" android:max="130" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
 <TextView android:text="@string/hpa" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 
 <TableRow>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="1023 hPa" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:id="@+id/PressureLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 </TableRow>
 

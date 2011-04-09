@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -19,14 +20,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.TextView;
 
 public abstract class Event extends Activity implements OnClickListener{
 	
 	private EventItem m_event = null;
 	private TripObject m_trip = null;
 	private Comparator<Object> m_comparator = null;
+	private static String TAG = "Event";
 	
 	private class AlternativeHandler implements OnDismissListener, OnClickListener{		
 		private int m_source;
@@ -131,6 +136,59 @@ public abstract class Event extends Activity implements OnClickListener{
     	    	
     }
     
+    protected void setupWeatherFields(int tripindex, int index)
+    {
+    	m_trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
+    	m_event = m_trip.getEvents().get(index); 
+
+    	setSpinners(R.id.PressureChange,
+    			EventItem.getPressureChanges());  
+    	setSpinners(R.id.WindDirection,
+    			EventItem.getWindDirections());
+    	
+    	OnSeekBarChangeListener seekbarlistener = new OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekbar, int value, boolean arg2) {
+				TextView textview = null;
+				switch(seekbar.getId())
+				{
+				case R.id.WindSpeed:
+					textview = (TextView)findViewById(R.id.WindSpeedLabel);
+					textview.setText(EventItem.getHumanReadableWindspeed(value));
+					break;
+				case R.id.Clouds: 
+					textview = (TextView)findViewById(R.id.CloudLabel); 
+					textview.setText(EventItem.getHumanReadableClouds(value));
+					break;
+				case R.id.Rain: 
+					textview = (TextView)findViewById(R.id.RainLabel); 
+					textview.setText(EventItem.getHumanReadableRain(value));
+					break;
+				case R.id.Pressure: 
+					textview = (TextView)findViewById(R.id.PressureLabel);
+					if(value == 0)
+						textview.setText("n/a");
+					else
+						textview.setText(new Integer(940+value).toString());
+					break;
+				}
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar arg0) {
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar arg0) {
+			}	
+    	};
+    	
+    	((SeekBar)findViewById(R.id.WindSpeed)).setOnSeekBarChangeListener(seekbarlistener);
+    	((SeekBar)findViewById(R.id.Clouds)).setOnSeekBarChangeListener(seekbarlistener);
+    	((SeekBar)findViewById(R.id.Rain)).setOnSeekBarChangeListener(seekbarlistener);
+    	((SeekBar)findViewById(R.id.Pressure)).setOnSeekBarChangeListener(seekbarlistener);
+    }
+    
     private <T extends Object> void setSpinners(int viewID, List<T> items)
     {
     	Spinner spinner = (Spinner)findViewById(viewID);
@@ -139,7 +197,8 @@ public abstract class Event extends Activity implements OnClickListener{
     	{	
     		adapter.add(item);
     	}
-		adapter.sort(m_comparator);
+    	if(m_comparator != null)
+    		adapter.sort(m_comparator);
 		spinner.setAdapter(adapter);
     }
     
@@ -188,6 +247,20 @@ public abstract class Event extends Activity implements OnClickListener{
     		setSpinnerDefaultValue(R.id.Lure, m_event.getLure().toString());
     }
     
+    protected void readWeatherFields()
+    {
+    	((EditText)findViewById(R.id.AirTemp)).setText(m_event.getAirTemp());
+    	((EditText)findViewById(R.id.WaterTemp)).setText(m_event.getWaterTemp());
+    	
+    	((SeekBar)findViewById(R.id.WindSpeed)).setProgress(m_event.getWindSpeed());
+    	((SeekBar)findViewById(R.id.Clouds)).setProgress(m_event.getClouds());
+    	((SeekBar)findViewById(R.id.Rain)).setProgress(m_event.getRain());
+    	((SeekBar)findViewById(R.id.Pressure)).setProgress(m_event.getPressure());
+    	    	
+    	setSpinnerDefaultValue(R.id.WindDirection, EventItem.getWindDirections().get(m_event.getWindDirection()));
+    	setSpinnerDefaultValue(R.id.PressureChange, EventItem.getPressureChanges().get(m_event.getPressureChange()));
+    }
+    
     protected void writeFishFields()
     {
 		m_event.setLength(((EditText)findViewById(R.id.Length)).getText().toString());
@@ -210,6 +283,22 @@ public abstract class Event extends Activity implements OnClickListener{
 		if(getter != null)	m_event.setGetter(getter.toString());
 		if(method != null)	m_event.setMethod(method.toString());
 		if(lure != null)	m_event.setLure((LureObject) lure);
+    }
+    
+    protected void writeWeatherFields()
+    {
+		m_event.setWaterTemp(((EditText)findViewById(R.id.WaterTemp)).getText().toString());
+		m_event.setAirTemp(((EditText)findViewById(R.id.AirTemp)).getText().toString());
+		
+		m_event.setWindSpeed(((SeekBar)findViewById(R.id.WindSpeed)).getProgress());
+		m_event.setClouds(((SeekBar)findViewById(R.id.Clouds)).getProgress());
+		m_event.setRain(((SeekBar)findViewById(R.id.Rain)).getProgress());
+		m_event.setPressure(((SeekBar)findViewById(R.id.Pressure)).getProgress());
+		
+		Object windDirection = ((Spinner)findViewById(R.id.WindDirection)).getSelectedItem();
+		Object pressureChange = ((Spinner)findViewById(R.id.PressureChange)).getSelectedItem();
+		m_event.setWindDirection(EventItem.getWindDirections().indexOf(windDirection));
+		m_event.setPressureChange(EventItem.getPressureChanges().indexOf(pressureChange));
     }
 
 	@Override

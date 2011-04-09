@@ -1,5 +1,7 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class EventItem extends TrollingObjectItem {
@@ -39,6 +41,87 @@ public class EventItem extends TrollingObjectItem {
 	private static final String FISH_MEDIAFILES = "fish_mediafiles";
 	private static final String FISH_LURE = "lure";
 	
+	public static String getHumanReadableWindspeed(int value)
+	{
+		String retval = "n/a";
+	    switch(value)
+	    {
+	    case 1: retval = "Tyyntä (< 0.2 m/s)"; break;
+	    case 2: retval = "Hyvin heikko (0.3 – 1.5 m/s)"; break;
+	    case 3: retval = "Heikkoa (1.6 – 3.3 m/s)"; break;
+	    case 4: retval = "Kohtalaista (3.4 – 5.4 m/s)"; break;
+	    case 5: retval = "Kohtalaista (5.5 – 7.9 m/s)"; break;
+	    case 6: retval = "Navakkaa (8.0 – 10.7 m/s)"; break;
+	    case 7: retval = "Navakkaa (10.8 – 13.8 m/s)"; break;
+	    case 8: retval = "Kovaa (13.9 – 17.1 m/s)"; break;
+	    case 9: retval = "Kovaa (17.2 – 20.7 m/s)"; break;
+	    case 10: retval = "Myrskyä (> 20.8 m/s)"; break;
+	    }
+		return retval;
+	}
+	
+	public static String getHumanReadableClouds(int value)
+	{
+		String retval = "n/a";
+	    switch(value)
+	    {
+	    case 1: retval = "Selkeää (0/8)"; break;
+	    case 2: retval = "Selkeää (1/8)"; break;
+	    case 3: retval = "Melko selkeää (2/8)"; break;
+	    case 4: retval = "Puolipilvistä (3/8)"; break;
+	    case 5: retval = "Puolipilvistä (4/8)"; break;
+	    case 6: retval = "Melko pilvistä (5/8)"; break;
+	    case 7: retval = "Melko pilvistä (6/8)"; break;
+	    case 8: retval = "Pilvistä (7/8)"; break;
+	    case 9: retval = "Pilvistä (8/8)"; break;
+	    case 10: retval = "Sumua (9/8)"; break;
+	    }
+		return retval;
+	}
+	
+	public static String getHumanReadableRain(int value)
+	{
+		String retval = "n/a";
+	    switch(value)
+	    {
+	    case 1: retval = "Pouta (<0.3 mm)"; break;
+	    case 2: retval = "Vähän sadetta (0.3 - 0.9 mm)"; break;
+	    case 3: retval = "Sadetta (1.0 - 4.4 mm)"; break;
+	    case 4: retval = "Runsasta sadetta (>4.5 mm)"; break;
+	    }
+		return retval;
+	}
+	
+	public static List<String> getWindDirections()
+	{
+		List<String> retval = new ArrayList<String>();
+		retval.add("n/a");
+		retval.add("Etelä");
+		retval.add("Lounas");
+		retval.add("Länsi");
+		retval.add("Luode");
+		retval.add("Pohjoinen");
+		retval.add("Koillinen");
+		retval.add("Itä");
+		retval.add("Kaakko");
+		retval.add("Ei suuntaa");
+		return retval;
+	}
+	
+	public static List<String> getPressureChanges()
+	{
+		List<String> retval = new ArrayList<String>();
+		retval.add("n/a");
+		retval.add("Laskee nopeasti");
+		retval.add("Laskee");
+		retval.add("Laskee hitaasti");
+		retval.add("Muuttumaton");
+		retval.add("Nousee hitaasti");
+		retval.add("Nousee");
+		retval.add("Nousee nopeasti");
+		return retval;
+	}
+	
 	public EventItem(Map<String, String> props)
 	{
 		super(props);
@@ -67,6 +150,12 @@ public class EventItem extends TrollingObjectItem {
 		return get("fish_species");
 	}
 	
+	public int getWindSpeed() { return getInt(FISH_WIND); }
+	public int getClouds() { return getInt(FISH_WEATHER); }
+	public int getPressure() { return getInt(FISH_PRESSURE); }
+	public int getRain() { return getInt(FISH_RAIN); }
+	public int getWindDirection() { return getInt(FISH_WIND_DIRECTION); }
+	public int getPressureChange() { return getInt(FISH_PRESSURE_CHANGE); }
 	public boolean getIsGroup() {return get(FISH_IS_GROUP).equalsIgnoreCase("true");}
 	public boolean getIsUndersize() {return get(FISH_IS_UNDERSIZE).equalsIgnoreCase("true");}
 	public boolean getIsCatchNReleased() {return get(FISH_IS_CATCHRELEASED).equalsIgnoreCase("true");}
@@ -86,6 +175,13 @@ public class EventItem extends TrollingObjectItem {
 	public void setIsUndersize(boolean bIs){set(FISH_IS_UNDERSIZE, new Boolean(bIs).toString());}
 	public void setIsCatchNReleased(boolean bIs){set(FISH_IS_CATCHRELEASED, new Boolean(bIs).toString());}
 	public void setGroupAmount(String amount){set(FISH_GROUP_AMOUNT, amount);}
+	
+	public void setWindSpeed(int value) { setInt(FISH_WIND, value); }
+	public void setClouds(int value) { setInt(FISH_WEATHER, value); }
+	public void setPressure(int value) { setInt(FISH_PRESSURE, value); }
+	public void setRain(int value) { setInt(FISH_RAIN, value); }	
+	public void setWindDirection(int value) { setInt(FISH_WIND_DIRECTION, value); }
+	public void setPressureChange(int value) { setInt(FISH_PRESSURE_CHANGE, value); }
 	
 	//Text field getters
 	public String getWeight(){return get(FISH_WEIGHT);}
@@ -118,6 +214,28 @@ public class EventItem extends TrollingObjectItem {
 	public void setMethod(String value){set(FISH_METHOD, value);}
 	public void setCoordinatesLat(String value){set(FISH_COORDINATES_LAT, value);}
 	public void setCoordinatesLon(String value){set(FISH_COORDINATES_LON, value);}
+	
+	private void setInt(String type, int value)
+	{
+		try
+		{
+			set(type, new Integer(value).toString());
+		} catch(NumberFormatException e)
+		{
+			set(type, "");
+		}
+	}
+	
+	private int getInt(String type)
+	{
+		try
+		{
+			return new Integer(get(type)).intValue();
+		} catch(NumberFormatException e)
+		{
+			return 0;
+		}
+	}
 		
 	public EType getType()
 	{
