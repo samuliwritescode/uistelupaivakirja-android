@@ -18,12 +18,12 @@ public class TripObject extends TrollingObject{
 	
 	public void setStartTime(Date date)
 	{
-		set("time_start", new SimpleDateFormat("HH:mm").format(date));
+		set("time_start", new SimpleDateFormat("HH:mm:00").format(date));
 	}
 	
 	public void setEndTime(Date date)
 	{
-		set("time_end", new SimpleDateFormat("HH:mm").format(date));
+		set("time_end", new SimpleDateFormat("HH:mm:00").format(date));
 	}
 	
 	public void setPlace(PlaceObject place)

@@ -49,6 +49,10 @@ public class ModelFactory {
 			storage.load(file);
 		}
 		
+		public static void reload()
+		{
+			instance = null;
+		}
 		
 		public TripCollection getTrips() {
 			return this.m_tripCollection;

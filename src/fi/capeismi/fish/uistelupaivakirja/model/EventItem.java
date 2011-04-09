@@ -198,7 +198,7 @@ public class EventItem extends TrollingObjectItem {
 	
 	public void setTime(Date date)
 	{
-		set(FISH_TIME, new SimpleDateFormat("HH:mm").format(date));
+		set(FISH_TIME, new SimpleDateFormat("HH:mm:00").format(date));
 	}
 	
 	public int getWindSpeed() { return getInt(FISH_WIND); }

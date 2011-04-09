@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory.Model;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 
 public class TripExplorer extends ListActivity implements OnClickListener {
@@ -99,6 +100,7 @@ public class TripExplorer extends ListActivity implements OnClickListener {
     @Override
     protected void onResume() {
     	super.onResume();
+    	Model.reload();
     	Log.i(TAG, "resume");
         List<Map<String, String> > data = new Vector<Map<String, String> >();
 

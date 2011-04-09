@@ -49,12 +49,17 @@ final class XMLStorage implements Storage {
 				
 				while((line = is.readLine()) != null)
 				{
-					if(line.indexOf("<TrollingObjects MaxId") == -1)
+					if(line.indexOf("<TrollingObjects MaxId") != -1)
 					{
-						xml.append(line+"\n");
-					}else
-					{ 				
 						maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\""))).intValue();
+					}
+					else if(line.indexOf("</TrollingObjects") != -1)
+					{
+						
+					}
+					else
+					{ 				
+						xml.append(line+"\n");
 					}
 				}
 				files.close();
@@ -86,6 +91,7 @@ final class XMLStorage implements Storage {
 				bos.write(serializeStorable(storable));
 			}
 			bos.write(xmlstr.substring(lastIndex));
+			bos.write("</TrollingObjects>");
 			bos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
