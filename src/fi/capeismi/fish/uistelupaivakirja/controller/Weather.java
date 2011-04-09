@@ -14,6 +14,7 @@ public final class Weather extends Event {
 				
 		setupWeatherFields();
 		readWeatherFields();
+		readCommonFields();
     }
 
     @Override
@@ -21,6 +22,7 @@ public final class Weather extends Event {
     	super.onResume();
     	
     	readWeatherFields();
+    	readCommonFields();
     }
     
 	@Override

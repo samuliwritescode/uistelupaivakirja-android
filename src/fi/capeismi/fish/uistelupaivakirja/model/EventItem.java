@@ -149,7 +149,51 @@ public class EventItem extends TrollingObjectItem {
 	@Override
 	public String toString()
 	{
-		return get("fish_species");
+		String retval = get(FISH_TIME);
+		retval += " ";
+		if(getType() == EType.eFish || getType() == EType.eFishAndWeather)
+		{
+			retval += formatted(get(FISH_SPECIES));
+			retval += formatted(getWithUnit(FISH_WEIGHT, "g"));			
+			retval += formatted(getWithUnit(FISH_LENGTH, "cm"));		
+			if(getLure() != null)
+			{
+				retval += formatted(getLure().toString());
+			}
+		}
+		
+		if(getType() == EType.eWeather || getType() == EType.eFishAndWeather)
+		{
+			retval += formatted(getWithUnit(FISH_AIR_TEMP, "C"));
+			retval += formatted(getWithUnit(FISH_WATER_TEMP, "C"));
+			retval += formatted(getHumanReadableWindspeed(getInt(FISH_WIND)));
+			retval += formatted(getHumanReadableClouds(getInt(FISH_WEATHER)));
+		}
+		
+		if(retval.endsWith(", "))
+			retval = retval.substring(0, retval.length()-2);
+		
+		return retval;
+	}
+	
+	private String formatted(String str)
+	{
+		if(str.length() == 0)
+			return "";
+		else
+		{
+			return str+", ";
+		}
+	}
+	
+	private String getWithUnit(String type, String unit)
+	{
+		String value = get(type);
+		if(value.length() == 0)
+			return "";
+		
+		value += " "+unit;
+		return value;
 	}
 	
 	public void setTime(Date date)
@@ -205,6 +249,7 @@ public class EventItem extends TrollingObjectItem {
 	public String getMethod(){return get(FISH_METHOD);}
 	public String getCoordinatesLat(){return get(FISH_COORDINATES_LAT);}
 	public String getCoordinatesLon(){return get(FISH_COORDINATES_LON);}
+	public String getTime(){return get(FISH_TIME);}
 	
 	//Text field setters
 	public void setWeight(String value){set(FISH_WEIGHT, value);}

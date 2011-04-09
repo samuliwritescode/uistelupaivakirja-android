@@ -114,7 +114,7 @@ public abstract class Event extends Activity implements OnClickListener{
     		index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
         	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
         	m_event = m_trip.getEvents().get(index); 
-    		getEvent().setTime(new Date(0));
+    		getEvent().setTime(new Date());
     	}
 		else
 		{
@@ -243,6 +243,17 @@ public abstract class Event extends Activity implements OnClickListener{
     	{
     		spinner.setSelection(adapter.getPosition(object));
     	}
+    }
+    
+    protected void readCommonFields()
+    {
+    	String timecoord = "";
+    	timecoord += m_event.getTime();
+    	timecoord += " ";
+    	timecoord += m_event.getCoordinatesLat();
+    	timecoord += " ";
+    	timecoord += m_event.getCoordinatesLon();
+    	((TextView)findViewById(R.id.TimeAndCoordinates)).setText(timecoord);
     }
     
     protected void readFishFields()

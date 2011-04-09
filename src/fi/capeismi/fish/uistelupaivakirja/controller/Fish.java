@@ -13,7 +13,8 @@ public final class Fish extends Event
 		setMembers(EventItem.EType.eFish);
 				
 		setupFishFields();
-		readFishFields();	
+		readFishFields();
+		readCommonFields();
     }
     
     
@@ -22,6 +23,7 @@ public final class Fish extends Event
     	super.onResume();
     	
     	readFishFields();
+    	readCommonFields();
     }
 
 	@Override
