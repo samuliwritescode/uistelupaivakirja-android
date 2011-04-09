@@ -185,6 +185,7 @@ public class Trip extends ListActivity implements OnClickListener {
 		case R.id.FishnWeather: intent = new Intent(this, FishAndWeather.class); break;
 		case R.id.EndTrip: m_trip.setEndTime(new Date());
 			Log.i(TAG, "ending trip");
+			m_trip.save();
 			finish();
 			break;
 		}

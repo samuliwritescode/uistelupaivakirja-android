@@ -1,6 +1,7 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import fi.capeismi.fish.uistelupaivakirja.model.DuplicateItemException;
@@ -8,8 +9,10 @@ import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
+import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.Bundle;
 import android.util.Log;
@@ -96,12 +99,34 @@ public abstract class Event extends Activity implements OnClickListener{
     {
     	return m_event;
     }
-
-    protected void setupFishFields(int tripindex, int index)
+    
+    protected void setMembers(EventItem.EType type)
     {
-    	m_trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
-    	m_event = m_trip.getEvents().get(index); 
-    	
+    	final Intent intent = getIntent();
+    	Bundle extras = intent.getExtras();
+    	int index = -1;
+    	int eventindex = extras.getInt("tripindex");
+
+		if(!extras.containsKey("event"))
+    	{
+    		Log.i(TAG, "no previous event. create new one");
+    		TrollingObjectItem item = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);
+    		index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
+        	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
+        	m_event = m_trip.getEvents().get(index); 
+    		getEvent().setTime(new Date(0));
+    	}
+		else
+		{
+			index = extras.getInt("event");
+	    	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
+	    	m_event = m_trip.getEvents().get(index); 
+		}
+		
+    }
+
+    protected void setupFishFields()
+    {   	
 		m_comparator = new Comparator<Object>() {
 			@Override
 			public int compare(Object arg0, Object arg1) {
@@ -136,11 +161,8 @@ public abstract class Event extends Activity implements OnClickListener{
     	    	
     }
     
-    protected void setupWeatherFields(int tripindex, int index)
+    protected void setupWeatherFields()
     {
-    	m_trip = ModelFactory.getModel().getTrips().getList().get(tripindex);
-    	m_event = m_trip.getEvents().get(index); 
-
     	setSpinners(R.id.PressureChange,
     			EventItem.getPressureChanges());  
     	setSpinners(R.id.WindDirection,

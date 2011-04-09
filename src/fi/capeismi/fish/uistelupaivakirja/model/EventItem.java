@@ -1,6 +1,8 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -148,6 +150,11 @@ public class EventItem extends TrollingObjectItem {
 	public String toString()
 	{
 		return get("fish_species");
+	}
+	
+	public void setTime(Date date)
+	{
+		set(FISH_TIME, new SimpleDateFormat("HH:mm").format(date));
 	}
 	
 	public int getWindSpeed() { return getInt(FISH_WIND); }
