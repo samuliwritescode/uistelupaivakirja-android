@@ -1,5 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -129,9 +130,9 @@ public class EventItem extends TrollingObjectItem {
 		super(props);
 		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
 		try {
-			set(FISH_COORDINATES_LAT, new Double(gpsinfo.getCurrentLat()).toString());
-			set(FISH_COORDINATES_LON, new Double(gpsinfo.getCurrentLon()).toString());
-			set(FISH_TROLLING_SPEED, new Double(gpsinfo.getCurrentSpeed()).toString());
+			set(FISH_COORDINATES_LAT, new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
+			set(FISH_COORDINATES_LON, new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
+			set(FISH_TROLLING_SPEED, new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));
 		} catch (NoGpsFixException e) {			
 			e.printStackTrace();
 		}
