@@ -78,7 +78,6 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         btn.setOnClickListener(this);
         
         ModelFactory.getModel();
-
     }
     
     @Override

@@ -12,7 +12,10 @@ import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.PlaceObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -36,7 +39,8 @@ public class Trip extends ListActivity implements OnClickListener {
 	
 	private static final String TAG = "Trip";
 	private TripObject m_trip = null;
-	
+	private LocationManager locationManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -102,6 +106,10 @@ public class Trip extends ListActivity implements OnClickListener {
 			spinner.setSelection(adapter.getPosition(m_trip.getPlace()));
 		}
 		registerForContextMenu(getListView());
+		
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ModelFactory.getGpsInfo());
     }
     
 	@Override
@@ -186,6 +194,7 @@ public class Trip extends ListActivity implements OnClickListener {
 		case R.id.EndTrip: m_trip.setEndTime(new Date());
 			Log.i(TAG, "ending trip");
 			m_trip.save();
+			locationManager.removeUpdates(ModelFactory.getGpsInfo());
 			finish();
 			break;
 		}

@@ -2,6 +2,7 @@ package fi.capeismi.fish.uistelupaivakirja.model;
 
 public class ModelFactory {
 	private static Model instance;
+	private static GPSInfo gpsinfo;
 	private ModelFactory() {
 		
 	}
@@ -11,6 +12,14 @@ public class ModelFactory {
 			instance = new Model();
 		}
 		return instance;
+	}
+	
+	public static GPSInfo getGpsInfo()
+	{
+		if(gpsinfo == null) {
+			gpsinfo = new GPSInfo();
+		}
+		return gpsinfo;
 	}
 	
 	public static class Model {
@@ -68,6 +77,6 @@ public class ModelFactory {
 		
 		public AlternativeItemCollection getSpinnerItems() {
 			return this.m_spinnerItems;
-		}
+		}		
 	}
 }

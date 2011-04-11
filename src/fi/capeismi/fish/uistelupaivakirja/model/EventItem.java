@@ -127,7 +127,22 @@ public class EventItem extends TrollingObjectItem {
 	public EventItem(Map<String, String> props)
 	{
 		super(props);
+		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
+		try {
+			set(FISH_COORDINATES_LAT, new Double(gpsinfo.getCurrentLat()).toString());
+			set(FISH_COORDINATES_LON, new Double(gpsinfo.getCurrentLon()).toString());
+			set(FISH_TROLLING_SPEED, new Double(gpsinfo.getCurrentSpeed()).toString());
+		} catch (NoGpsFixException e) {			
+			e.printStackTrace();
+		}
 	}
+	
+	//Dont use default constructor
+	private EventItem()
+	{
+		super(null);
+	}
+	
 	
 	public void setLure(LureObject lure)
 	{
