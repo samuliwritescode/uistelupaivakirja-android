@@ -1,13 +1,16 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 import fi.capeismi.fish.uistelupaivakirja.model.DuplicateItemException;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import fi.capeismi.fish.uistelupaivakirja.model.GPSInfo;
 import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.NoGpsFixException;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.app.Activity;
@@ -115,6 +118,14 @@ public abstract class Event extends Activity implements OnClickListener{
         	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
         	m_event = m_trip.getEvents().get(index); 
     		getEvent().setTime(new Date());
+    		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
+    		try {
+    			getEvent().setCoordinatesLat(new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
+    			getEvent().setCoordinatesLon( new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
+    			getEvent().setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));
+    		} catch (NoGpsFixException e) {			
+    			e.printStackTrace();
+    		}
     	}
 		else
 		{

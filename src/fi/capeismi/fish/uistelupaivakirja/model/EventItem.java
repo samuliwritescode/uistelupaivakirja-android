@@ -128,14 +128,6 @@ public class EventItem extends TrollingObjectItem {
 	public EventItem(Map<String, String> props)
 	{
 		super(props);
-		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
-		try {
-			set(FISH_COORDINATES_LAT, new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
-			set(FISH_COORDINATES_LON, new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
-			set(FISH_TROLLING_SPEED, new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));
-		} catch (NoGpsFixException e) {			
-			e.printStackTrace();
-		}
 	}
 	
 	//Dont use default constructor
