@@ -8,4 +8,9 @@ public class PlaceObject extends TrollingObject {
 		retval += get("city");
 		return retval;
 	}
+	
+	public String getCity()
+	{
+		return get("city");
+	}
 }
