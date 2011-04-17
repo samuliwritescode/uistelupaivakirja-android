@@ -1,6 +1,5 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 
 public abstract class CounterPart {	
