@@ -36,7 +36,7 @@ public class WeatherInfo {
 		m_city = city;
 		m_event = event;
 		HttpClient httpclient = new DefaultHttpClient();
-		HttpGet get = new HttpGet(new URI("http://www.google.fi/ig/api?weather=Jyvaskyla"+m_city));
+		HttpGet get = new HttpGet(new URI("http://www.google.fi/ig/api?weather="+m_city));
 		HttpResponse response = httpclient.execute(get);
 		InputStream instream = response.getEntity().getContent();
 		parseXML(instream);

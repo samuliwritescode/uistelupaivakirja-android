@@ -14,7 +14,6 @@ import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 public final class Fish extends Event
 {
+	private FishCounterPart m_fishImpl = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	setContentView(R.layout.fish);
@@ -12,8 +13,7 @@ public final class Fish extends Event
 
 		setMembers(EventItem.EType.eFish);
 				
-		setupFishFields();
-		readFishFields();
+		m_fishImpl = new FishCounterPart(getEvent(), getTrip(), new PrivateConduit());
 		readCommonFields();
     }
     
@@ -22,13 +22,13 @@ public final class Fish extends Event
     public void onResume() {
     	super.onResume();
     	
-    	readFishFields();
+    	m_fishImpl.readFishFields();
     	readCommonFields();
     }
 
 	@Override
 	public void onDone() {
-		writeFishFields();
+		m_fishImpl.writeFishFields();
 		getTrip().save();
 	}
 }

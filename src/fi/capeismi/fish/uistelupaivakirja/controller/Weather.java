@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public final class Weather extends Event {
+	private WeatherCounterPart m_weatherImpl = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -18,8 +19,8 @@ public final class Weather extends Event {
     	
     	setMembers(EventItem.EType.eWeather);
 				
-		setupWeatherFields();
-		readWeatherFields();
+    	m_weatherImpl = new WeatherCounterPart(getEvent(), getTrip(), new PrivateConduit());
+
 		readCommonFields();
 		
 		Button autofetch = ((Button)findViewById(R.id.AutoFetch));
@@ -52,7 +53,7 @@ public final class Weather extends Event {
 		protected void onPostExecute(WeatherInfo weather)
 		{
 			Log.i("async", "onpostexec");
-			readWeatherFields();
+			m_weatherImpl.readWeatherFields();
 		}
     	
     }
@@ -61,13 +62,13 @@ public final class Weather extends Event {
     public void onResume() {
     	super.onResume();
     	
-    	readWeatherFields();
+    	m_weatherImpl.readWeatherFields();
     	readCommonFields();
     }
     
 	@Override
 	public void onDone() {
-		writeWeatherFields();
+		m_weatherImpl.writeWeatherFields();
 		getTrip().save();		
 	}
 }
