@@ -6,15 +6,41 @@
   android:background="#88AA88"
   android:orientation="vertical">
 
-	<TextView android:id="@+id/Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/ListItemTitle"></TextView>
-	<Button android:text="@string/end_trip" android:id="@+id/EndTrip" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
-	<Spinner android:id="@+id/PlaceList" android:layout_width="fill_parent" android:layout_height="wrap_content"></Spinner>
+	<TextView android:id="@+id/Title" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:textAppearance="@style/ListItemTitle"/>
+	<Button android:text="@string/end_trip" 
+		android:id="@+id/EndTrip" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:drawableBottom="@drawable/end"/>
+	<Spinner android:id="@+id/PlaceList" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"/>
 
 	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="100">	
-		<Button android:text="@string/new_fish" android:id="@+id/NewFish" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>
-		<Button android:text="@string/new_weather" android:id="@+id/NewWeather" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>
-		<Button android:text="@string/new_fishnweather" android:id="@+id/FishnWeather" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="33"></Button>		
-	</LinearLayout> 
+		<Button android:text="@string/new_fish" 
+			android:id="@+id/NewFish" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="33"
+			android:drawableBottom="@drawable/fish"/>
+			
+		<Button android:text="@string/new_weather" 
+			android:id="@+id/NewWeather" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="33"
+			android:drawableBottom="@drawable/weather"/>
+			
+		<Button android:text="@string/new_fishnweather" 
+			android:id="@+id/FishnWeather" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="33"
+			android:drawableBottom="@drawable/weather" />		
+	</LinearLayout>
 	<ListView
 		xmlns:android="http://schemas.android.com/apk/res/android"	
 		android:id="@android:id/list" 
