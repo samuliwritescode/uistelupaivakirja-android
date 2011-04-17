@@ -5,13 +5,15 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
+import fi.capeismi.fish.uistelupaivakirja.model.WeatherItem;
 
 public class WeatherCounterPart extends CounterPart  {
-
+	private WeatherItem m_weather = null;
 	
-	public WeatherCounterPart(EventItem eventitem, TripObject trip,
+	public WeatherCounterPart(WeatherItem eventitem, TripObject trip,
 			Event.PrivateConduit activity) {
-		super(eventitem, trip, activity);
+		super(trip, activity);
+		m_weather = eventitem;
 		setupWeatherFields();
 		readWeatherFields();
 	}
@@ -74,34 +76,34 @@ public class WeatherCounterPart extends CounterPart  {
 	
 	public void readWeatherFields()
     {
-    	m_activity.setEditText(R.id.AirTemp, m_event.getAirTemp());
-    	m_activity.setEditText(R.id.WaterTemp, m_event.getWaterTemp());
+    	m_activity.setEditText(R.id.AirTemp, m_weather.getAirTemp());
+    	m_activity.setEditText(R.id.WaterTemp, m_weather.getWaterTemp());
     	
-    	m_activity.setProgress(R.id.WindSpeed, m_event.getWindSpeed());
-    	m_activity.setProgress(R.id.Clouds, m_event.getClouds());
-    	m_activity.setProgress(R.id.Rain, m_event.getRain());
-    	m_activity.setProgress(R.id.Pressure, m_event.getPressure());
+    	m_activity.setProgress(R.id.WindSpeed, m_weather.getWindSpeed());
+    	m_activity.setProgress(R.id.Clouds, m_weather.getClouds());
+    	m_activity.setProgress(R.id.Rain, m_weather.getRain());
+    	m_activity.setProgress(R.id.Pressure, m_weather.getPressure());
     	    	
-    	m_activity.setSpinnerDefaultValue(R.id.WindDirection, EventItem.getWindDirections().get(m_event.getWindDirection()));
-    	m_activity.setSpinnerDefaultValue(R.id.PressureChange, EventItem.getPressureChanges().get(m_event.getPressureChange()));
+    	m_activity.setSpinnerDefaultValue(R.id.WindDirection, EventItem.getWindDirections().get(m_weather.getWindDirection()));
+    	m_activity.setSpinnerDefaultValue(R.id.PressureChange, EventItem.getPressureChanges().get(m_weather.getPressureChange()));
     }
 	    
 
     
     public void writeWeatherFields()
     {
-		m_event.setWaterTemp(m_activity.getEditText(R.id.WaterTemp));
-		m_event.setAirTemp(m_activity.getEditText(R.id.AirTemp));
+		m_weather.setWaterTemp(m_activity.getEditText(R.id.WaterTemp));
+		m_weather.setAirTemp(m_activity.getEditText(R.id.AirTemp));
 		
-		m_event.setWindSpeed(m_activity.getProgress(R.id.WindSpeed));
-		m_event.setClouds(m_activity.getProgress(R.id.Clouds));
-		m_event.setRain(m_activity.getProgress(R.id.Rain));
-		m_event.setPressure(m_activity.getProgress(R.id.Pressure));
+		m_weather.setWindSpeed(m_activity.getProgress(R.id.WindSpeed));
+		m_weather.setClouds(m_activity.getProgress(R.id.Clouds));
+		m_weather.setRain(m_activity.getProgress(R.id.Rain));
+		m_weather.setPressure(m_activity.getProgress(R.id.Pressure));
 		
 		Object windDirection = m_activity.getSelectedItem(R.id.WindDirection);
 		Object pressureChange =m_activity.getSelectedItem(R.id.PressureChange);
-		m_event.setWindDirection(EventItem.getWindDirections().indexOf(windDirection));
-		m_event.setPressureChange(EventItem.getPressureChanges().indexOf(pressureChange));
+		m_weather.setWindDirection(EventItem.getWindDirections().indexOf(windDirection));
+		m_weather.setPressureChange(EventItem.getPressureChanges().indexOf(pressureChange));
     }
 
 }

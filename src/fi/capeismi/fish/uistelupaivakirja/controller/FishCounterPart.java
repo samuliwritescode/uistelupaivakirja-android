@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import fi.capeismi.fish.uistelupaivakirja.model.DuplicateItemException;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import fi.capeismi.fish.uistelupaivakirja.model.FishItem;
 import fi.capeismi.fish.uistelupaivakirja.model.LureObject;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
@@ -17,6 +18,7 @@ import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 public class FishCounterPart extends CounterPart {
 	
 	private Comparator<Object> m_comparator = null;
+	private FishItem m_fish = null;
 	
 	private class AlternativeHandler implements OnDismissListener, OnClickListener{		
 		private int m_source;
@@ -68,8 +70,9 @@ public class FishCounterPart extends CounterPart {
 		
 	}
 	
-	public FishCounterPart(EventItem eventitem, TripObject trip, Event.PrivateConduit activity) {
-		super(eventitem, trip, activity);
+	public FishCounterPart(FishItem eventitem, TripObject trip, Event.PrivateConduit activity) {
+		super(trip, activity);
+		m_fish = eventitem;
 		setupFishFields();
 		readFishFields();
 	}
@@ -117,48 +120,48 @@ public class FishCounterPart extends CounterPart {
     
     public void readFishFields()
     {
-    	m_activity.setEditText(R.id.Length, m_event.getLength());
-    	m_activity.setEditText(R.id.Weight, m_event.getWeight());
-    	m_activity.setEditText(R.id.SpotDepth, m_event.getSpotDepth());
-    	m_activity.setEditText(R.id.Depth, m_event.getTotalDepth());
-    	m_activity.setEditText(R.id.TrollingSpeed, m_event.getTrollingSpeed());
-    	m_activity.setEditText(R.id.LureWeight, m_event.getLineWeight());
-    	m_activity.setEditText(R.id.ReleaseWidth, m_event.getReleaseWidth());    	
-    	m_activity.setEditText(R.id.GroupSize, m_event.getGroupAmount());
+    	m_activity.setEditText(R.id.Length, m_fish.getLength());
+    	m_activity.setEditText(R.id.Weight, m_fish.getWeight());
+    	m_activity.setEditText(R.id.SpotDepth, m_fish.getSpotDepth());
+    	m_activity.setEditText(R.id.Depth, m_fish.getTotalDepth());
+    	m_activity.setEditText(R.id.TrollingSpeed, m_fish.getTrollingSpeed());
+    	m_activity.setEditText(R.id.LureWeight, m_fish.getLineWeight());
+    	m_activity.setEditText(R.id.ReleaseWidth, m_fish.getReleaseWidth());    	
+    	m_activity.setEditText(R.id.GroupSize, m_fish.getGroupAmount());
     	
-    	m_activity.setSpinnerDefaultValue(R.id.Getter, m_event.getGetter());
-    	m_activity.setSpinnerDefaultValue(R.id.Method, m_event.getMethod());
-    	m_activity.setSpinnerDefaultValue(R.id.Species, m_event.getSpecies());
+    	m_activity.setSpinnerDefaultValue(R.id.Getter, m_fish.getGetter());
+    	m_activity.setSpinnerDefaultValue(R.id.Method, m_fish.getMethod());
+    	m_activity.setSpinnerDefaultValue(R.id.Species, m_fish.getSpecies());
     	
-    	m_activity.setChecked(R.id.GroupCB, m_event.getIsGroup());
-    	m_activity.setChecked(R.id.CrCB, m_event.getIsCatchNReleased());
-    	m_activity.setChecked(R.id.UnderSizeCB, m_event.getIsUndersize());
+    	m_activity.setChecked(R.id.GroupCB, m_fish.getIsGroup());
+    	m_activity.setChecked(R.id.CrCB, m_fish.getIsCatchNReleased());
+    	m_activity.setChecked(R.id.UnderSizeCB, m_fish.getIsUndersize());
     	
-    	if(m_event.getLure() != null)
-    		m_activity.setSpinnerDefaultValue(R.id.Lure, m_event.getLure().toString());
+    	if(m_fish.getLure() != null)
+    		m_activity.setSpinnerDefaultValue(R.id.Lure, m_fish.getLure().toString());
     }
     
     public void writeFishFields()
     {
-		m_event.setLength(m_activity.getEditText(R.id.Length));
-		m_event.setWeight(m_activity.getEditText(R.id.Weight));
-		m_event.setSpotDepth(m_activity.getEditText(R.id.SpotDepth));
-		m_event.setTotalDepth(m_activity.getEditText(R.id.Depth));
-		m_event.setTrollingSpeed(m_activity.getEditText(R.id.TrollingSpeed));
-		m_event.setLineWeight(m_activity.getEditText(R.id.LureWeight));
-		m_event.setReleaseWidth(m_activity.getEditText(R.id.ReleaseWidth));
-		m_event.setGroupAmount(m_activity.getEditText(R.id.GroupSize));
-    	m_event.setIsGroup(m_activity.getChecked(R.id.GroupCB));
-    	m_event.setIsUndersize(m_activity.getChecked(R.id.UnderSizeCB));
-    	m_event.setIsCatchNReleased(m_activity.getChecked(R.id.CrCB));    	    
+		m_fish.setLength(m_activity.getEditText(R.id.Length));
+		m_fish.setWeight(m_activity.getEditText(R.id.Weight));
+		m_fish.setSpotDepth(m_activity.getEditText(R.id.SpotDepth));
+		m_fish.setTotalDepth(m_activity.getEditText(R.id.Depth));
+		m_fish.setTrollingSpeed(m_activity.getEditText(R.id.TrollingSpeed));
+		m_fish.setLineWeight(m_activity.getEditText(R.id.LureWeight));
+		m_fish.setReleaseWidth(m_activity.getEditText(R.id.ReleaseWidth));
+		m_fish.setGroupAmount(m_activity.getEditText(R.id.GroupSize));
+    	m_fish.setIsGroup(m_activity.getChecked(R.id.GroupCB));
+    	m_fish.setIsUndersize(m_activity.getChecked(R.id.UnderSizeCB));
+    	m_fish.setIsCatchNReleased(m_activity.getChecked(R.id.CrCB));    	    
 		
 		Object species = m_activity.getSelectedItem(R.id.Species);
 		Object getter = m_activity.getSelectedItem(R.id.Getter);
 		Object method = m_activity.getSelectedItem(R.id.Method);
 		Object lure = m_activity.getSelectedItem(R.id.Lure);
-		if(species != null)	m_event.setSpecies(species.toString());
-		if(getter != null)	m_event.setGetter(getter.toString());
-		if(method != null)	m_event.setMethod(method.toString());
-		if(lure != null)	m_event.setLure((LureObject) lure);
+		if(species != null)	m_fish.setSpecies(species.toString());
+		if(getter != null)	m_fish.setGetter(getter.toString());
+		if(method != null)	m_fish.setMethod(method.toString());
+		if(lure != null)	m_fish.setLure((LureObject) lure);
     }
 }

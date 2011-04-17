@@ -192,8 +192,6 @@ public abstract class Event extends Activity implements OnClickListener{
 		}
 		
     }
-
-   
     
     protected void readCommonFields()
     {

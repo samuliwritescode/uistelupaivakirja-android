@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class EventItem extends TrollingObjectItem {
+public class EventItem extends TrollingObjectItem implements FishItem, WeatherItem {
 	
 	public enum EType {eNaN, eFish, eWeather, eFishAndWeather}
     public enum EWindDirection{eNaN, eSouth, eSouthWest, eWest, eNorthWest, eNorth, eNorthEast, eEast, eSouthEast, eNoWindDirection};
