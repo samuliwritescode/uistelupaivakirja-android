@@ -166,16 +166,16 @@ public class Trip extends ListActivity implements OnClickListener {
         for(EventItem event: events)
         {
             Map<String, String> ob = new HashMap<String, String>();
-            ob.put("Reissu", event.toString());
+            ob.put("Title", event.toString());
         	data.add(ob);
         }
         
         ListAdapter listadapter = new SimpleAdapter(
         		this,         		
         		data, 
-        		R.layout.trip_listitem,
-        		new String[] {"Reissu"},         		
-        		new int[] {R.id.tripItem});
+        		R.layout.event_listitem,
+        		new String[] {"Title"},         		
+        		new int[] {R.id.eventItemTitle});
         
         setListAdapter(listadapter);
     }

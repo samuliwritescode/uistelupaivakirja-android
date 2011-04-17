@@ -107,7 +107,8 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         for(TripObject trip: trips)
         {
             Map<String, String> ob = new HashMap<String, String>();
-            ob.put("Reissu", trip.toString());
+            ob.put("Title", trip.getTitle());
+            ob.put("Content", trip.getContentText());
         	data.add(ob);
         }
 
@@ -115,8 +116,8 @@ public class TripExplorer extends ListActivity implements OnClickListener {
         		this,         		
         		data, 
         		R.layout.trip_listitem,
-        		new String[] {"Reissu"},         		
-        		new int[] {R.id.tripItem});
+        		new String[] {"Title", "Content"},         		
+        		new int[] {R.id.tripItemTitle, R.id.tripItemContent});
         
         setListAdapter(adapter);
         registerForContextMenu(getListView());

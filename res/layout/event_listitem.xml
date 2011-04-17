@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout 
 android:id="@+id/LinearLayout01" 
 android:layout_width="fill_parent" 
@@ -9,8 +8,8 @@ android:background="#D6DED4"
 android:padding="5px"
 xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<ImageView android:id="@+id/ImageView01"
-	 android:src="@drawable/reissu"
+	<ImageView android:id="@+id/ImageViewEvent"
+	 android:src="@drawable/fish"
 	 android:padding="5px"
 	 android:layout_width="wrap_content" 
 	 android:layout_height="wrap_content"/>
@@ -20,15 +19,10 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 	 android:layout_height="wrap_content" 
 	 android:orientation="vertical">
 	 
-		<TextView android:id="@+id/tripItemTitle"
+		<TextView android:id="@+id/eventItemTitle"
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content"	
-		    android:textAppearance="@style/ListItemTitle"/>
-		    
-	<TextView android:id="@+id/tripItemContent"
-	 android:layout_width="wrap_content" 
-	 android:layout_height="wrap_content"
-	 android:textAppearance="@style/ListItemContent"/>
+			android:textAppearance="@style/ListItemTitle"/>
 	
 	</LinearLayout>
 

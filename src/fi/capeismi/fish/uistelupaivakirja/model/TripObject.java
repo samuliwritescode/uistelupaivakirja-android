@@ -59,6 +59,28 @@ public class TripObject extends TrollingObject{
 		return retval;
 	}
 	
+	public String getTitle()
+	{
+		String retval = "";
+		if(getPlace() != null)
+		{		
+			retval += getPlace().toString();
+		}
+		retval += " ";
+		retval += get("date");
+		
+		return retval;
+	}
+	
+	public String getContentText()
+	{
+		String retval = new String();
+		retval += get("time_start");
+		retval += " -> ";
+		retval += get("time_end");
+		return retval;
+	}
+	
 	@Override
 	protected TrollingObjectItem newItem(Map<String, String> props)
 	{
