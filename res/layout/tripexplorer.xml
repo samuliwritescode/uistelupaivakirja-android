@@ -3,6 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"	
 	android:id="@+id/TripLayout"
 	android:orientation="vertical" 
+	android:background="#88AA88"
 	android:layout_height="fill_parent" 
 	android:layout_width="fill_parent">
 	<Button android:text="@string/begin_trip" android:id="@+id/BeginTrip" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
