@@ -156,8 +156,8 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	@Override
 	public String toString()
 	{
-		String retval = get(FISH_TIME);
-		retval += " ";
+		String retval = "";
+
 		if(getType() == EType.eFish || getType() == EType.eFishAndWeather)
 		{
 			retval += formatted(get(FISH_SPECIES));

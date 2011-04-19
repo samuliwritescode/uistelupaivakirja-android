@@ -166,7 +166,8 @@ public class Trip extends ListActivity implements OnClickListener {
         for(EventItem event: events)
         {
             Map<String, Object> ob = new HashMap<String, Object>();
-            ob.put("Title", event.toString());
+            ob.put("Title", event.getTime());
+            ob.put("Content", event.toString());
             switch(event.getType())
             {
             case eFish: ob.put("Image", R.drawable.fish_event); break;
@@ -180,8 +181,8 @@ public class Trip extends ListActivity implements OnClickListener {
         		this,         		
         		data, 
         		R.layout.event_listitem,
-        		new String[] {"Title", "Image"},         		
-        		new int[] {R.id.eventItemTitle, R.id.ImageViewEvent});        
+        		new String[] {"Title", "Content", "Image"},         		
+        		new int[] {R.id.eventItemTitle, R.id.eventItemContent, R.id.ImageViewEvent});        
         
         setListAdapter(listadapter);
     }
