@@ -161,12 +161,18 @@ public class Trip extends ListActivity implements OnClickListener {
     protected void onResume() {
     	super.onResume();
     	Log.i(TAG, "draw fish list");
-    	List<Map<String, String> > data = new Vector<Map<String, String> >();
+    	List<Map<String, Object> > data = new Vector<Map<String, Object> >();
         List<EventItem> events = m_trip.getEvents();
         for(EventItem event: events)
         {
-            Map<String, String> ob = new HashMap<String, String>();
+            Map<String, Object> ob = new HashMap<String, Object>();
             ob.put("Title", event.toString());
+            switch(event.getType())
+            {
+            case eFish: ob.put("Image", R.drawable.fish_event); break;
+            case eWeather: ob.put("Image", R.drawable.weather_event); break;
+            case eFishAndWeather: ob.put("Image", R.drawable.weatherfish_event); break;
+            }
         	data.add(ob);
         }
         
@@ -174,8 +180,8 @@ public class Trip extends ListActivity implements OnClickListener {
         		this,         		
         		data, 
         		R.layout.event_listitem,
-        		new String[] {"Title"},         		
-        		new int[] {R.id.eventItemTitle});
+        		new String[] {"Title", "Image"},         		
+        		new int[] {R.id.eventItemTitle, R.id.ImageViewEvent});        
         
         setListAdapter(listadapter);
     }

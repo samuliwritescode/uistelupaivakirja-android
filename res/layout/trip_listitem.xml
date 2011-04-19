@@ -5,7 +5,7 @@ android:id="@+id/LinearLayout01"
 android:layout_width="fill_parent" 
 android:layout_height="fill_parent"
 android:orientation="horizontal"
-android:background="#D6DED4"
+android:background="@drawable/backtile"
 android:padding="5px"
 xmlns:android="http://schemas.android.com/apk/res/android">
 
