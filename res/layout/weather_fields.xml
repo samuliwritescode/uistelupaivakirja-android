@@ -15,75 +15,75 @@
 <Button android:text="@string/autofetch" android:id="@+id/AutoFetch" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 
 <TableRow>
-<TextView android:text="@string/air_temp" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<EditText android:id="@+id/AirTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/celsius" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/air_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<EditText android:id="@+id/AirTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"/>
+<TextView android:text="@string/celsius" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/water_temp" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/water_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/WaterTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/celsius" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/celsius" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/wind_speed" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:id="@+id/WindSpeedLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+</TableRow>
+
+<TableRow>
+<TextView android:text="@string/wind_speed" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textAppearance="@style/NormalText"/>
 <SeekBar android:id="@+id/WindSpeed" android:max="10" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:id="@+id/WindSpeedLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-</TableRow>
-
-<TableRow>
-<TextView android:text="@string/direction" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/direction" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/WindDirection" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/clouds" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:id="@+id/CloudLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+</TableRow>
+
+<TableRow>
+<TextView android:text="@string/clouds" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <SeekBar android:id="@+id/Clouds" android:max="10" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:id="@+id/CloudLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:id="@+id/RainLabel"  android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/rain" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/rain" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <SeekBar android:id="@+id/Rain" android:max="4" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:id="@+id/RainLabel"  android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:id="@+id/PressureLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/pressure" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/pressure" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <SeekBar android:id="@+id/Pressure" android:max="130" android:layout_width="wrap_content" android:layout_height="wrap_content"></SeekBar>
-<TextView android:text="@string/hpa" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/hpa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:id="@+id/PressureLabel" android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-</TableRow>
-
-<TableRow>
-<TextView android:text="@string/change" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/change" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/PressureChange" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
-<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 </TableLayout>

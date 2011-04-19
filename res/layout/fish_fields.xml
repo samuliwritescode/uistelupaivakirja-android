@@ -14,81 +14,81 @@
 	android:stretchColumns="1">
 	
 <TableRow>
-<CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<CheckBox android:text="@string/group" android:id="@+id/GroupCB" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#000000"/>
 <EditText android:id="@+id/GroupSize" android:layout_width="60dp" android:layout_height="wrap_content" android:numeric="integer" android:enabled="false"></EditText>
-<TextView android:text="@string/pcs" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/pcs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<CheckBox android:text="@string/catchnrelease" android:id="@+id/CrCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
-<CheckBox android:text="@string/undersize" android:id="@+id/UnderSizeCB" android:layout_width="wrap_content" android:layout_height="wrap_content"></CheckBox>
+<CheckBox android:text="@string/catchnrelease" android:id="@+id/CrCB" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#000000"/>
+<CheckBox android:text="@string/undersize" android:id="@+id/UnderSizeCB" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#000000"/>
 </TableRow>
 	
 <TableRow>
-<TextView android:text="@string/species" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/species" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/Species" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddSpecies" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/getter" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/getter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/Getter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddGetter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/method" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/method" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/Method" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddMethod" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
 <TableRow>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/lure"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/lure"  android:textAppearance="@style/NormalText"/>
 <Spinner android:id="@+id/Lure" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <View android:layout_width="fill_parent" android:layout_height="fill_parent"></View>
 
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/weight" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/weight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/Weight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/grams" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/grams" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/length" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/length" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/Length" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/cents" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/cents" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/spot_depth" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/spot_depth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/SpotDepth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/depth" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/depth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/Depth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/trolling_speed" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/trolling_speed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/TrollingSpeed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/kmh" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/kmh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/lure_weight" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/lure_weight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/LureWeight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/grams" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/grams" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 
 <TableRow>
-<TextView android:text="@string/release_width" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/release_width" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 <EditText android:id="@+id/ReleaseWidth" android:layout_width="wrap_content" android:layout_height="wrap_content" android:numeric="decimal"></EditText>
-<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+<TextView android:text="@string/metres" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
 </TableLayout>
 
