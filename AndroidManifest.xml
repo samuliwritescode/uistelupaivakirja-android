@@ -18,13 +18,13 @@
         <activity android:name=".Trip" android:label="@string/trip">        			
         </activity>
         
-       <activity android:name=".Fish" android:label="@string/fish">        			
+       <activity android:name=".Fish" android:label="@string/fish" android:windowSoftInputMode="stateHidden">        			
         </activity>
         
-        <activity android:name=".Weather" android:label="@string/weather">        			
+        <activity android:name=".Weather" android:label="@string/weather" android:windowSoftInputMode="stateHidden">        			
         </activity>
         
-        <activity android:name=".FishAndWeather" android:label="@string/fishnweather">        			
+        <activity android:name=".FishAndWeather" android:label="@string/fishnweather" android:windowSoftInputMode="stateHidden">        			
         </activity>
        
     </application>
