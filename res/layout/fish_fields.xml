@@ -44,7 +44,7 @@
 
 <TableRow>
 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/lure"  android:textAppearance="@style/NormalText"/>
-<Spinner android:id="@+id/Lure" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Spinner android:id="@+id/Lure" android:layout_width="10px" android:layout_height="wrap_content"></Spinner>
 <View android:layout_width="fill_parent" android:layout_height="fill_parent"></View>
 
 </TableRow>
