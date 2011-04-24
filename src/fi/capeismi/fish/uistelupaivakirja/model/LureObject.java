@@ -4,7 +4,17 @@ public class LureObject extends TrollingObject {
 	
 	public String toString()
 	{
-		return get("model");
+		String retval = "";
+		retval += get("maker");
+		retval += " ";
+		retval += get("model");
+		retval += " ";
+		retval += get("size");
+		retval += " ";
+		retval += get("color");
+		retval += " ";
+		retval += get("lure_type");
+		return retval;
 	}
 
 }
