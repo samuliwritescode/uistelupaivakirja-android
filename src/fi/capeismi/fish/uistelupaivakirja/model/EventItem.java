@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 
 public class EventItem extends TrollingObjectItem implements FishItem, WeatherItem {
 	
@@ -171,12 +170,24 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 		if(getType() == EType.eFish || getType() == EType.eFishAndWeather)
 		{
 			retval += formatted(get(FISH_SPECIES));
-			retval += formatted(getWithUnit(FISH_WEIGHT, "g"));			
-			retval += formatted(getWithUnit(FISH_LENGTH, "cm"));		
+			if(getIsGroup())
+				retval += formatted("*"+getGroupAmount());
+			
+			if(getIsCatchNReleased())
+				retval += formatted("C&R");
+			
+			if(getIsUndersize())
+				retval += formatted("alamit");
+			
+			retval += formatted(getWithUnit(FISH_WEIGHT, "g"));
+			retval += formatted(getWithUnit(FISH_LENGTH, "cm"));
 			if(getLure() != null)
 			{
 				retval += formatted(getLure().toString());
 			}
+			
+			retval += formatted(getWithUnit(FISH_SPOT_DEPTH, "m"));
+			retval += formatted(getWithUnit(FISH_TROLLING_SPEED, "km/h"));
 		}
 		
 		if(getType() == EType.eWeather || getType() == EType.eFishAndWeather)
@@ -184,7 +195,9 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 			retval += formatted(getWithUnit(FISH_AIR_TEMP, "C"));
 			retval += formatted(getWithUnit(FISH_WATER_TEMP, "C"));
 			retval += formatted(getHumanReadableWindspeed(getInt(FISH_WIND)));
+			retval += formatted(getWindDirections().get(getInt(FISH_WIND_DIRECTION)));
 			retval += formatted(getHumanReadableClouds(getInt(FISH_WEATHER)));
+			retval += formatted(getHumanReadableRain(getInt(FISH_RAIN)));
 		}
 		
 		if(retval.endsWith(", "))
