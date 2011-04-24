@@ -4,6 +4,17 @@
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
   
-<TextView android:text="@string/timeandplace" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
-<TextView android:text="" android:id="@+id/TimeAndCoordinates" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
+<TextView 
+	android:text="@string/timeandplace" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:textAppearance="@style/NormalText"/>
+	
+<TextView 
+	android:gravity="center"
+	android:text="" 
+	android:id="@+id/TimeAndCoordinates" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content" 
+	android:textAppearance="@style/ListItemTitle"/>
 </LinearLayout>
