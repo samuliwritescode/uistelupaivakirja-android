@@ -87,6 +87,7 @@ public class TripObject extends TrollingObject{
 		Log.i("tripobject", "new event");
 		EventItem item = (EventItem)insertPropItem(new HashMap<String, String>());
 		item.setType(type);
+		item.setTrip(this);
 		return item;
 	}
 	

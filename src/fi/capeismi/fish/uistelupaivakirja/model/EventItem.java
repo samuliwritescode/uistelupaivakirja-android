@@ -45,7 +45,9 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	private static final String FISH_USERFIELD = "fish_user";
 	private static final String FISH_MEDIAFILES = "fish_mediafiles";
 	private static final String FISH_LURE = "lure";
+	
 	private SharedPreferences m_prefs = null;
+	private TripObject m_trip = null;
 	
 	public static String getHumanReadableWindspeed(int value)
 	{
@@ -373,10 +375,32 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 			setLineWeight(m_prefs.getString(FISH_LINE_WEIGHT, ""));
 		}
 		
-		if(getType() == EType.eWeather || 
-			getType() == EType.eFishAndWeather)
+		if( m_trip != null &&
+			(getType() == EType.eWeather || 
+			getType() == EType.eFishAndWeather))
 		{
-			
+			for(int loop=m_trip.getEvents().size()-1; loop >= 0; loop--)
+			{
+				EventItem ev = m_trip.getEvents().get(loop);
+				if( ev != this &&
+					(ev.getType() == EType.eWeather || 
+					ev.getType() == EType.eFishAndWeather))
+				{
+					setAirTemp(ev.getAirTemp());
+					setWaterTemp(ev.getWaterTemp());
+					setClouds(ev.getClouds());
+					setWindSpeed(ev.getWindSpeed());
+					setWindDirection(ev.getWindDirection());
+					setPressure(ev.getPressure());
+					setPressureChange(ev.getPressureChange());
+					setRain(ev.getRain());
+					break;
+				}
+			}			
 		}				
+	}
+
+	public void setTrip(TripObject tripObject) {
+		m_trip = tripObject;		
 	}
 }
