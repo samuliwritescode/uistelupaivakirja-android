@@ -76,8 +76,6 @@ public class TripExplorer extends ListActivity implements OnClickListener {
 
         Button btn = (Button)findViewById(R.id.BeginTrip);
         btn.setOnClickListener(this);
-        
-        ModelFactory.getModel();
     }
     
     @Override
