@@ -256,7 +256,13 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	public String getMethod(){return get(FISH_METHOD);}
 	public String getCoordinatesLat(){return get(FISH_COORDINATES_LAT);}
 	public String getCoordinatesLon(){return get(FISH_COORDINATES_LON);}
-	public String getTime(){return get(FISH_TIME);}
+	public String getTime()
+	{
+		if(get(FISH_TIME).length() == 8)
+			return get(FISH_TIME).substring(0, 5);
+		else
+			return "";
+	}
 	
 	//Text field setters
 	public void setWeight(String value){set(FISH_WEIGHT, value);}

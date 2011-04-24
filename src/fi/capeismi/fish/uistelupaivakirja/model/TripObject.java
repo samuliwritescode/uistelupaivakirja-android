@@ -46,16 +46,9 @@ public class TripObject extends TrollingObject{
 	@Override
 	public String toString()
 	{
-		String retval = new String();
-		if(getPlace() != null)
-		{
-			retval += getPlace().toString();
-		}
-		retval += get("date");
+		String retval = getTitle();
 		retval += " ";
-		retval += get("time_start");
-		retval += " -> ";
-		retval += get("time_end");
+		retval += getContentText();
 		return retval;
 	}
 	
@@ -75,9 +68,11 @@ public class TripObject extends TrollingObject{
 	public String getContentText()
 	{
 		String retval = new String();
-		retval += get("time_start");
+		if(get("time_start").length() == 8)
+			retval += get("time_start").substring(0, 5);
 		retval += " -> ";
-		retval += get("time_end");
+		if(get("time_end").length() == 8)
+			retval += get("time_end").substring(0, 5);
 		return retval;
 	}
 	
