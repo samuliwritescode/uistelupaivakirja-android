@@ -20,11 +20,11 @@ public final class FishAndWeather extends Event {
 		m_fishImpl = new FishCounterPart(getEvent(), getTrip(), new PrivateConduit());
 				
 		//setupFishFields();
-		m_fishImpl.readFishFields();
+		//m_fishImpl.readFishFields();
 		
 		//setupWeatherFields();
-		m_weatherImpl.readWeatherFields();
-		readCommonFields();
+		//m_weatherImpl.readWeatherFields();
+		//readCommonFields();
     }
     
     @Override

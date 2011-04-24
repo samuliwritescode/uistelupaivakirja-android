@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.util.Log;
-
 public abstract class AbstractBuilder implements BuildTarget, Builder {
 	
 	protected List<ObjectCollection> m_collections = new ArrayList<ObjectCollection>();

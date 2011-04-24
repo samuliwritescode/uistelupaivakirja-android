@@ -14,7 +14,7 @@ public final class Fish extends Event
 		setMembers(EventItem.EType.eFish);
 				
 		m_fishImpl = new FishCounterPart(getEvent(), getTrip(), new PrivateConduit());
-		readCommonFields();
+		//readCommonFields();
     }
     
     

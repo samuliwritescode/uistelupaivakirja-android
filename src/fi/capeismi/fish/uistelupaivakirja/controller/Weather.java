@@ -21,7 +21,7 @@ public final class Weather extends Event {
 				
     	m_weatherImpl = new WeatherCounterPart(getEvent(), getTrip(), new PrivateConduit());
 
-		readCommonFields();
+		//readCommonFields();
 		
 		Button autofetch = ((Button)findViewById(R.id.AutoFetch));
 		autofetch.setOnClickListener(new OnClickListener() {

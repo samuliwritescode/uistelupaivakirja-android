@@ -174,21 +174,24 @@ public abstract class Event extends Activity implements OnClickListener{
     		index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
         	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
         	m_event = m_trip.getEvents().get(index); 
+        	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
     		getEvent().setTime(new Date());
     		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
     		try {
     			getEvent().setCoordinatesLat(new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
     			getEvent().setCoordinatesLon( new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
-    			getEvent().setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));
+    			getEvent().setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));    			    			
     		} catch (NoGpsFixException e) {			
     			e.printStackTrace();
     		}
+    		getEvent().setupDefaultValues();
     	}
 		else
 		{
 			index = extras.getInt("event");
 	    	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
 	    	m_event = m_trip.getEvents().get(index); 
+	    	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
 		}
 		
     }

@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
 public class EventItem extends TrollingObjectItem implements FishItem, WeatherItem {
 	
 	public enum EType {eNaN, eFish, eWeather, eFishAndWeather}
@@ -42,6 +45,7 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	private static final String FISH_USERFIELD = "fish_user";
 	private static final String FISH_MEDIAFILES = "fish_mediafiles";
 	private static final String FISH_LURE = "lure";
+	private SharedPreferences m_prefs = null;
 	
 	public static String getHumanReadableWindspeed(int value)
 	{
@@ -135,6 +139,10 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 		super(null);
 	}
 	
+	public void setPrefs(SharedPreferences prefs)
+	{
+		m_prefs = prefs;
+	}
 	
 	public void setLure(LureObject lure)
 	{
@@ -272,11 +280,36 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	public void setAirTemp(String value){set(FISH_AIR_TEMP, value);}
 	public void setTotalDepth(String value){set(FISH_TOTAL_DEPTH, value);}
 	public void setTrollingSpeed(String value){set(FISH_TROLLING_SPEED, value);}
-	public void setLineWeight(String value){set(FISH_LINE_WEIGHT, value);}
-	public void setReleaseWidth(String value){set(FISH_RELEASE_WIDTH, value);}
-	public void setSpecies(String value){set(FISH_SPECIES, value);}
-	public void setGetter(String value){set(FISH_GETTER, value);}
-	public void setMethod(String value){set(FISH_METHOD, value);}
+	public void setLineWeight(String value)
+	{
+		setDefaultValue(FISH_LINE_WEIGHT, value);
+		set(FISH_LINE_WEIGHT, value);		
+	}
+	
+	public void setReleaseWidth(String value)
+	{
+		setDefaultValue(FISH_RELEASE_WIDTH, value);
+		set(FISH_RELEASE_WIDTH, value);		
+	}
+	
+	public void setSpecies(String value)
+	{
+		setDefaultValue(FISH_SPECIES, value);
+		set(FISH_SPECIES, value);		
+	}
+	
+	public void setGetter(String value)
+	{
+		setDefaultValue(FISH_GETTER, value);
+		set(FISH_GETTER, value);		
+	}
+	
+	public void setMethod(String value)
+	{
+		setDefaultValue(FISH_METHOD, value);
+		set(FISH_METHOD, value);		
+	}
+	
 	public void setCoordinatesLat(String value){set(FISH_COORDINATES_LAT, value);}
 	public void setCoordinatesLon(String value){set(FISH_COORDINATES_LON, value);}
 	
@@ -310,5 +343,40 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	public void setType(EType type)
 	{
 		set(FISH_TYPE, new Integer(type.ordinal()).toString());
+	}
+	
+	private void setDefaultValue(String key, String value)
+	{
+		if(m_prefs == null)
+			return;
+		
+		if(value.length() == 0 || get(key).equals(value))
+			return;
+		
+		SharedPreferences.Editor edit = m_prefs.edit();
+		edit.putString(key, value);
+		edit.commit();
+	}
+
+	public void setupDefaultValues() 
+	{
+		if(m_prefs == null)
+			return;			
+		
+		if(getType() == EType.eFish || 
+			getType() == EType.eFishAndWeather)
+		{	
+			setSpecies(m_prefs.getString(FISH_SPECIES, ""));
+			setGetter(m_prefs.getString(FISH_GETTER, ""));
+			setMethod(m_prefs.getString(FISH_METHOD, ""));
+			setReleaseWidth(m_prefs.getString(FISH_RELEASE_WIDTH, ""));
+			setLineWeight(m_prefs.getString(FISH_LINE_WEIGHT, ""));
+		}
+		
+		if(getType() == EType.eWeather || 
+			getType() == EType.eFishAndWeather)
+		{
+			
+		}				
 	}
 }
