@@ -26,19 +26,19 @@
 	
 <TableRow>
 <TextView android:text="@string/species" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textAppearance="@style/NormalText"/>
-<Spinner android:id="@+id/Species" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Spinner android:id="@+id/Species" android:layout_width="10px" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddSpecies" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
 <TableRow>
 <TextView android:text="@string/getter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
-<Spinner android:id="@+id/Getter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Spinner android:id="@+id/Getter" android:layout_width="10px" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddGetter" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
 <TableRow>
 <TextView android:text="@string/method" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:textAppearance="@style/NormalText"/>
-<Spinner android:id="@+id/Method" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
+<Spinner android:id="@+id/Method" android:layout_width="10px" android:layout_height="wrap_content"></Spinner>
 <Button android:text="@string/add_new" android:id="@+id/AddMethod" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
 </TableRow>
 
