@@ -11,6 +11,8 @@ import android.util.Log;
 
 public class TripObject extends TrollingObject{
 	
+	protected List<EventItem> m_items = new ArrayList<EventItem>();	
+	
 	public void setDate(Date date)
 	{
 		set("date", new SimpleDateFormat("yyyy-MM-dd").format(date));		
@@ -74,35 +76,60 @@ public class TripObject extends TrollingObject{
 		if(get("time_end").length() == 8)
 			retval += get("time_end").substring(0, 5);
 		return retval;
-	}
+	}	
 	
-	@Override
-	protected TrollingObjectItem newItem(Map<String, String> props)
+	public EventItem newEvent(EventItem.EType type)
 	{
-		return new EventItem(props);
-	}
-	
-	public TrollingObjectItem newEvent(EventItem.EType type)
-	{
-		Log.i("tripobject", "new event");
-		EventItem item = (EventItem)insertPropItem(new HashMap<String, String>());
+		EventItem item = new EventItem(new HashMap<String, String>());
 		item.setType(type);
 		item.setTrip(this);
 		return item;
 	}
 	
+	public void addEvent(EventItem event)
+	{
+		if(!m_items.contains(event))
+			m_items.add(event);
+	}
+	
 	public void destroyEvent(int id)
 	{
-		destroyItem(id);
+		m_items.remove(id);
 	}
 	
 	public List<EventItem> getEvents()
 	{
 		List<EventItem> list = new ArrayList<EventItem>();
-		for(TrollingObjectItem item: m_items)
+		for(EventItem item: m_items)
 		{		
-			list.add((EventItem)item);
+			list.add(item);
 		}
 		return list;
 	}
+	
+	@Override
+	public void setPropItems(List<Map<String, String>> propitems)
+	{
+		m_items.clear();
+		for(Map<String, String> items : propitems)
+		{
+			EventItem item = new EventItem(items);
+			item.setTrip(this);
+			addEvent(item);
+		}
+	}
+	
+	@Override
+	public List<Map<String, String>> getPropItems()
+	{
+		List<Map<String, String>> retval = new ArrayList<Map<String, String>>();
+		for(EventItem item: m_items)
+		{
+			Map<String, String> vals = item.getProps();
+			retval.add(vals);
+		}
+		
+		return retval;
+	}
+
 }

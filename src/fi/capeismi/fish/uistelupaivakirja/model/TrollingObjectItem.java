@@ -1,5 +1,6 @@
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class TrollingObjectItem {
@@ -8,6 +9,11 @@ public abstract class TrollingObjectItem {
 	public TrollingObjectItem(Map<String, String> props)
 	{
 		m_props = props;
+	}
+	
+	public Map<String, String> getProps()
+	{
+		return new HashMap<String, String>(m_props);
 	}
 	
 	protected String get(String key)

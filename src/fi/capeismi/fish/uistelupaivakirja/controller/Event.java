@@ -170,10 +170,10 @@ public abstract class Event extends Activity implements OnClickListener{
 		if(!extras.containsKey("event"))
     	{
     		Log.i(TAG, "no previous event. create new one");
-    		TrollingObjectItem item = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);
-    		index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
+    		//TrollingObjectItem item = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);
+    		//index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
         	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
-        	m_event = m_trip.getEvents().get(index); 
+        	m_event = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);// m_trip.getEvents().get(index); 
         	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
     		getEvent().setTime(new Date());
     		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
@@ -212,6 +212,7 @@ public abstract class Event extends Activity implements OnClickListener{
 		switch(arg0.getId())
 		{
 		case R.id.Done: 
+			getTrip().addEvent(getEvent());
 			onDone(); 
 			finish(); 
 			break;
