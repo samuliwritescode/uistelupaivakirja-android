@@ -95,6 +95,7 @@ final class XMLStorage implements Storage {
 			bos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 	

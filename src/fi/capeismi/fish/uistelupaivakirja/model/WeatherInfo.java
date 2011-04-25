@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +20,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import android.util.Log;
 
 public class WeatherInfo {
 	private String m_city;
@@ -62,7 +66,103 @@ public class WeatherInfo {
 			{
 				m_event.setAirTemp(value);
 			}
+			else if(tagname.equalsIgnoreCase("condition"))
+			{
+				int clouds = parseCondition(value);
+				Log.i("", "condition: "+value);
+				if(clouds > 0)
+				{
+					m_event.setClouds(clouds);
+				}
+			}
+			else if(tagname.equalsIgnoreCase("wind_condition"))
+			{
+				int wind = parseWindSpeed(value);
+				int direction = parseWindDirection(value);
+				if(wind > 0)
+				{
+					m_event.setWindSpeed(wind);
+				}
+				
+				if(direction > 0)
+				{
+					m_event.setWindDirection(direction);
+				}
+			}
 		}
 	}
+	
+	private int parseWindSpeed(String condition)
+	{
+		Pattern regex = Pattern.compile("Tuuli: (\\w{1}) nopeudella (\\d+) m/s");
+		Matcher match = regex.matcher(condition);
+		if(match.find())
+		{
+			int speed = new Integer(match.group(2)).intValue();
+			if(between(speed, 0, 1))
+				return 1;
+			else if(between(speed, 1, 2))
+				return 2;
+			else if(between(speed, 2, 3))
+				return 3;
+			else if(between(speed, 3, 5))
+				return 4;
+			else if(between(speed, 5, 8))
+				return 5;
+			else if(between(speed, 8, 11))
+				return 6;
+			else if(between(speed, 12, 14))
+				return 7;
+			else if(between(speed, 14, 17))
+				return 8;
+			else if(between(speed, 17, 21))
+				return 9;
+			else if(between(speed, 21, 1000))
+				return 10;
+		}
+
+		return 0;
+	}
+	
+	private boolean between(int val, int start, int end)
+	{
+		if(val >= start && val < end)
+			return true;
+		
+		return false;
+	}
+	
+	private int parseWindDirection(String condition)
+	{
+		Pattern regex = Pattern.compile("Tuuli: (\\w{1})");
+		Matcher match = regex.matcher(condition);
+		if(match.find())
+		{
+			String wind = match.group(1);
+			if(wind.equalsIgnoreCase("E"))
+				return 1;
+			else if(wind.equalsIgnoreCase("L"))
+				return 3;
+			else if(wind.equalsIgnoreCase("P"))
+				return 5;
+			else if(wind.equalsIgnoreCase("I"))
+				return 7;
+		}
+
+		return 0;
+	}
+	
+	private int parseCondition(String condition)
+	{
+		if(condition.matches("^Selke\\S{2}$"))
+		{
+			return 1;
+		} else if(condition.matches("^Enimm.{1}kseen aurinkoista$"))
+		{
+			return 3;
+		}
+		return 0;
+	}
+
 	
 }
