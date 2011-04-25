@@ -21,8 +21,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import android.util.Log;
-
 public class WeatherInfo {
 	private String m_city;
 	private EventItem m_event;
@@ -69,7 +67,6 @@ public class WeatherInfo {
 			else if(tagname.equalsIgnoreCase("condition"))
 			{
 				int clouds = parseCondition(value);
-				Log.i("", "condition: "+value);
 				if(clouds > 0)
 				{
 					m_event.setClouds(clouds);
