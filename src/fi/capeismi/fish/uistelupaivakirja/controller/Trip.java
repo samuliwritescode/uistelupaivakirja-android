@@ -201,6 +201,7 @@ public class Trip extends ListActivity implements OnClickListener {
     	{
 			intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
 			startActivity(intent);
+			return;
     	}
     	
     	AlertDialog.Builder dlg = new AlertDialog.Builder(this);
