@@ -25,10 +25,11 @@ public final class Fish extends Event
     	m_fishImpl.readFishFields();
     	readCommonFields();
     }
-
-	@Override
-	public void onDone() {
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
 		m_fishImpl.writeFishFields();
 		getTrip().save();
-	}
+    }
 }

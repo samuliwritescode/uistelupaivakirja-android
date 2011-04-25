@@ -66,9 +66,10 @@ public final class Weather extends Event {
     	readCommonFields();
     }
     
-	@Override
-	public void onDone() {
+    @Override
+    public void onPause() {
+    	super.onPause();
 		m_weatherImpl.writeWeatherFields();
 		getTrip().save();		
-	}
+    }
 }

@@ -34,11 +34,12 @@ public final class FishAndWeather extends Event {
     	m_weatherImpl.readWeatherFields();
     	readCommonFields();
     }
-
-	@Override
-	public void onDone() {
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
 		m_fishImpl.writeFishFields();
 		m_weatherImpl.writeWeatherFields();
 		getTrip().save();	
-	}
+    }
 }

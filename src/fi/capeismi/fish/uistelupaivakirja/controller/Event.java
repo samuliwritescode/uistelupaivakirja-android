@@ -210,11 +210,8 @@ public abstract class Event extends Activity implements OnClickListener{
 		switch(arg0.getId())
 		{
 		case R.id.Done: 
-			onDone(); 
 			finish(); 
 			break;
 		}		
 	}
-	
-	public abstract void onDone();
 }
