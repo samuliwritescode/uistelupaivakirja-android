@@ -96,7 +96,7 @@ public class WeatherInfo {
 		if(match.find())
 		{
 			int speed = new Integer(match.group(2)).intValue();
-			if(between(speed, 0, 1))
+			if(between(speed, -1, 1))
 				return 1;
 			else if(between(speed, 1, 2))
 				return 2;
@@ -123,7 +123,7 @@ public class WeatherInfo {
 	
 	private boolean between(int val, int start, int end)
 	{
-		if(val >= start && val < end)
+		if(val > start && val <= end)
 			return true;
 		
 		return false;
