@@ -94,13 +94,8 @@ public class TripObject extends TrollingObject{
 		EventItem item = new EventItem(new HashMap<String, String>());
 		item.setType(type);
 		item.setTrip(this);
+		m_items.add(item);
 		return item;
-	}
-	
-	public void addEvent(EventItem event)
-	{
-		if(!m_items.contains(event))
-			m_items.add(event);
 	}
 	
 	public void destroyEvent(int id)
@@ -126,7 +121,7 @@ public class TripObject extends TrollingObject{
 		{
 			EventItem item = new EventItem(items);
 			item.setTrip(this);
-			addEvent(item);
+			m_items.add(item);
 		}
 	}
 	

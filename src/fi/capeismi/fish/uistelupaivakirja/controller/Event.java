@@ -146,7 +146,7 @@ public abstract class Event extends Activity implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	((Button)findViewById(R.id.Done)).setOnClickListener(this);
-    	((Button)findViewById(R.id.Cancel)).setOnClickListener(this);
+    	
     }
     
     protected TripObject getTrip()
@@ -165,14 +165,13 @@ public abstract class Event extends Activity implements OnClickListener{
     	Bundle extras = intent.getExtras();
     	int index = -1;
     	int eventindex = extras.getInt("tripindex");
+    	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
 
 		if(!extras.containsKey("event"))
     	{
     		Log.i(TAG, "no previous event. create new one");
-    		//TrollingObjectItem item = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);
-    		//index = ModelFactory.getModel().getTrips().getList().get(eventindex).getEvents().indexOf(item);
-        	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
-        	m_event = ModelFactory.getModel().getTrips().getList().get(eventindex).newEvent(type);// m_trip.getEvents().get(index); 
+        	
+        	m_event = m_trip.newEvent(type);
         	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
     		getEvent().setTime(new Date());
     		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
@@ -181,14 +180,14 @@ public abstract class Event extends Activity implements OnClickListener{
     			getEvent().setCoordinatesLon( new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
     			getEvent().setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));    			    			
     		} catch (NoGpsFixException e) {			
-    			e.printStackTrace();
+    			
     		}
     		getEvent().setupDefaultValues();
+    		intent.putExtra("event", m_trip.getEvents().indexOf(m_event));
     	}
 		else
 		{
 			index = extras.getInt("event");
-	    	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
 	    	m_event = m_trip.getEvents().get(index); 
 	    	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
 		}
@@ -211,11 +210,9 @@ public abstract class Event extends Activity implements OnClickListener{
 		switch(arg0.getId())
 		{
 		case R.id.Done: 
-			getTrip().addEvent(getEvent());
 			onDone(); 
 			finish(); 
 			break;
-		case R.id.Cancel: finish(); break;
 		}		
 	}
 	
