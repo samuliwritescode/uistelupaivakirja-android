@@ -11,8 +11,10 @@ import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.PlaceObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -38,7 +40,7 @@ public class Trip extends ListActivity implements OnClickListener {
 	
 	private static final String TAG = "Trip";
 	private TripObject m_trip = null;
-	private LocationManager locationManager;
+	private LocationManager locationManager = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,7 @@ public class Trip extends ListActivity implements OnClickListener {
     	} catch(Exception e)
     	{
     		m_trip = ModelFactory.getModel().getTrips().newTrip();
-    	}
-    	TextView title = (TextView)findViewById(R.id.Title);
-    	title.setText(m_trip.toString());
-    	
+    	}  	
     	
     	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
     	ArrayAdapter<PlaceObject> adapter = new ArrayAdapter<PlaceObject>(this, android.R.layout.simple_spinner_item);
@@ -88,6 +87,7 @@ public class Trip extends ListActivity implements OnClickListener {
     		{   
     			PlaceObject obj = (PlaceObject)parent.getItemAtPosition(position);
     			m_trip.setPlace(obj);
+    			m_trip.save();
     			
     			Log.i(TAG, "item selected "+obj.toString());
     		}
@@ -106,9 +106,11 @@ public class Trip extends ListActivity implements OnClickListener {
 		}
 		registerForContextMenu(getListView());
 		
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ModelFactory.getGpsInfo());
+		if(!m_trip.isEndTime())
+		{
+			locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        	locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ModelFactory.getGpsInfo());
+		}
     }
     
 	@Override
@@ -128,6 +130,7 @@ public class Trip extends ListActivity implements OnClickListener {
 		case R.id.remove: 
 			int idx = ((AdapterView.AdapterContextMenuInfo)item.getMenuInfo()).position;
 			m_trip.destroyEvent(idx);
+			m_trip.save();
 			onResume();
 			return true;
 		}
@@ -160,6 +163,11 @@ public class Trip extends ListActivity implements OnClickListener {
     @Override
     protected void onResume() {
     	super.onResume();
+    	TextView title = (TextView)findViewById(R.id.Title);
+    	title.setText(m_trip.toString());
+    	
+    	((Button)findViewById(R.id.EndTrip)).setEnabled(!m_trip.isEndTime());
+    	
     	Log.i(TAG, "draw fish list");
     	List<Map<String, Object> > data = new Vector<Map<String, Object> >();
         List<EventItem> events = m_trip.getEvents();
@@ -186,29 +194,58 @@ public class Trip extends ListActivity implements OnClickListener {
         
         setListAdapter(listadapter);
     }
+    
+    private void canCreateEvent(final Intent intent)
+    {
+    	if(!m_trip.isEndTime())
+    	{
+			intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
+			startActivity(intent);
+    	}
+    	
+    	AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+    	dlg.setMessage(R.string.opentrip).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				m_trip.clearEndTime();		
+				m_trip.save();
+				intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
+				startActivity(intent);
+			}
+		}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//Do nothing
+				
+			}
+		}).show();    	
+    }
    
 	@Override
 	public void onClick(View v) 
 	{
-		Intent intent = null;
-	
 		switch(v.getId())
 		{
-		case R.id.NewFish: intent = new Intent(this, Fish.class); break;
-		case R.id.NewWeather: intent = new Intent(this, Weather.class); break;
-		case R.id.FishnWeather: intent = new Intent(this, FishAndWeather.class); break;
-		case R.id.EndTrip: m_trip.setEndTime(new Date());
-			Log.i(TAG, "ending trip");
+		case R.id.NewFish: 
+			canCreateEvent(new Intent(this, Fish.class));
+			break;
+		case R.id.NewWeather: 
+			canCreateEvent(new Intent(this, Weather.class));
+			break;
+		case R.id.FishnWeather:
+			canCreateEvent(new Intent(this, FishAndWeather.class));
+			break;
+		case R.id.EndTrip: 
+			m_trip.setEndTime(new Date());			
 			m_trip.save();
-			locationManager.removeUpdates(ModelFactory.getGpsInfo());
+			if(locationManager != null)
+			{
+				locationManager.removeUpdates(ModelFactory.getGpsInfo());
+			}
 			finish();
 			break;
-		}
-		
-		if(intent != null)
-		{
-			intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
-			startActivity(intent);
-		}
+		}		
 	}
 }

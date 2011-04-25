@@ -26,6 +26,19 @@ public class TripObject extends TrollingObject{
 		set("time_end", new SimpleDateFormat("HH:mm:00").format(date));
 	}
 	
+	public boolean isEndTime()
+	{
+		if(get("time_end").length() > 0)
+			return true;
+		
+		return false;
+	}
+	
+	public void clearEndTime()
+	{
+		set("time_end", "");
+	}
+	
 	public void setPlace(PlaceObject place)
 	{
 		set("place", new Integer(place.getId()).toString());

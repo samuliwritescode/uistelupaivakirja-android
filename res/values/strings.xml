@@ -49,4 +49,7 @@
     <string name="ms">m/s</string>
     <string name="hpa">hPa</string>
     <string name="autofetch">Hae automaattisesti</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="opentrip">Avataanko reissu?</string>
 </resources>
