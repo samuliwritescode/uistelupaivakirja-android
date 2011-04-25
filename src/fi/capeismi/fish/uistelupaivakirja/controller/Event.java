@@ -10,7 +10,6 @@ import fi.capeismi.fish.uistelupaivakirja.model.GPSInfo;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.NoGpsFixException;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
-import fi.capeismi.fish.uistelupaivakirja.model.TrollingObjectItem;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
