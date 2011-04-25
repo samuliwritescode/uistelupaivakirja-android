@@ -61,6 +61,8 @@ public class Trip extends ListActivity implements OnClickListener {
     	} catch(Exception e)
     	{
     		m_trip = ModelFactory.getModel().getTrips().newTrip();
+    		int index = ModelFactory.getModel().getTrips().getList().indexOf(m_trip);
+    		getIntent().putExtra("listitem", index);
     	}  	
     	
     	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
@@ -211,6 +213,11 @@ public class Trip extends ListActivity implements OnClickListener {
 			public void onClick(DialogInterface dialog, int which) {
 				m_trip.clearEndTime();		
 				m_trip.save();
+				if(locationManager == null)
+				{
+					locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+					locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ModelFactory.getGpsInfo());
+				}
 				intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
 				startActivity(intent);
 			}
@@ -244,6 +251,7 @@ public class Trip extends ListActivity implements OnClickListener {
 			if(locationManager != null)
 			{
 				locationManager.removeUpdates(ModelFactory.getGpsInfo());
+				locationManager = null;
 			}
 			finish();
 			break;
