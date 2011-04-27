@@ -95,7 +95,7 @@ final class XMLStorage implements Storage {
 			bos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e);
+			throw new RuntimeException(e.toString());
 		}
 	}
 	
@@ -154,6 +154,11 @@ final class XMLStorage implements Storage {
 
 		Log.i(TAG, "loading "+file.toString());
 		Log.i(TAG, "file found:"+new Boolean(file.exists()).toString());
+		if(!file.exists())
+		{
+			return;
+		}
+		
 		try
 		{
 			InputStream is = new FileInputStream(file);
@@ -169,6 +174,7 @@ final class XMLStorage implements Storage {
 		} catch (Exception e)
 		{
 			Log.i(TAG, "Caught Exception "+e.toString());
+			throw new RuntimeException(e.toString());		
 		}		
 	}
 	

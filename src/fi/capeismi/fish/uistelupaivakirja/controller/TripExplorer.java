@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,12 +22,14 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import fi.capeismi.fish.uistelupaivakirja.model.ExceptionHandler;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory.Model;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 
-public class TripExplorer extends ListActivity implements OnClickListener {
+public class TripExplorer extends ListActivity implements OnClickListener, ExceptionHandler {
 	
 	private static final String TAG = "TripExplorer";
 	
@@ -100,6 +103,8 @@ public class TripExplorer extends ListActivity implements OnClickListener {
     	Model.reload();
     	Log.i(TAG, "resume");
         List<Map<String, String> > data = new Vector<Map<String, String> >();
+        
+        ModelFactory.getExceptionHandler().setExceptionListener(this);
 
         List<TripObject> trips = ModelFactory.getModel().getTrips().getList();
         for(TripObject trip: trips)
@@ -129,6 +134,11 @@ public class TripExplorer extends ListActivity implements OnClickListener {
 		Intent intent = new Intent(this, Trip.class);
 		intent.putExtra("listitem", -1);
 		startActivity(intent);
+	}
+	
+	@Override
+	public void catchedException(Exception e) {
+		Toast.makeText(getApplicationContext(), getString(R.string.exception)+e.toString(), Toast.LENGTH_LONG).show();	
 	}
       
 }

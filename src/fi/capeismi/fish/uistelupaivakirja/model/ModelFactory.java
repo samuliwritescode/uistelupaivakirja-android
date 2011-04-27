@@ -3,6 +3,7 @@ package fi.capeismi.fish.uistelupaivakirja.model;
 public class ModelFactory {
 	private static Model instance;
 	private static GPSInfo gpsinfo;
+	private static ModelExceptionHandler exceptionhandler;
 	private ModelFactory() {
 		
 	}
@@ -22,11 +23,37 @@ public class ModelFactory {
 		return gpsinfo;
 	}
 	
+	public static ModelExceptionHandler getExceptionHandler()
+	{
+		if(exceptionhandler == null) {
+			exceptionhandler = new ModelExceptionHandler();
+		}
+		return exceptionhandler;
+	}
+	
+	public static class ModelExceptionHandler {
+		private ExceptionHandler m_exceptionhandler = null;
+		
+		public void setExceptionListener(ExceptionHandler handler)
+		{
+			m_exceptionhandler = handler;
+		}
+		
+		public void sendException(Exception e)
+		{
+			if(m_exceptionhandler != null)
+			{
+				m_exceptionhandler.catchedException(e);
+			}
+		}
+	}
+	
 	public static class Model {
 		private TripCollection m_tripCollection = null;
 		private PlaceCollection m_placeCollection = null;
 		private LureCollection m_lureCollection = null;
 		private AlternativeItemCollection m_spinnerItems = null;
+		
 		
 		private Model() {
 			m_tripCollection = new TripCollection();
@@ -55,13 +82,19 @@ public class ModelFactory {
 			((Builder)builder).setStorer(storer);
 			storer.setStorage(storage);
 			storage.addListener((BuildTarget)builder);
-			storage.load(file);
+			try
+			{
+				storage.load(file);
+			}catch(Exception e)
+			{
+				getExceptionHandler().sendException(e);
+			}
 		}
 		
 		public static void reload()
 		{
 			instance = null;
-		}
+		}		
 		
 		public TripCollection getTrips() {
 			return this.m_tripCollection;

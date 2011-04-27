@@ -54,12 +54,24 @@ abstract class TrollingObject implements Storable {
 	
 	public void save()
 	{
-		m_storer.save(this);
+		try
+		{
+			m_storer.save(this);
+		}catch(Exception e)
+		{
+			ModelFactory.getExceptionHandler().sendException(e);
+		}
 	}
 	
 	public void destroy()
 	{
-		m_storer.remove(this);
+		try
+		{
+			m_storer.remove(this);
+		}catch(Exception e)
+		{
+			ModelFactory.getExceptionHandler().sendException(e);
+		}
 	}
 	
 	protected void set(String key, String value)

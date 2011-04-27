@@ -52,4 +52,5 @@
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
     <string name="opentrip">Avataanko reissu?</string>
+    <string name="exception">Tuli ongelma. Tekninen kuvaus: </string>
 </resources>

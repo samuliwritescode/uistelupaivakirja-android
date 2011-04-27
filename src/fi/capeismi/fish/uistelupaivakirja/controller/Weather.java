@@ -28,7 +28,13 @@ public final class Weather extends Event {
 
 			@Override
 			public void onClick(View arg0) {
-				new WeatherDownloader().execute(getTrip().getPlace().getCity());
+				
+				try
+				{
+					new WeatherDownloader().execute(getTrip().getPlace().getCity());
+				}catch(Exception e)
+				{
+				}
 			}			
 		});
     }
