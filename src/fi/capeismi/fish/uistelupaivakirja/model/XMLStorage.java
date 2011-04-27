@@ -169,8 +169,8 @@ final class XMLStorage implements Storage {
 		} catch (Exception e)
 		{
 			Log.i(TAG, "Caught Exception "+e.toString());
-		}
-		
+			throw new RuntimeException(e);		
+		}		
 	}
 	
 	private class TrollingReader extends DefaultHandler {
