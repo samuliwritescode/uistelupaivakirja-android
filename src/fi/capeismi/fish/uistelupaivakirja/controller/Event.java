@@ -11,6 +11,8 @@ import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.NoGpsFixException;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -146,7 +148,7 @@ public abstract class Event extends Activity implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	((Button)findViewById(R.id.Done)).setOnClickListener(this);
-    	
+    	((Button)findViewById(R.id.Delete)).setOnClickListener(this);
     }
     
     protected TripObject getTrip()
@@ -212,6 +214,28 @@ public abstract class Event extends Activity implements OnClickListener{
 		case R.id.Done: 
 			finish(); 
 			break;
+		case R.id.Delete:
+			askDeletionConfirmation();
+			break;
 		}		
+	}
+	
+	private final void askDeletionConfirmation()
+	{
+    	AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+    	dlg.setMessage(R.string.confirmation).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				m_trip.destroyEvent(m_trip.getEvents().indexOf(m_event));
+				finish();
+			}
+		}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//Do nothing				
+			}
+		}).show(); 
 	}
 }

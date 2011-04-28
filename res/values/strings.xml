@@ -20,6 +20,7 @@
     <string name="coordinates">Sijainti</string>
     <string name="add_new">Lisää</string>
     <string name="done">Valmis</string>
+    <string name="delete">Poista</string>
     <string name="cancel">Peru</string>
     <string name="group">Joukko</string>
     <string name="lure">Viehe</string>
@@ -53,4 +54,5 @@
     <string name="no">Ei</string>
     <string name="opentrip">Avataanko reissu?</string>
     <string name="exception">Tuli ongelma. Tekninen kuvaus: </string>
+    <string name="confirmation">Oletko nyt varma?</string>
 </resources>
