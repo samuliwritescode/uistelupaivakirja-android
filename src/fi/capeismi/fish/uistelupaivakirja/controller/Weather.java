@@ -21,7 +21,6 @@ import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.WeatherInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -37,8 +36,6 @@ public final class Weather extends Event {
     	setMembers(EventItem.EType.eWeather);
 				
     	m_weatherImpl = new WeatherCounterPart(getEvent(), getTrip(), new PrivateConduit());
-
-		//readCommonFields();
 		
 		Button autofetch = ((Button)findViewById(R.id.AutoFetch));
 		autofetch.setOnClickListener(new OnClickListener() {
@@ -48,8 +45,10 @@ public final class Weather extends Event {
 				
 				try
 				{
+					findViewById(R.id.ProgressBar).setVisibility(View.VISIBLE);
 					new WeatherDownloader().execute(getTrip().getPlace().getCity());
-				}catch(Exception e)
+				} 
+				catch(Exception e)
 				{
 				}
 			}			
@@ -75,8 +74,8 @@ public final class Weather extends Event {
 		@Override
 		protected void onPostExecute(WeatherInfo weather)
 		{
-			Log.i("async", "onpostexec");
 			m_weatherImpl.readWeatherFields();
+			findViewById(R.id.ProgressBar).setVisibility(View.INVISIBLE);
 		}
     	
     }

@@ -11,8 +11,19 @@
 	android:layout_width="fill_parent" 
 	android:layout_height="fill_parent"
 	android:stretchColumns="1">
+
+
+<LinearLayout 
+	android:orientation="horizontal" 
+	android:layout_width="fill_parent">
 	
-<Button android:text="@string/autofetch" android:id="@+id/AutoFetch" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+	<ProgressBar android:id="@+id/ProgressBar" android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" android:visibility="invisible"/>
+	
+	<Button android:text="@string/autofetch" android:id="@+id/AutoFetch" 
+		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+</LinearLayout>	
+
 
 <TableRow>
 <TextView android:text="@string/air_temp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
@@ -85,6 +96,7 @@
 <Spinner android:id="@+id/PressureChange" android:layout_width="wrap_content" android:layout_height="wrap_content"></Spinner>
 <TextView android:text="" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="@style/NormalText"/>
 </TableRow>
+
 
 </TableLayout>
 </LinearLayout>

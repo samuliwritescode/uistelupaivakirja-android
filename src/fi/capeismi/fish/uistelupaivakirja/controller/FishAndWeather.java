@@ -18,8 +18,13 @@
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
 
+import fi.capeismi.fish.uistelupaivakirja.model.WeatherInfo;
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public final class FishAndWeather extends Event {
 	
@@ -36,12 +41,21 @@ public final class FishAndWeather extends Event {
 		m_weatherImpl = new WeatherCounterPart(getEvent(), getTrip(), new PrivateConduit());
 		m_fishImpl = new FishCounterPart(getEvent(), getTrip(), new PrivateConduit());
 				
-		//setupFishFields();
-		//m_fishImpl.readFishFields();
-		
-		//setupWeatherFields();
-		//m_weatherImpl.readWeatherFields();
-		//readCommonFields();
+		Button autofetch = ((Button)findViewById(R.id.AutoFetch));
+		autofetch.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				
+				try
+				{
+					findViewById(R.id.ProgressBar).setVisibility(View.VISIBLE);
+					new WeatherDownloader().execute(getTrip().getPlace().getCity());
+				}catch(Exception e)
+				{
+				}
+			}			
+		});
     }
     
     @Override
@@ -58,5 +72,30 @@ public final class FishAndWeather extends Event {
 		m_fishImpl.writeFishFields();
 		m_weatherImpl.writeWeatherFields();
 		getTrip().save();	
+    }
+    
+    private class WeatherDownloader extends AsyncTask<String, Void, WeatherInfo>
+    {
+
+		@Override
+		protected WeatherInfo doInBackground(String... city) {
+			try
+			{
+				WeatherInfo weather = new WeatherInfo(city[0], getEvent());
+				return weather;
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		@Override
+		protected void onPostExecute(WeatherInfo weather)
+		{
+			m_weatherImpl.readWeatherFields();
+			findViewById(R.id.ProgressBar).setVisibility(View.INVISIBLE);
+		}
+    	
     }
 }
