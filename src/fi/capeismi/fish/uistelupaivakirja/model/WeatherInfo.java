@@ -148,19 +148,27 @@ public class WeatherInfo {
 	
 	private int parseWindDirection(String condition)
 	{
-		Pattern regex = Pattern.compile("Tuuli: (\\w{1})");
+		Pattern regex = Pattern.compile("Tuuli: (\\w+)");
 		Matcher match = regex.matcher(condition);
 		if(match.find())
 		{
 			String wind = match.group(1);
 			if(wind.equalsIgnoreCase("E"))
 				return 1;
+			if(wind.equalsIgnoreCase("Lounas"))
+				return 2;
 			else if(wind.equalsIgnoreCase("L"))
 				return 3;
+			if(wind.equalsIgnoreCase("Luode"))
+				return 4;
 			else if(wind.equalsIgnoreCase("P"))
 				return 5;
+			if(wind.equalsIgnoreCase("Koillinen"))
+				return 6;
 			else if(wind.equalsIgnoreCase("I"))
 				return 7;
+			if(wind.equalsIgnoreCase("Kaakko"))
+				return 8;
 		}
 
 		return 0;
