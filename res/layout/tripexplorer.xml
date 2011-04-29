@@ -6,10 +6,6 @@
 	android:background="#88AA88"
 	android:layout_height="fill_parent" 
 	android:layout_width="fill_parent">
-	<TextView 
-		android:text="@string/banner" android:id="@+id/Banner" 
-		android:layout_height="wrap_content"
-		android:textAppearance="@style/ListItemTitle" android:layout_width="fill_parent" android:layout_gravity="center" android:gravity="center|center_horizontal"/>
 		
 	<Button 
 		android:text="@string/begin_trip" android:id="@+id/BeginTrip" 
