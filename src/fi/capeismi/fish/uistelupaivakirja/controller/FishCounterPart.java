@@ -169,7 +169,23 @@ public class FishCounterPart extends CounterPart {
 		m_fish.setGroupAmount(m_activity.getEditText(R.id.GroupSize));
     	m_fish.setIsGroup(m_activity.getChecked(R.id.GroupCB));
     	m_fish.setIsUndersize(m_activity.getChecked(R.id.UnderSizeCB));
-    	m_fish.setIsCatchNReleased(m_activity.getChecked(R.id.CrCB));    	    
+    	m_fish.setIsCatchNReleased(m_activity.getChecked(R.id.CrCB));
+    	
+    	if(m_fish.getIsGroup())
+    	{
+    		try 
+    		{
+    			if(new Integer(m_fish.getGroupAmount()).intValue() <= 1)
+    			{
+    				m_fish.setIsGroup(false);
+    				m_fish.setGroupAmount("");
+    			}
+    		} catch(Exception e)
+    		{
+    			m_fish.setIsGroup(false);
+    			m_fish.setGroupAmount("");
+    		}
+    	}
 		
 		Object species = m_activity.getSelectedItem(R.id.Species);
 		Object getter = m_activity.getSelectedItem(R.id.Getter);
