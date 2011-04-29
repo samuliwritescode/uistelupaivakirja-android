@@ -6,7 +6,15 @@
 	android:background="#88AA88"
 	android:layout_height="fill_parent" 
 	android:layout_width="fill_parent">
-	<Button android:text="@string/begin_trip" android:id="@+id/BeginTrip" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+	<TextView 
+		android:text="@string/banner" android:id="@+id/Banner" 
+		android:layout_height="wrap_content"
+		android:textAppearance="@style/ListItemTitle" android:layout_width="fill_parent" android:layout_gravity="center" android:gravity="center|center_horizontal"/>
+		
+	<Button 
+		android:text="@string/begin_trip" android:id="@+id/BeginTrip" 
+		android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+		
 	<ListView
 		xmlns:android="http://schemas.android.com/apk/res/android"	
 		android:id="@android:id/list" 
@@ -15,4 +23,5 @@
 		android:dividerHeight="6px"
 		android:layout_height="fill_parent">
 	</ListView>
+
 </LinearLayout>
