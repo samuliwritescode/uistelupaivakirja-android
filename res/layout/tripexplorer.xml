@@ -17,7 +17,11 @@
 		android:layout_width="fill_parent" 
 		android:divider="#88AA88"
 		android:dividerHeight="6px"
-		android:layout_height="fill_parent">
+		android:layout_height="wrap_content">
 	</ListView>
 
+	<TextView 
+		android:text="@string/sync_help" android:id="@+id/TextView01" android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" android:gravity="center" android:textAppearance="@style/NormalText"/>
+		
 </LinearLayout>

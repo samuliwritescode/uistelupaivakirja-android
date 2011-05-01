@@ -56,4 +56,5 @@
     <string name="exception">Tuli ongelma. Tekninen kuvaus: </string>
     <string name="confirmation">Oletko nyt varma?</string>
     <string name="banner">Uistelupäiväkirja Android 2011/05</string>
+    <string name="sync_help">Suorita synkkaus PC:n Uistelupäiväkirjan kanssa tässä näkymässä. Jos suoritat synkkauksen jonkin tapahtuman ollessa auki, saatat menettää tallentamattomat muutokset.</string>
 </resources>

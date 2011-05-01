@@ -26,7 +26,6 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.ContextMenu.ContextMenuInfo;
