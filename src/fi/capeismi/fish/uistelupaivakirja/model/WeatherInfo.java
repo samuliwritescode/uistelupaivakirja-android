@@ -182,6 +182,12 @@ public class WeatherInfo {
 		} else if(condition.matches("^Enimm.{1}kseen aurinkoista$"))
 		{
 			return 3;
+		} else if(condition.matches("^Enimm.{1}kseen pilvist.{1}$"))
+		{
+			return 7;
+		} else if(condition.matches("^Osittain aurinkoista$"))
+		{
+			return 5;
 		}
 		return 0;
 	}
