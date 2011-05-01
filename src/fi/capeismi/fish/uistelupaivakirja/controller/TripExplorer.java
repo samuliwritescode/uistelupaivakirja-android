@@ -85,14 +85,7 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tripexplorer);
-        
-        String state = Environment.getExternalStorageState();
-        if(Environment.MEDIA_MOUNTED.equals(state)) {
-        	Log.i(TAG, Environment.getExternalStorageDirectory().toString());
-        }
-        else {
-        	Log.e(TAG, state);        	
-        }
+        ModelFactory.getExceptionHandler().setExceptionListener(this);
 
         Button btn = (Button)findViewById(R.id.BeginTrip);
         btn.setOnClickListener(this);
@@ -119,11 +112,9 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
     	super.onResume();
     	Model.reload();
     	Log.i(TAG, "resume");
-        List<Map<String, String> > data = new Vector<Map<String, String> >();
-        
-        ModelFactory.getExceptionHandler().setExceptionListener(this);
-
+        List<Map<String, String> > data = new Vector<Map<String, String> >();             
         List<TripObject> trips = ModelFactory.getModel().getTrips().getList();
+        
         for(TripObject trip: trips)
         {
             Map<String, String> ob = new HashMap<String, String>();
@@ -150,15 +141,24 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 		
 		Intent intent = new Intent(this, Trip.class);
 		TripObject trip = ModelFactory.getModel().getTrips().newTrip();
+		trip.save();
 		int index = ModelFactory.getModel().getTrips().getList().indexOf(trip);
-		
+		if(index < 0)
+			return;
+				
 		intent.putExtra("listitem", index);
 		startActivity(intent);
 	}
 	
 	@Override
 	public void catchedException(Exception e) {
-		Toast.makeText(getApplicationContext(), getString(R.string.exception)+e.toString(), Toast.LENGTH_LONG).show();	
+		Toast.makeText(getApplicationContext(), getString(R.string.exception)+e.toString(), Toast.LENGTH_LONG).show();
+		try
+		{
+			Model.reload();
+		} catch(Exception e2) {
+			
+		}
 	}
       
 }
