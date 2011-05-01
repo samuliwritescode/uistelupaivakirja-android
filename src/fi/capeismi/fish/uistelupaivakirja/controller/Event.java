@@ -166,6 +166,7 @@ public abstract class Event extends Activity implements OnClickListener{
     	super.onCreate(savedInstanceState);
     	((Button)findViewById(R.id.Done)).setOnClickListener(this);
     	((Button)findViewById(R.id.Delete)).setOnClickListener(this);
+    	setMembers();
     }
     
     protected TripObject getTrip()
@@ -178,39 +179,16 @@ public abstract class Event extends Activity implements OnClickListener{
     	return m_event;
     }
     
-    protected void setMembers(EventItem.EType type)
+    protected void setMembers()
     {
     	final Intent intent = getIntent();
     	Bundle extras = intent.getExtras();
     	int index = -1;
     	int eventindex = extras.getInt("tripindex");
     	m_trip = ModelFactory.getModel().getTrips().getList().get(eventindex);
-
-		if(!extras.containsKey("event"))
-    	{
-    		Log.i(TAG, "no previous event. create new one");
-        	
-        	m_event = m_trip.newEvent(type);
-        	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
-    		getEvent().setTime(new Date());
-    		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
-    		try {
-    			getEvent().setCoordinatesLat(new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
-    			getEvent().setCoordinatesLon( new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
-    			getEvent().setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));    			    			
-    		} catch (NoGpsFixException e) {			
-    			
-    		}
-    		getEvent().setupDefaultValues();
-    		intent.putExtra("event", m_trip.getEvents().indexOf(m_event));
-    	}
-		else
-		{
-			index = extras.getInt("event");
-	    	m_event = m_trip.getEvents().get(index); 
-	    	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));
-		}
-		
+		index = extras.getInt("event");
+    	m_event = m_trip.getEvents().get(index); 
+    	getEvent().setPrefs(getSharedPreferences("Uistelu", 0));		
     }
     
     protected void readCommonFields()

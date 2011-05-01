@@ -17,6 +17,7 @@
 
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +26,9 @@ import java.util.Map;
 import java.util.Vector;
 
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
+import fi.capeismi.fish.uistelupaivakirja.model.GPSInfo;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
+import fi.capeismi.fish.uistelupaivakirja.model.NoGpsFixException;
 import fi.capeismi.fish.uistelupaivakirja.model.PlaceObject;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.AlertDialog;
@@ -173,6 +176,23 @@ public class Trip extends ListActivity implements OnClickListener {
 		startActivity(intent);
     }
     
+    private int createEvent(EventItem.EType type)
+    {
+    	EventItem event = m_trip.newEvent(type);
+    	event.setPrefs(getSharedPreferences("Uistelu", 0));
+    	event.setTime(new Date());
+		GPSInfo gpsinfo = ModelFactory.getGpsInfo();
+		try {
+			event.setCoordinatesLat(new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLat()));
+			event.setCoordinatesLon( new DecimalFormat("#0.00000").format(gpsinfo.getCurrentLon()));
+			event.setTrollingSpeed(new DecimalFormat("#0.0").format(gpsinfo.getCurrentSpeed()));    			    			
+		} catch (NoGpsFixException e) {			
+			
+		}
+		event.setupDefaultValues();
+		return m_trip.getEvents().indexOf(event);
+    }
+    
     @Override
     protected void onPause()  {
     	super.onPause();
@@ -214,7 +234,7 @@ public class Trip extends ListActivity implements OnClickListener {
         setListAdapter(listadapter);
     }
     
-    private void canCreateEvent(final Intent intent)
+    private void canCreateEvent(final Intent intent, final EventItem.EType type)
     {
     	if(!m_trip.isEndTime())
     	{
@@ -236,6 +256,7 @@ public class Trip extends ListActivity implements OnClickListener {
 					locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ModelFactory.getGpsInfo());
 				}
 				intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
+				intent.putExtra("event", createEvent(type));
 				startActivity(intent);
 			}
 		}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -254,13 +275,13 @@ public class Trip extends ListActivity implements OnClickListener {
 		switch(v.getId())
 		{
 		case R.id.NewFish: 
-			canCreateEvent(new Intent(this, Fish.class));
+			canCreateEvent(new Intent(this, Fish.class), EventItem.EType.eFish);
 			break;
 		case R.id.NewWeather: 
-			canCreateEvent(new Intent(this, Weather.class));
+			canCreateEvent(new Intent(this, Weather.class), EventItem.EType.eWeather);
 			break;
 		case R.id.FishnWeather:
-			canCreateEvent(new Intent(this, FishAndWeather.class));
+			canCreateEvent(new Intent(this, FishAndWeather.class), EventItem.EType.eFishAndWeather);
 			break;
 		case R.id.EndTrip: 
 			m_trip.setEndTime(new Date());			

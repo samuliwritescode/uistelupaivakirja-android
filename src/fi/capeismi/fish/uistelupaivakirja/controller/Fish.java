@@ -17,7 +17,6 @@
 
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import android.os.Bundle;
 
 public final class Fish extends Event
@@ -27,11 +26,8 @@ public final class Fish extends Event
     public void onCreate(Bundle savedInstanceState) {
     	setContentView(R.layout.fish);
     	super.onCreate(savedInstanceState);
-
-		setMembers(EventItem.EType.eFish);
 				
 		m_fishImpl = new FishCounterPart(getEvent(), getTrip(), new PrivateConduit());
-		//readCommonFields();
     }
     
     

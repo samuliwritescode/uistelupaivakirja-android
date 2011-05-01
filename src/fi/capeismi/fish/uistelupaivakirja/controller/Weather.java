@@ -17,7 +17,6 @@
 
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
 import fi.capeismi.fish.uistelupaivakirja.model.WeatherInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,8 +31,6 @@ public final class Weather extends Event {
     public void onCreate(Bundle savedInstanceState) {
     	setContentView(R.layout.weather);
     	super.onCreate(savedInstanceState);
-    	
-    	setMembers(EventItem.EType.eWeather);
 				
     	m_weatherImpl = new WeatherCounterPart(getEvent(), getTrip(), new PrivateConduit());
 		
