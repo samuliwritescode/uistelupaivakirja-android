@@ -159,6 +159,8 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 		} catch(Exception e2) {
 			
 		}
+		Intent intent = new Intent(this, TripExplorer.class);
+		startActivity(intent);
 	}
       
 }
