@@ -70,20 +70,12 @@ public class Trip extends ListActivity implements OnClickListener {
     	((Button)findViewById(R.id.NewWeather)).setOnClickListener(this); 
     	((Button)findViewById(R.id.FishnWeather)).setOnClickListener(this);
     	((Button)findViewById(R.id.EndTrip)).setOnClickListener(this);
-    	Log.i(TAG, "create trip");
-    	
-    	try
-    	{
-	    	final Intent intent = getIntent();
-	    	Bundle extras = intent.getExtras();
-	    	int index = extras.getInt("listitem");
-	    	m_trip = ModelFactory.getModel().getTrips().getList().get(index);	  		
-    	} catch(Exception e)
-    	{
-    		m_trip = ModelFactory.getModel().getTrips().newTrip();
-    		int index = ModelFactory.getModel().getTrips().getList().indexOf(m_trip);
-    		getIntent().putExtra("listitem", index);
-    	}  	
+    	Log.i(TAG, "create trip");    	
+
+    	final Intent intent = getIntent();
+    	Bundle extras = intent.getExtras();
+    	int index = extras.getInt("listitem");
+    	m_trip = ModelFactory.getModel().getTrips().getList().get(index);	  		
     	
     	Spinner spinner = (Spinner)findViewById(R.id.PlaceList);
     	ArrayAdapter<PlaceObject> adapter = new ArrayAdapter<PlaceObject>(this, android.R.layout.simple_spinner_item);
@@ -190,6 +182,7 @@ public class Trip extends ListActivity implements OnClickListener {
 			
 		}
 		event.setupDefaultValues();
+		m_trip.save();
 		return m_trip.getEvents().indexOf(event);
     }
     
@@ -239,6 +232,7 @@ public class Trip extends ListActivity implements OnClickListener {
     	if(!m_trip.isEndTime())
     	{
 			intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
+			intent.putExtra("event", createEvent(type));
 			startActivity(intent);
 			return;
     	}

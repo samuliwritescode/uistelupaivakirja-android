@@ -17,15 +17,11 @@
 
 package fi.capeismi.fish.uistelupaivakirja.controller;
 
-import java.text.DecimalFormat;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import fi.capeismi.fish.uistelupaivakirja.model.EventItem;
-import fi.capeismi.fish.uistelupaivakirja.model.GPSInfo;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
-import fi.capeismi.fish.uistelupaivakirja.model.NoGpsFixException;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
 import android.app.Activity;
 import android.app.AlertDialog;
