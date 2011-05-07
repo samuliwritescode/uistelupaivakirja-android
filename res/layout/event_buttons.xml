@@ -6,16 +6,16 @@ android:layout_height="fill_parent"
 android:weightSum="100"
 xmlns:android="http://schemas.android.com/apk/res/android">
 
-<Button android:text="@string/done" 
-android:id="@+id/Done"
-android:drawableBottom="@drawable/media_flash"
+<Button android:text="@string/delete" 
+android:id="@+id/Delete"
+android:drawableBottom="@drawable/edit_cut"
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:layout_weight="50"></Button>
 
-<Button android:text="@string/delete" 
-android:id="@+id/Delete"
-android:drawableBottom="@drawable/edit_cut"
+<Button android:text="@string/done" 
+android:id="@+id/Done"
+android:drawableBottom="@drawable/media_flash"
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content" 
 android:layout_weight="50"></Button>
