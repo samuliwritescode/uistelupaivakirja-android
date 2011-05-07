@@ -215,7 +215,7 @@ public abstract class Event extends Activity implements OnClickListener{
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				m_trip.destroyEvent(m_trip.getEvents().indexOf(m_event));
+				m_trip.destroyEvent(m_event);
 				finish();
 			}
 		}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

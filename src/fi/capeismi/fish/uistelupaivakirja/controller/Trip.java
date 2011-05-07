@@ -141,9 +141,12 @@ public class Trip extends ListActivity implements OnClickListener {
 		Log.i(TAG, "selected "+item.getItemId());
 		switch(item.getItemId())
 		{
-		case R.id.remove: 
+		case R.id.remove:			
 			int idx = ((AdapterView.AdapterContextMenuInfo)item.getMenuInfo()).position;
-			m_trip.destroyEvent(idx);
+			Map<String, Object> ob = (Map<String, Object>)getListAdapter().getItem(idx);
+			EventItem event = (EventItem)ob.get("Object");
+			
+			m_trip.destroyEvent(event);
 			m_trip.save();
 			onResume();
 			return true;
@@ -155,7 +158,10 @@ public class Trip extends ListActivity implements OnClickListener {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id)
     {
-    	Log.i(TAG, "clicked event item"+new Long(id).toString());
+    	Map<String, Object> ob = (Map<String, Object>)l.getAdapter().getItem(position);
+    	EventItem event = (EventItem)ob.get("Object");
+    	id = m_trip.getEvents().indexOf(event);
+    	Log.i(TAG, "clicked event item"+event.toString());
 		Intent intent = null;
 		switch(m_trip.getEvents().get((int)id).getType())
 		{
@@ -203,9 +209,11 @@ public class Trip extends ListActivity implements OnClickListener {
     	Log.i(TAG, "draw fish list");
     	List<Map<String, Object> > data = new Vector<Map<String, Object> >();
         List<EventItem> events = m_trip.getEvents();
-        for(EventItem event: events)
+        for(int loop=events.size()-1; loop >= 0; loop--)
         {
+        	EventItem event = events.get(loop);
             Map<String, Object> ob = new HashMap<String, Object>();
+            ob.put("Object", event);
             ob.put("Title", event.getTime());
             ob.put("Content", event.toString());
             switch(event.getType())

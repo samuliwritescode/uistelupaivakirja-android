@@ -115,9 +115,9 @@ public class TripObject extends TrollingObject{
 		return item;
 	}
 	
-	public void destroyEvent(int id)
+	public void destroyEvent(EventItem event)
 	{
-		m_items.remove(id);
+		m_items.remove(event);
 	}
 	
 	public List<EventItem> getEvents()
