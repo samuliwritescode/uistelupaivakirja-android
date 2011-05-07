@@ -129,6 +129,7 @@ public abstract class Event extends Activity implements OnClickListener{
 	    	if(comparator != null)
 	    		adapter.sort(comparator);
 			spinner.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
 	    }
 	    
 	    @SuppressWarnings("unchecked")
@@ -149,6 +150,7 @@ public abstract class Event extends Activity implements OnClickListener{
 	    	if(object != null)
 	    	{
 	    		spinner.setSelection(adapter.getPosition(object));
+	    		adapter.notifyDataSetChanged();
 	    	}
 	    }
 		
