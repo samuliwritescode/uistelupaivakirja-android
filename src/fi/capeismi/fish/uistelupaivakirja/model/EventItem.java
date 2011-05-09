@@ -25,9 +25,9 @@ import java.util.Map;
 
 import android.content.SharedPreferences;
 
-public class EventItem extends TrollingObjectItem implements FishItem, WeatherItem {
+public class EventItem extends TrollingObjectItem implements FishItem, WeatherItem, POIItem {
 	
-	public enum EType {eNaN, eFish, eWeather, eFishAndWeather}
+	public enum EType {eNaN, eFish, eWeather, eFishAndWeather, ePOI}
     public enum EWindDirection{eNaN, eSouth, eSouthWest, eWest, eNorthWest, eNorth, eNorthEast, eEast, eSouthEast, eNoWindDirection};
     public enum EPressureChange{eNaN, eFastDecline, eModerateDecline, eSlowDecline, eNoChange, eSlowRaise, eModerateRaise, eFastRaise};
 	
@@ -217,6 +217,11 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 			retval += formatted(getHumanReadableRain(getInt(FISH_RAIN)));
 		}
 		
+		if(getType() == EType.ePOI)
+		{
+			retval += formatted(getDescription());
+		}
+		
 		if(retval.endsWith(", "))
 			retval = retval.substring(0, retval.length()-2);
 		
@@ -282,6 +287,7 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	public void setPressureChange(int value) { setInt(FISH_PRESSURE_CHANGE, value); }
 	
 	//Text field getters
+	public String getDescription(){return get(FISH_MISC_TEXT);}
 	public String getWeight(){return get(FISH_WEIGHT);}
 	public String getLength(){return get(FISH_LENGTH);}
 	public String getSpotDepth(){return get(FISH_SPOT_DEPTH);}
@@ -305,6 +311,7 @@ public class EventItem extends TrollingObjectItem implements FishItem, WeatherIt
 	}
 	
 	//Text field setters
+	public void setDescription(String value){set(FISH_MISC_TEXT, value);}
 	public void setWeight(String value){set(FISH_WEIGHT, value);}
 	public void setLength(String value){set(FISH_LENGTH, value);}
 	public void setSpotDepth(String value){set(FISH_SPOT_DEPTH, value);}

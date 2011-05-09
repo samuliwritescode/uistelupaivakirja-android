@@ -69,6 +69,7 @@ public class Trip extends ListActivity implements OnClickListener {
     	((Button)findViewById(R.id.NewFish)).setOnClickListener(this);
     	((Button)findViewById(R.id.NewWeather)).setOnClickListener(this); 
     	((Button)findViewById(R.id.FishnWeather)).setOnClickListener(this);
+    	((Button)findViewById(R.id.POI)).setOnClickListener(this);
     	((Button)findViewById(R.id.EndTrip)).setOnClickListener(this);
     	Log.i(TAG, "create trip");    	
 
@@ -168,6 +169,7 @@ public class Trip extends ListActivity implements OnClickListener {
 		case eFish: intent = new Intent(this, Fish.class); break;
 		case eWeather: intent = new Intent(this, Weather.class); break;
 		case eFishAndWeather: intent = new Intent(this, FishAndWeather.class); break;
+		case ePOI: intent = new Intent(this, POI.class); break;
 		}
 		intent.putExtra("event", (int)id);
 		intent.putExtra("tripindex", ModelFactory.getModel().getTrips().getList().indexOf(m_trip));
@@ -221,6 +223,7 @@ public class Trip extends ListActivity implements OnClickListener {
             case eFish: ob.put("Image", R.drawable.fish_event); break;
             case eWeather: ob.put("Image", R.drawable.weather_event); break;
             case eFishAndWeather: ob.put("Image", R.drawable.weatherfish_event); break;
+            case ePOI: ob.put("Image", R.drawable.poi_event); break;
             }
         	data.add(ob);
         }
@@ -284,6 +287,9 @@ public class Trip extends ListActivity implements OnClickListener {
 			break;
 		case R.id.FishnWeather:
 			canCreateEvent(new Intent(this, FishAndWeather.class), EventItem.EType.eFishAndWeather);
+			break;
+		case R.id.POI:
+			canCreateEvent(new Intent(this, POI.class), EventItem.EType.ePOI);
 			break;
 		case R.id.EndTrip: 
 			m_trip.setEndTime(new Date());			

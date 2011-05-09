@@ -24,22 +24,29 @@
 			android:id="@+id/NewFish" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" 
-			android:layout_weight="33"
+			android:layout_weight="25"
 			android:drawableBottom="@drawable/fish"/>
 			
 		<Button android:text="@string/new_weather" 
 			android:id="@+id/NewWeather" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" 
-			android:layout_weight="33"
+			android:layout_weight="25"
 			android:drawableBottom="@drawable/weather"/>
 			
 		<Button android:text="@string/new_fishnweather" 
 			android:id="@+id/FishnWeather" 
 			android:layout_width="wrap_content" 
 			android:layout_height="wrap_content" 
-			android:layout_weight="33"
-			android:drawableBottom="@drawable/weatherfish" />		
+			android:layout_weight="25"
+			android:drawableBottom="@drawable/weatherfish" />
+			
+		<Button android:text="@string/new_poi" 
+			android:id="@+id/POI" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content" 
+			android:layout_weight="25"
+			android:drawableBottom="@drawable/poi" />	
 	</LinearLayout>
 	<ListView
 		xmlns:android="http://schemas.android.com/apk/res/android"	

@@ -26,6 +26,9 @@
         
         <activity android:name=".FishAndWeather" android:label="@string/fishnweather" android:windowSoftInputMode="stateHidden">        			
         </activity>
+        
+        <activity android:name=".POI" android:label="@string/poi" android:windowSoftInputMode="adjustResize">        			
+        </activity>
        
     </application>
     <uses-sdk android:minSdkVersion="4" />

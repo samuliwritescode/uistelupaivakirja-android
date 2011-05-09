@@ -6,10 +6,12 @@
     <string name="trip">Reissu</string>
     <string name="fish">Kalatapahtuma</string>
     <string name="weather">Säähavainto</string>
+    <string name="poi">Point of Interest</string>
     <string name="fishnweather">Kalatapahtuma ja säätapahtuma</string>
     <string name="new_fish">Lisää kala</string>
     <string name="new_weather">Lisää säätila</string>
     <string name="new_fishnweather">Lisää kala+sää</string>
+    <string name="new_poi">Lisää POI</string>
     <string name="new_value">Lisää</string>
     <string name="end_trip">Päätä reissu</string>
     <string name="species">Laji</string>

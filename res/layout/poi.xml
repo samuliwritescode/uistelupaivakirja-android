@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="vertical" 
+		android:layout_height="fill_parent" 
+		android:background="#88AA88"
+		android:id="@+id/LinearLayout01" 
+		android:layout_width="fill_parent">
+		
+		<include layout="@layout/event_general"/>
+		
+		<EditText 
+			android:text="" android:id="@+id/Description" android:layout_width="fill_parent" 
+			android:layout_height="fill_parent" android:layout_weight="200" android:gravity="top"/>
+		
+		<include layout="@layout/event_buttons"/>
+	</LinearLayout>
+</merge>
