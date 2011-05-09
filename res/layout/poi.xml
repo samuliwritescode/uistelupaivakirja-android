@@ -13,7 +13,7 @@
 		
 		<EditText 
 			android:text="" android:id="@+id/Description" android:layout_width="fill_parent" 
-			android:layout_height="fill_parent" android:layout_weight="200" android:gravity="top" android:inputType="text|textCapSentences"/>
+			android:layout_height="fill_parent" android:layout_weight="200" android:gravity="top" android:inputType="textMultiLine|textCapSentences"/>
 		
 		<include layout="@layout/event_buttons"/>
 	</LinearLayout>
