@@ -42,6 +42,7 @@ public final class Weather extends Event {
 				
 				try
 				{
+					m_weatherImpl.writeWeatherFields();
 					findViewById(R.id.ProgressBar).setVisibility(View.VISIBLE);
 					new WeatherDownloader().execute(getTrip().getPlace().getCity());
 				} 
