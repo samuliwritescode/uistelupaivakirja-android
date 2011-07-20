@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -20,13 +22,34 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.os.AsyncTask;
 
 public class XMLSender {
-	private XMLSenderCallback _callback;
-	private String _filename;
+	private XMLStorage _storage;
+	private Observable _observable;
 	
-	public XMLSender(XMLSenderCallback callback, String filename) {
-		this._callback = callback;
-		this._filename = filename;
+	public XMLSender(XMLStorage storage) {
+		this._storage = storage;
+		_observable = new Observable() {
+			@Override
+			public void notifyObservers(Object arg)
+			{
+				setChanged();
+				super.notifyObservers(arg);
+			}
+			
+			@Override
+			public void notifyObservers()
+			{
+				setChanged();
+				super.notifyObservers();
+			}
+		};					
+	}
+	
+	public void upload() {
 		new HttpUploader().execute();
+	}
+	
+	public void addObserver(Observer o) {
+		_observable.addObserver(o);
 	}
 	
 	private boolean doPost() throws URISyntaxException, ClientProtocolException, IOException {
@@ -46,7 +69,7 @@ public class XMLSender {
 		
 		HttpPost post = new HttpPost(new URI(serveraddr+"/trips"));
 		
-		File file = new File(this._filename);
+		File file = new File(this._storage.getFullPath());
 		FileEntity entity = new FileEntity(file, "text/xml");
 		post.setEntity(entity);
 		
@@ -58,12 +81,11 @@ public class XMLSender {
 		}
 		
 		printResponse(responsesend.getEntity().getContent());
-		
 		return true;
 	}
 	
 	private void error(String error) {
-		this._callback.error(error);
+		_observable.notifyObservers(error);
 	}
 	
 	private void printResponse(InputStream is) throws IOException {
@@ -76,11 +98,6 @@ public class XMLSender {
 		}
 		is.close();
 		error(buf.toString());
-	}
-	
-	public interface XMLSenderCallback {
-		void sendDone(String filename);
-		void error(String error);
 	}
 	
     private class HttpUploader extends AsyncTask<Void, Void, Boolean>
@@ -110,10 +127,7 @@ public class XMLSender {
 		@Override
 		protected void onPostExecute(Boolean result)
 		{
-			if(result == Boolean.TRUE)
-			{
-				_callback.sendDone(_filename);
-			}
+			_observable.notifyObservers(result);
 		}
     	
     }

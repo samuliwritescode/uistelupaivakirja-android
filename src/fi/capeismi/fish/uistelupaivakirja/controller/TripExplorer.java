@@ -20,12 +20,13 @@ package fi.capeismi.fish.uistelupaivakirja.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -44,9 +45,7 @@ import android.widget.Toast;
 import fi.capeismi.fish.uistelupaivakirja.model.ExceptionHandler;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory.Model;
-import fi.capeismi.fish.uistelupaivakirja.model.TripCollection;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
-import fi.capeismi.fish.uistelupaivakirja.model.XMLSender;
 
 public class TripExplorer extends ListActivity implements OnClickListener, ExceptionHandler {
 	
@@ -93,7 +92,7 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
         btn.setOnClickListener(this);
         
         Button sync = (Button)findViewById(R.id.SyncTrips);
-        sync.setOnClickListener(this);
+        sync.setOnClickListener(this);       
     }
     
     @Override
@@ -151,32 +150,30 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 	}
 	
 	private void syncTrips() {
-		String file = Environment.getExternalStorageDirectory().toString()+"/uistelu/trip.xml";
-		
-		new XMLSender(new XMLSender.XMLSenderCallback() {
+        //Uploader notifications. Must show something to user
+        //and reload UI when database gets cleared.
+		ModelFactory.getModel().getUploader().addObserver(new Observer() {
 			
 			@Override
-			public void sendDone(String filename) {
-				TripCollection collection = ModelFactory.getModel().getTrips();
-				while(collection.getList().size() > 0)
-				{
-					collection.remove(0);
-				}
-				onResume();				
-			}
-
-			@Override
-			public void error(final String error) {
+			public void update(Observable observable, Object data) {
+				final Object error = data;
 				runOnUiThread(new Runnable() {
 
 					@Override
 					public void run() {
-						Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();								
+						if(error instanceof String)
+						{
+							Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();		
+						} else if(error instanceof Boolean)
+						{
+							Log.i(TAG, "done");
+							onResume();
+						}											
 					}					
 				});
-						
 			}
-		}, file);		
+		});
+		ModelFactory.getModel().getUploader().upload();
 	}
 	
 	private void beginTrip() {

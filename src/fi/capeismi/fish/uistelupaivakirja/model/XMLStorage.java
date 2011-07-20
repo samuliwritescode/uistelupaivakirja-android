@@ -47,6 +47,11 @@ final class XMLStorage implements Storage {
 	private String m_filename;
 	private List<BuildTarget> m_listeners = new ArrayList<BuildTarget>();
 	
+	public String getFullPath()
+	{
+		return Environment.getExternalStorageDirectory().toString()+"/uistelu/"+m_filename+".xml";
+	}
+	
 	@Override
 	public void save(Storable storable) {
 		save(storable.getId(), storable);
@@ -54,7 +59,7 @@ final class XMLStorage implements Storage {
 	
 	private void save(int id, Storable storable) {
 		Log.i(TAG, "save storable "+id);
-		File file = new File(Environment.getExternalStorageDirectory().toString()+"/uistelu/"+m_filename+".xml");
+		File file = new File(getFullPath());
 		try {
 			StringBuilder xml = new StringBuilder();
 			int maxId = 1;
@@ -167,7 +172,7 @@ final class XMLStorage implements Storage {
 	public void load(String filename)
 	{
 		m_filename = filename;
-		File file = new File(Environment.getExternalStorageDirectory().toString()+"/uistelu/"+filename+".xml");
+		File file = new File(getFullPath());
 
 		Log.i(TAG, "loading "+file.toString());
 		Log.i(TAG, "file found:"+new Boolean(file.exists()).toString());

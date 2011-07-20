@@ -17,6 +17,9 @@
 
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.util.Observable;
+import java.util.Observer;
+
 public class ModelFactory {
 	private static Model instance;
 	private static GPSInfo gpsinfo;
@@ -70,14 +73,19 @@ public class ModelFactory {
 		private PlaceCollection m_placeCollection = null;
 		private LureCollection m_lureCollection = null;
 		private AlternativeItemCollection m_spinnerItems = null;
-		
+		private XMLSender m_sender = null;
 		
 		private Model() {
 			m_tripCollection = new TripCollection();
 			m_placeCollection = new PlaceCollection();
 			m_lureCollection = new LureCollection();
 			m_spinnerItems = new AlternativeItemCollection();
-			setupObjects(m_tripCollection, new Storer(), new XMLStorage(), new TripBuilder(), "trip");
+			
+			XMLStorage tripstorage = new XMLStorage();
+			m_sender = new XMLSender(tripstorage);
+			m_sender.addObserver(clearTripsAfterUpload());
+			
+			setupObjects(m_tripCollection, new Storer(), tripstorage, new TripBuilder(), "trip");
 			setupObjects(m_placeCollection, new Storer(), new XMLStorage(), new PlaceBuilder(), "place");
 			setupObjects(m_lureCollection, new Storer(), new XMLStorage(), new LureBuilder(), "lure");
 			setupObjects(m_spinnerItems, new Storer(), new XMLStorage(), new AbstractBuilder() {
@@ -87,6 +95,21 @@ public class ModelFactory {
 					super.build();
 				}
 			}, "spinneritems");
+		}
+		
+		private Observer clearTripsAfterUpload() {
+			return new Observer() {
+				@Override
+				public void update(Observable observable, Object o) {
+					if(o instanceof Boolean && o.equals(Boolean.TRUE))
+					{
+						while(m_tripCollection.getList().size() > 0)
+						{
+							m_tripCollection.remove(0);
+						}
+					}					
+				}				
+			};
 		}
 		
 		private void setupObjects(TrollingObjectCollection collection, 
@@ -127,6 +150,10 @@ public class ModelFactory {
 		
 		public AlternativeItemCollection getSpinnerItems() {
 			return this.m_spinnerItems;
-		}		
+		}
+		
+		public XMLSender getUploader() {
+			return m_sender;
+		}
 	}
 }
