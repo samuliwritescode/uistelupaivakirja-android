@@ -24,4 +24,9 @@
 		android:text="@string/sync_help" android:id="@+id/TextView01" android:layout_width="fill_parent" 
 		android:layout_height="wrap_content" android:gravity="center" android:textAppearance="@style/NormalText"/>
 		
+	<Button android:text="@string/sync_trips" 
+			android:id="@+id/SyncTrips" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content">
+	</Button>
 </LinearLayout>

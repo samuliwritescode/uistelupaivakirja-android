@@ -25,6 +25,7 @@ import java.util.Vector;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -43,7 +44,9 @@ import android.widget.Toast;
 import fi.capeismi.fish.uistelupaivakirja.model.ExceptionHandler;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory;
 import fi.capeismi.fish.uistelupaivakirja.model.ModelFactory.Model;
+import fi.capeismi.fish.uistelupaivakirja.model.TripCollection;
 import fi.capeismi.fish.uistelupaivakirja.model.TripObject;
+import fi.capeismi.fish.uistelupaivakirja.model.XMLSender;
 
 public class TripExplorer extends ListActivity implements OnClickListener, ExceptionHandler {
 	
@@ -88,6 +91,9 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 
         Button btn = (Button)findViewById(R.id.BeginTrip);
         btn.setOnClickListener(this);
+        
+        Button sync = (Button)findViewById(R.id.SyncTrips);
+        sync.setOnClickListener(this);
     }
     
     @Override
@@ -137,7 +143,31 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 	public void onClick(View arg0) {
 		Button btn = (Button)arg0;
 		Log.i(TAG, "clicked"+btn.getText().toString());
+		switch(btn.getId())
+		{
+		case R.id.BeginTrip: beginTrip(); break;
+		case R.id.SyncTrips: syncTrips(); break;
+		}	
+	}
+	
+	private void syncTrips() {
+		String file = Environment.getExternalStorageDirectory().toString()+"/uistelu/trip.xml";
 		
+		new XMLSender(new XMLSender.XMLSenderCallback() {
+			
+			@Override
+			public void sendDone(String filename) {
+				TripCollection collection = ModelFactory.getModel().getTrips();
+				while(collection.getList().size() > 0)
+				{
+					collection.remove(0);
+				}
+				onResume();				
+			}
+		}, file);		
+	}
+	
+	private void beginTrip() {
 		Intent intent = new Intent(this, Trip.class);
 		TripObject trip = ModelFactory.getModel().getTrips().newTrip();
 		trip.save();
