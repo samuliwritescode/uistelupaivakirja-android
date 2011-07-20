@@ -164,6 +164,18 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 				}
 				onResume();				
 			}
+
+			@Override
+			public void error(final String error) {
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						Toast.makeText(getApplicationContext(), error, Toast.LENGTH_LONG).show();								
+					}					
+				});
+						
+			}
 		}, file);		
 	}
 	

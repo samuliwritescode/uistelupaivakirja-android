@@ -2,8 +2,6 @@ package fi.capeismi.fish.uistelupaivakirja.model;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,8 +13,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.FileEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+
 
 import android.os.AsyncTask;
 
@@ -37,14 +36,18 @@ public class XMLSender {
 		HttpGet login = new HttpGet(new URI(serveraddr+"login?j_username=cape&j_password=kek"));
 		HttpResponse responselogin = httpclient.execute(login);
 		if(responselogin.getStatusLine().getStatusCode() != 200)
+		{
+			error("cant login");
 			return false;
+		}
 		
 		responselogin.getEntity().consumeContent();
 		android.util.Log.e("http", "login successful");
 		
 		HttpPost post = new HttpPost(new URI(serveraddr+"/trips"));
 		
-		StringEntity entity = new StringEntity(fromFile());
+		File file = new File(this._filename);
+		FileEntity entity = new FileEntity(file, "text/xml");
 		post.setEntity(entity);
 		
 		HttpResponse responsesend = httpclient.execute(post);
@@ -59,32 +62,25 @@ public class XMLSender {
 		return true;
 	}
 	
-	private String fromFile() throws IOException {
-		StringBuffer buf = new StringBuffer();
-		File file = new File(this._filename);
-		InputStream is = new FileInputStream(file);
-		BufferedReader bf = new BufferedReader(new InputStreamReader(is));
-		String line = null;
-		while((line = bf.readLine()) != null)
-		{
-			buf.append(line);
-		}
-		is.close();
-		
-		return buf.toString();
+	private void error(String error) {
+		this._callback.error(error);
 	}
 	
 	private void printResponse(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line = null;
+		StringBuffer buf = new StringBuffer();
 		while((line=br.readLine()) != null) {
-			android.util.Log.e("http", line);	
+			android.util.Log.e("http", line);
+			buf.append(line);
 		}
 		is.close();
+		error(buf.toString());
 	}
 	
 	public interface XMLSenderCallback {
 		void sendDone(String filename);
+		void error(String error);
 	}
 	
     private class HttpUploader extends AsyncTask<Void, Void, Boolean>
