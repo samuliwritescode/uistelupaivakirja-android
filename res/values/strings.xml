@@ -62,4 +62,8 @@
     <string name="sync_trips">Synkronoi palvelimeen</string>
     <string name="uploading">Lähetetään reissut...</string>
     <string name="unfinished_trips">Sinulla on sulkemattomia reissuja. Synkronoi vasta kun olet päättänyt reissun.</string>
+    <string name="service_addr">Palvelun osoite</string>
+    <string name="service_user">Käyttäjätunnus</string>
+    <string name="service_pass">Salasana</string>
+    <string name="settings">Palveluasetukset</string>
 </resources>

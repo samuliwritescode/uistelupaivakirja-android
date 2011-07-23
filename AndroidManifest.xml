@@ -29,7 +29,10 @@
         
         <activity android:name=".POI" android:label="@string/poi" android:windowSoftInputMode="adjustResize">        			
         </activity>
-       
+        
+        <activity android:name=".Settings" android:label="@string/settings" android:windowSoftInputMode="stateHidden">        			
+        </activity>
+        
     </application>
     <uses-sdk android:minSdkVersion="4" />
 

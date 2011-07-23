@@ -24,6 +24,9 @@ import android.os.AsyncTask;
 public class XMLSender {
 	private XMLStorage _storage;
 	private Observable _observable;
+	private String serveraddr;
+	private String username;
+	private String password;
 	
 	public XMLSender(XMLStorage storage) {
 		this._storage = storage;
@@ -44,6 +47,15 @@ public class XMLSender {
 		};					
 	}
 	
+	public void setCredentials(String username, String password) {
+		this.username = username;
+		this.password = password;		
+	}
+	
+	public void setServerAddr(String addr) {
+		this.serveraddr = addr;
+	}
+	
 	public void upload() {
 		new HttpUploader().execute();
 	}
@@ -54,9 +66,8 @@ public class XMLSender {
 	
 	private boolean doPost() throws URISyntaxException, ClientProtocolException, IOException {
 		HttpClient httpclient = new DefaultHttpClient();
-		String serveraddr = "http://anteex.capeismi.fi:8080/uistelu/";
 		
-		HttpGet login = new HttpGet(new URI(serveraddr+"login?j_username=cape&j_password=kek"));
+		HttpGet login = new HttpGet(new URI(serveraddr+"login?j_username="+username+"&j_password="+password));
 		HttpResponse responselogin = httpclient.execute(login);
 		if(responselogin.getStatusLine().getStatusCode() != 200)
 		{

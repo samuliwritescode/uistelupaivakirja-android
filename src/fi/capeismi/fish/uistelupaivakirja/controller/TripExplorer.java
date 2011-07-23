@@ -27,6 +27,7 @@ import java.util.Vector;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -77,9 +78,22 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 	}
 	
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	Log.i(TAG, "options menu");
-    	return super.onCreateOptionsMenu(menu);
+    public boolean onCreateOptionsMenu(Menu menu) {    	
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case R.id.server:
+    		Log.i(TAG, "show settings");
+    		Intent intent = new Intent(this, Settings.class);
+    		startActivity(intent);
+    		return true;
+    	default: return super.onOptionsItemSelected(item);
+    	}
     }
 	
     /** Called when the activity is first created. */
@@ -139,6 +153,12 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
         registerForContextMenu(getListView());
         Button syncbutton = (Button)findViewById(R.id.SyncTrips);
         syncbutton.setEnabled(canSyncTrips());
+        
+        SharedPreferences prefs = getSharedPreferences("Uistelu", 0);
+        
+        ModelFactory.getModel().getUploader().setServerAddr(prefs.getString("ServerAddress", ""));
+        ModelFactory.getModel().getUploader().setCredentials(prefs.getString("ServerUsername", ""), 
+        		prefs.getString("ServerPassword", ""));
     }
 
 	@Override
