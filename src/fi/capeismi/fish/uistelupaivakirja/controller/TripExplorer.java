@@ -25,6 +25,7 @@ import java.util.Observer;
 import java.util.Vector;
 
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -136,6 +137,8 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
         
         setListAdapter(adapter);
         registerForContextMenu(getListView());
+        Button syncbutton = (Button)findViewById(R.id.SyncTrips);
+        syncbutton.setEnabled(canSyncTrips());
     }
 
 	@Override
@@ -149,7 +152,23 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 		}	
 	}
 	
-	private void syncTrips() {
+	private boolean canSyncTrips() {
+		if(ModelFactory.getModel().getTrips().getList().size() == 0) {
+			return false;
+		}
+		
+		for(TripObject trip: ModelFactory.getModel().getTrips().getList()) {
+			if(!trip.isEndTime()) {				
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private void syncTrips() {	
+		final ProgressDialog dialog = ProgressDialog.show(this, "", 
+                getResources().getText(R.string.uploading), true);
         //Uploader notifications. Must show something to user
         //and reload UI when database gets cleared.
 		ModelFactory.getModel().getUploader().addObserver(new Observer() {
@@ -163,16 +182,20 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 					public void run() {
 						if(error instanceof String)
 						{
-							Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();		
+							dialog.cancel();
+							Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
 						} else if(error instanceof Boolean)
 						{
 							Log.i(TAG, "done");
+							dialog.dismiss();
 							onResume();
 						}											
 					}					
 				});
 			}
 		});
+		
+
 		ModelFactory.getModel().getUploader().upload();
 	}
 	

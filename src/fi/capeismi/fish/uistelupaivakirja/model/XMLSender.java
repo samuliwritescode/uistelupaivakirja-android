@@ -76,11 +76,10 @@ public class XMLSender {
 		HttpResponse responsesend = httpclient.execute(post);
 		if(responsesend.getStatusLine().getStatusCode() != 200)
 		{
-			printResponse(responsesend.getEntity().getContent());
+			printErrorResponse(responsesend.getEntity().getContent());
 			return false;
 		}
 		
-		printResponse(responsesend.getEntity().getContent());
 		return true;
 	}
 	
@@ -88,7 +87,7 @@ public class XMLSender {
 		_observable.notifyObservers(error);
 	}
 	
-	private void printResponse(InputStream is) throws IOException {
+	private void printErrorResponse(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line = null;
 		StringBuffer buf = new StringBuffer();
@@ -120,6 +119,7 @@ public class XMLSender {
 			}catch(Exception e)
 			{
 				e.printStackTrace();
+				error(e.toString());
 				return Boolean.FALSE;
 			}
 		}
