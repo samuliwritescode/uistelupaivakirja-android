@@ -94,7 +94,7 @@ public class ModelFactory {
 					m_object =  new AlternativeItemObject();
 					super.build();
 				}
-			}, "spinneritems");
+			}, "spinneritem");
 		}
 		
 		private Observer clearTripsAfterUpload() {
