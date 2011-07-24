@@ -17,8 +17,19 @@
 
 package fi.capeismi.fish.uistelupaivakirja.model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.net.URISyntaxException;
 import java.util.Observable;
 import java.util.Observer;
+
+import fi.capeismi.fish.uistelupaivakirja.model.RestfulTransfer.RestfulException;
 
 public class ModelFactory {
 	private static Model instance;
@@ -74,6 +85,7 @@ public class ModelFactory {
 		private LureCollection m_lureCollection = null;
 		private AlternativeItemCollection m_spinnerItems = null;
 		private XMLSender m_sender = null;
+		private RestfulTransfer m_downloader = null;
 		
 		private Model() {
 			m_tripCollection = new TripCollection();
@@ -81,17 +93,26 @@ public class ModelFactory {
 			m_lureCollection = new LureCollection();
 			m_spinnerItems = new AlternativeItemCollection();
 			
-			XMLStorage tripstorage = new XMLStorage();
+			m_downloader = new RestfulTransfer();
+			
+			XMLStorage tripstorage = new XMLStorage();			
+			XMLStorage lurestorage = new XMLStorage();
+			XMLStorage placestorage = new XMLStorage();
+			XMLStorage spinnerstorage = new XMLStorage();
+			
 			m_sender = new XMLSender(tripstorage);
 			m_sender.addObserver(clearTripsAfterUpload());
+			m_sender.addObserver(syncStore("places", placestorage));
+			m_sender.addObserver(syncStore("lures", lurestorage));
+			m_sender.addObserver(syncStore("spinneritems", spinnerstorage));
 			
 			setupObjects(m_tripCollection, new Storer(), tripstorage, new TripBuilder(), "trip");
-			setupObjects(m_placeCollection, new Storer(), new XMLStorage(), new PlaceBuilder(), "place");
-			setupObjects(m_lureCollection, new Storer(), new XMLStorage(), new LureBuilder(), "lure");
-			setupObjects(m_spinnerItems, new Storer(), new XMLStorage(), new AbstractBuilder() {
+			setupObjects(m_placeCollection, new Storer(), placestorage, new PlaceBuilder(), "place");
+			setupObjects(m_lureCollection, new Storer(), lurestorage, new LureBuilder(), "lure");
+			setupObjects(m_spinnerItems, new Storer(), spinnerstorage, new AbstractBuilder() {
 				@Override
 				public void build() {
-					m_object =  new AlternativeItemObject();
+					m_object =  new AlternativeItemObject();					
 					super.build();
 				}
 			}, "spinneritem");
@@ -108,6 +129,35 @@ public class ModelFactory {
 							m_tripCollection.remove(0);
 						}
 					}					
+				}				
+			};
+		}
+		
+		private Observer syncStore(final String doc, final XMLStorage storage) {
+			return new Observer() {
+				@Override
+				public void update(Observable observable, Object o) {
+					if(o instanceof Boolean && o.equals(Boolean.TRUE))
+					{						
+						try {
+							InputStream content = m_downloader.doGet(doc);
+							android.util.Log.i("model", "save to"+storage.getFullPath());
+							File storeTo = new File(storage.getFullPath());
+							OutputStream outstream = new FileOutputStream(storeTo);
+							byte[] buf = new byte[64];
+							int len = 0;
+							while((len = content.read(buf)) > 0) {
+								outstream.write(buf, 0, len);							
+							}
+							
+							content.close();
+							outstream.flush();
+							outstream.close();
+						} catch (Exception e) {
+							getExceptionHandler().sendException(e);
+							android.util.Log.i("model", e.toString());
+						}
+					}						
 				}				
 			};
 		}
@@ -152,8 +202,22 @@ public class ModelFactory {
 			return this.m_spinnerItems;
 		}
 		
-		public XMLSender getUploader() {
-			return m_sender;
+		public void upload() {
+			m_sender.upload();
+		}
+		
+		public void setServerAddress(String addr) {
+			m_sender.setServerAddr(addr);
+			m_downloader.setServerAddr(addr);
+		}
+		
+		public void setCredentials(String username, String password) {
+			m_sender.setCredentials(username, password);
+			m_downloader.setCredentials(username, password);
+		}
+
+		public void addUploadingObserver(Observer observer) {
+			m_sender.addObserver(observer);			
 		}
 	}
 }

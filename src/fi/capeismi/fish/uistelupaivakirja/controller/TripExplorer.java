@@ -156,8 +156,8 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
         
         SharedPreferences prefs = getSharedPreferences("Uistelu", 0);
         
-        ModelFactory.getModel().getUploader().setServerAddr(prefs.getString("ServerAddress", ""));
-        ModelFactory.getModel().getUploader().setCredentials(prefs.getString("ServerUsername", ""), 
+        ModelFactory.getModel().setServerAddress(prefs.getString("ServerAddress", ""));
+        ModelFactory.getModel().setCredentials(prefs.getString("ServerUsername", ""), 
         		prefs.getString("ServerPassword", ""));
     }
 
@@ -191,7 +191,7 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
                 getResources().getText(R.string.uploading), true);
         //Uploader notifications. Must show something to user
         //and reload UI when database gets cleared.
-		ModelFactory.getModel().getUploader().addObserver(new Observer() {
+		ModelFactory.getModel().addUploadingObserver(new Observer() {
 			
 			@Override
 			public void update(Observable observable, Object data) {
@@ -201,8 +201,7 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 					@Override
 					public void run() {
 						if(error instanceof String)
-						{
-							dialog.cancel();
+						{							
 							Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
 						} else if(error instanceof Boolean)
 						{
@@ -216,7 +215,7 @@ public class TripExplorer extends ListActivity implements OnClickListener, Excep
 		});
 		
 
-		ModelFactory.getModel().getUploader().upload();
+		ModelFactory.getModel().upload();
 	}
 	
 	private void beginTrip() {

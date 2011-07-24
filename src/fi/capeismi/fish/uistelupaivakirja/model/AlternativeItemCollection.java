@@ -23,32 +23,32 @@ import java.util.List;
 public class AlternativeItemCollection extends TrollingObjectCollection {
 	public List<AlternativeItemObject> getSpeciesList()
 	{
-		return getList("species");
+		return getList("fish_species");
 	}
 	
 	public List<AlternativeItemObject> getGetterList()
 	{
-		return getList("getter");
+		return getList("fish_getter");
 	}
 	
 	public List<AlternativeItemObject> getMethodList()
 	{
-		return getList("method");
+		return getList("fish_method");
 	}
 	
 	public void addSpecies(String specie) throws DuplicateItemException
 	{
-		add("species", specie);
+		add("fish_species", specie);
 	}
 	
 	public void addGetter(String getter) throws DuplicateItemException
 	{
-		add("getter", getter);
+		add("fish_getter", getter);
 	}
 	
 	public void addMethod(String method) throws DuplicateItemException
 	{
-		add("method", method);
+		add("fish_method", method);
 	}
 	
 	private void add(String type, String value) throws DuplicateItemException
