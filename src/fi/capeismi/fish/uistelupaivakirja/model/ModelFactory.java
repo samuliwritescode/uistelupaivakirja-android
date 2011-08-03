@@ -102,9 +102,9 @@ public class ModelFactory {
 			
 			m_sender = new XMLSender(tripstorage);
 			m_sender.addObserver(clearTripsAfterUpload());
-			m_sender.addObserver(syncStore("places", placestorage));
-			m_sender.addObserver(syncStore("lures", lurestorage));
-			m_sender.addObserver(syncStore("spinneritems", spinnerstorage));
+			m_sender.addObserver(syncStore("place", placestorage));
+			m_sender.addObserver(syncStore("lure", lurestorage));
+			m_sender.addObserver(syncStore("spinneritem", spinnerstorage));
 			
 			setupObjects(m_tripCollection, new Storer(), tripstorage, new TripBuilder(), "trip");
 			setupObjects(m_placeCollection, new Storer(), placestorage, new PlaceBuilder(), "place");

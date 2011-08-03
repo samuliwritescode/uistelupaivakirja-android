@@ -58,7 +58,7 @@ class XMLSender {
 		protected Boolean doInBackground(Void... params) {
 			try
 			{
-				transferclient.doPost("trips", new File(_storageTrip.getFullPath()));
+				transferclient.doPost("trip", new File(_storageTrip.getFullPath()));
 				android.util.Log.e("http", "OK");
 				return Boolean.TRUE;
 
