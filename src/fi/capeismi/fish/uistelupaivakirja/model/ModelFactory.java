@@ -104,7 +104,7 @@ public class ModelFactory {
 			m_sender.addObserver(clearTripsAfterUpload());
 			m_sender.addObserver(syncStore("place", placestorage));
 			m_sender.addObserver(syncStore("lure", lurestorage));
-			m_sender.addObserver(syncStore("spinneritem", spinnerstorage));
+			m_sender.addObserver(syncStore("views/spinneritem", spinnerstorage));
 			
 			setupObjects(m_tripCollection, new Storer(), tripstorage, new TripBuilder(), "trip");
 			setupObjects(m_placeCollection, new Storer(), placestorage, new PlaceBuilder(), "place");
