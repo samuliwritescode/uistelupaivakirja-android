@@ -73,7 +73,15 @@ final class XMLStorage implements Storage {
 				{
 					if(line.indexOf("<TrollingObjects MaxId") != -1)
 					{
-						maxId = new Integer(line.substring(line.indexOf("\"")+1, line.lastIndexOf("\""))).intValue();
+						int offset = "MaxId=\"".length();
+						int indexOfFirstQuote = line.indexOf("MaxId=\"")+offset;
+						int indexOfSecondQuote = line.indexOf("\"", indexOfFirstQuote);
+						
+						String maxIdStr = line.substring(
+								indexOfFirstQuote, 
+								indexOfSecondQuote
+						);
+						maxId = Integer.parseInt(maxIdStr);
 					}
 					else if(line.indexOf("</TrollingObjects") != -1)
 					{
